@@ -11,7 +11,7 @@
  * @date sept 13, 2019
  */
 class Card {
-  public:
+ public:
     /**
      * Creates a new card.
      *
@@ -19,7 +19,7 @@ class Card {
      * @param s The suit of the card. Must be a valid Suit.
      * @Throws InvalidParameterError if v or s are not valid.
      */
-    Card(int v, Suit s) : value(v), suit(s) {};
+    Card(int v, Suit s) : value(v), suit(s) {}
 
     /**
      * Returns the value of the card.
@@ -35,7 +35,7 @@ class Card {
      */
     int getSuit() const {return suit;}
 
-  private:
+ private:
     int value;
     Suit suit;
 };
