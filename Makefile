@@ -4,8 +4,6 @@ CXXFLAGS= -std=c++11 -g -fprofile-arcs -ftest-coverage
 LINKFLAGS= -lgtest
 
 SRC_DIR = src
-# Add a list of your source code files here
-SRCS =
 
 TEST_DIR = test
 
@@ -50,7 +48,7 @@ $(PROGRAM):
 	$(CXX) $(CXXFLAGS) -o $(PROGRAM) -I $(SRC_INCLUDE) $(GAME_MAIN) $(SRC_DIR)/*.cpp $(LINKFLAGS)
 
 $(PROGRAM_TEST):
-	$(CXX) $(CXXFLAGS) -o $(PROGRAM_TEST) $(INCLUDE) $(TEST_DIR)/*.cpp $(SRCS) $(LINKFLAGS) $(GMOCK)
+	$(CXX) $(CXXFLAGS) -o $(PROGRAM_TEST) $(INCLUDE) $(TEST_DIR)/*.cpp $(SRC_DIR)/*.cpp $(LINKFLAGS) $(GMOCK)
 	$(PROGRAM_TEST)
 
 memcheck-game: $(PROGRAM)

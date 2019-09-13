@@ -18,6 +18,8 @@ class Hand {
      */
     Hand();
 
+    ~Hand();
+
 	/**
      * Adds a card to the hand.
      *
