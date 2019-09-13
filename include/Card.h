@@ -1,8 +1,3 @@
-/**
- * 3720 Individual project card game.
- * @author Steven Deutekom
- * @date sept 13, 2019
- */
 #ifndef CARD_H
 #define CARD_H
 
@@ -11,6 +6,9 @@
 
 /**
  * A standard suited playing card.
+ *
+ * @author Steven Deutekom
+ * @date sept 13, 2019
  */
 class Card {
   public:

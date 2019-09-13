@@ -9,3 +9,6 @@ coverage
 results.coverage
 
 *.o
+
+html
+*.log

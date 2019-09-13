@@ -60,6 +60,7 @@ memcheck-game: $(PROGRAM)
 memcheck-test: $(PROGRAM_TEST)
 	valgrind --tool=memcheck --leak-check=yes $(PROGRAM_TEST)
 
+.PHONY: coverage
 coverage: $(PROGRAM_TEST)
 	$(LCOV) --capture --gcov-tool $(GCOV) --directory . --output-file $(COVERAGE_RESULTS)
 	$(LCOV) --extract $(COVERAGE_RESULTS) "*/CardGame/src/*" -o $(COVERAGE_RESULTS)
@@ -67,11 +68,14 @@ coverage: $(PROGRAM_TEST)
 	rm -f *.gc*
 	$(BROWSER) $(COVERAGE_DIR)/index.html
 
+.PHONY: static
 static: ${SRC_DIR}
 	cppcheck --verbose --enable=all --xml ${SRC_DIR} ${TEST_DIR} ${INCLUDE} --suppress=missingInclude
 
+.PHONY: style
 style: ${TEST_DIR} ${SRC_INCLUDE} ${SRC_DIR}
 	${STYLE_CHECK} $(SRC_INCLUDE)/* ${TEST_DIR}/* ${SRC_DIR}/*
 
+.PHONY: docs
 docs: ${SRC_INCLUDE}
-	doxygen
+	doxygen docs/code/doxyfile
