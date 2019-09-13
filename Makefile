@@ -63,7 +63,7 @@ memcheck-test: $(PROGRAM_TEST)
 .PHONY: coverage
 coverage: $(PROGRAM_TEST)
 	$(LCOV) --capture --gcov-tool $(GCOV) --directory . --output-file $(COVERAGE_RESULTS)
-	$(LCOV) --extract $(COVERAGE_RESULTS) "*/CardGame/src/*" -o $(COVERAGE_RESULTS)
+	$(LCOV) --extract $(COVERAGE_RESULTS) "*/card_game/src/*" -o $(COVERAGE_RESULTS)
 	genhtml $(COVERAGE_RESULTS) --output-directory $(COVERAGE_DIR)
 	rm -f *.gc*
 	$(BROWSER) $(COVERAGE_DIR)/index.html
