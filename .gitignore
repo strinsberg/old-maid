@@ -1,6 +1,11 @@
 *~
 *.gcda
-*.gnco
-*.gnca
-*.gcna
 *.gcno
+*.gcov
+
+testGame
+cardGame
+coverage
+results.coverage
+
+*.o
