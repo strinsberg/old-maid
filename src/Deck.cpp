@@ -1,4 +1,6 @@
 #include <vector>
+#include <climits>
+#include <algorithm>
 #include "Deck.h"
 #include "Card.h"
 #include "Suit.h"
@@ -29,10 +31,23 @@ Card const* Deck::getCard(int i) const {
 }
 
 void Deck::shuffle() {
+    std::random_shuffle(cards.begin(), cards.end());
 }
 
 
-std::vector<Hand*> Deck::deal(int hands, int n) {
+std::vector<Hand*> Deck::deal(int h, int n) {
+    int N = n ? n : INT_MAX;
+    int size = cards.size();
+
+    std::vector<Hand*> hands;
+    for (int i = 0; i < h; i++)
+        hands.push_back(new Hand());
+
+    for (int i = 0; i < h * N && i < size; i++) {
+        hands[i%h]->addCard(cards.back());
+        cards.pop_back();
+    }
+    return hands;
 }
 
 
