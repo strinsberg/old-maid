@@ -26,6 +26,17 @@ class Deck {
      * @param packs The number of packs of cards to use for the deck.
      */
     Deck(int packs = 1);
+    
+    ~Deck();
+
+    /**
+     * Get a card from the deck at position i.
+     *
+     * @param i The index of the card to get.
+     * @return the card at position i.
+     * @throw out_of_range if i < 0 or i > deck.size() - 1.
+     */
+    Card const* getCard(int i) const;
 
     /**
      * Randomize the ordering of the cards in the deck.
@@ -42,17 +53,17 @@ class Deck {
      * @param n The size of each hand.
      * @return a vector of the hands created.
      */
-    vector<Hand*> deal(int hands, int n = 0);
+    std::vector<Hand*> deal(int hands, int n = 0);
 
     /**
      * The number of cards currently in the deck.
      *
      * @return the size of the deck.
      */
-    size();
+    int size() const;
 
  private:
-    vector<Card const*> cards;
+    std::vector<Card const*> cards;
 };
 
 #endif
