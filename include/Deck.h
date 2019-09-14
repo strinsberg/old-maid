@@ -25,8 +25,8 @@ class Deck {
      *
      * @param packs The number of packs of cards to use for the deck.
      */
-    Deck(int packs = 1);
-    
+    explicit Deck(int packs = 1);
+
     ~Deck();
 
     /**
