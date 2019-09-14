@@ -5,6 +5,7 @@
 #include <vector>
 #include "Card.h"
 
+
 /**
  * A Collection of cards.
  *
@@ -28,23 +29,32 @@ class Hand {
     void addCard(Card const* card);
 
 	/**
+     * Finds a given card in the hand and returns the index.
+	 *
+	 * @param card The card to find.
+     * @return the index of the card or -1 if the card is not there.
+	 */
+    int findCard(Card const* card) const;
+
+    /**
+     * Access a card at the given index.
+	 *
+	 * @param card The index of the card to access.
+     * @return the card.
+     * @throws invalud_argument if the position is greater
+     * than the hand size or less than 0.
+	 */
+    Card const* getCard(int i) const;
+
+	/**
      * Returns the i-th card from the hand.
      *
      * @param i The position of the card to take.
      * @return a pointer to the card.
-     * @throws InvalidParameterError if the position is greater
-	 * than the hand size or less than 0.
+     * @throws invalud_argument if the position is greater
+     * than the hand size or less than 0.
      */
     Card const* takeCard(int i);
-
-	/**
-     * Removes a given card from the hand.
-	 *
-	 * @param card The card to remove.
-     * @throws InvalidParameterError if the card does not match any
-	 * in the hand.
-	 */
-    void removeCard(Card const* card);
 
 	/**
 	 * Returns the number of cards in the hand.

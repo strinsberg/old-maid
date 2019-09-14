@@ -5,19 +5,23 @@
 
 Hand::Hand() {}
 
+
 Hand::~Hand() {
     for (auto card : cards)
         delete card;
 }
 
+
 void Hand::addCard(Card const* card) {
 }
 
-Card const* Hand::takeCard(int i) {
-    return nullptr;
+int Hand::findCard(Card const* card) const {
 }
 
-void Hand::removeCard(Card const* card) {
+Card const* Hand::getCard(int i) const {
+}
+
+Card const* Hand::takeCard(int i) {
 }
 
 int Hand::size() {
