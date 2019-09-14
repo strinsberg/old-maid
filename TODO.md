@@ -1,7 +1,7 @@
 # Current
 
-* Suit enum
-* Card Class
+* ~~Suit enum~~
+* ~~Card Class~~
 * Hand Class
 * Deck Class
 * Player Class

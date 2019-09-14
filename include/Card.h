@@ -2,6 +2,7 @@
 #define CARD_H
 
 
+#include <string>
 #include "Suit.h"
 
 /**
@@ -16,10 +17,10 @@ class Card {
      * Creates a new card.
      *
      * @param v The value of the card. Must be in range [1, 13].
-     * @param s The suit of the card. Must be a valid Suit.
-     * @throws InvalidParameterError if v or s are not valid.
+     * @param s The suit of the card.
+     * @throws argument_error if v is out of range.
      */
-    Card(int v, Suit s) : value(v), suit(s) {}
+    Card(int v, Suit s);
 
     /**
      * Returns the value of the card.
@@ -34,6 +35,14 @@ class Card {
      * @return the card's suit.
      */
     int getSuit() const {return suit;}
+
+    /**
+     * Get a textual representation of the card. ie) val=11 suit=HEART -> JH
+     *
+     * @return a string of the card value and suit.
+     */
+    std::string toString() const;
+
 
  private:
     int value;

@@ -10,5 +10,6 @@ results.coverage
 
 *.o
 
+*.autosave
 html
 *.log
