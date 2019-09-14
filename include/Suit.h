@@ -8,7 +8,7 @@
  * @date sept 13, 2019
  */
 enum Suit {
-    HEART, SPADE, DIAMOND, CLUB
+    NONE, HEART, SPADE, DIAMOND, CLUB
 };
 
 #endif

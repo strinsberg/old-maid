@@ -21,14 +21,31 @@ TEST(HandTests, add_card) {
 TEST(HandTests, find_card) {
     Hand h;
     Card const* c = new Card(2, Suit::SPADE);
+
     h.addCard(c);
-    int i = h.findCard(c);
+    int i = h.matchCard(2, Suit::SPADE);
+    int j = h.matchCard(2);
+
     EXPECT_EQ(i, 0);
-    EXPECT_EQ(h.size(), 0);
+    EXPECT_EQ(j, 0);
+    EXPECT_EQ(h.size(), 1);
+}
+
+TEST(HandTests, find_card_not_there) {
+    Hand h;
+    Card const* c = new Card(2, Suit::SPADE);
+
+    h.addCard(c);
+    int i = h.matchCard(2, Suit::HEART);
+    int j = h.matchCard(3);
+
+    EXPECT_EQ(i, -1);
+    EXPECT_EQ(j, -1);
+    EXPECT_EQ(h.size(), 1);
 }
 
 
-TEST(HandTests, DISABLED_get_card) {
+TEST(HandTests, get_card) {
     Hand h;
 
     h.addCard(new Card(2, Suit::SPADE));
@@ -36,11 +53,17 @@ TEST(HandTests, DISABLED_get_card) {
 
     EXPECT_EQ(c->getValue(), 2);
     EXPECT_EQ(c->getSuit(), Suit::SPADE);
-    EXPECT_EQ(h.size(), 0);
+    EXPECT_EQ(h.size(), 1);
 }
 
 
-TEST(HandTests, DISABLED_take_card) {
+TEST(HandTests, get_card_out_of_range) {
+    Hand h;
+
+    EXPECT_THROW(h.getCard(10), std::out_of_range);
+}
+
+TEST(HandTests, take_card) {
     Hand h;
 
     h.addCard(new Card(2, Suit::SPADE));
@@ -52,3 +75,10 @@ TEST(HandTests, DISABLED_take_card) {
 
     delete c;
 }
+
+TEST(HandTests, take_card_out_of_range) {
+    Hand h;
+
+    EXPECT_THROW(h.takeCard(10), std::out_of_range);
+}
+

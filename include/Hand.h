@@ -29,12 +29,17 @@ class Hand {
     void addCard(Card const* card);
 
 	/**
-     * Finds a given card in the hand and returns the index.
+     * Finds a matching card in a hand.
+     * 
+     * If suit is ignored it will return the first card with the given value.
+     * If there are more than one available matches it will only return the
+     * index of the first one it finds.
 	 *
-	 * @param card The card to find.
-     * @return the index of the card or -1 if the card is not there.
+	 * @param value The value of the card to find.
+	 * @param suit The suit of the card to find.
+     * @return the index of the card or -1 if there is no match.
 	 */
-    int findCard(Card const* card) const;
+    int matchCard(int value, Suit suit = Suit::NONE) const;
 
     /**
      * Access a card at the given index.
