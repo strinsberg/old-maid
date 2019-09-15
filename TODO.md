@@ -3,7 +3,7 @@
 * ~~Suit enum~~
 * ~~Card Class~~
 * ~~Hand Class~~
-* Deck Class
+* ~~Deck Class~~
 * Player Class
 * Input for card choices
 * View Hand

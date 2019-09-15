@@ -1,4 +1,5 @@
 #include <vector>
+#include <sstream>
 #include <algorithm>
 #include "Hand.h"
 #include "Card.h"
@@ -45,4 +46,17 @@ Card const* Hand::takeCard(int i) {
 
 int Hand::size() {
     return static_cast<int>(cards.size());
+}
+
+
+std::string Hand::toString() {
+   std::stringstream ss;
+   
+   for (int i = 0; i < cards.size(); i++) {
+      ss << cards[i]->toString();
+      if (i < cards.size() - 1)
+	 ss << ", ";
+   }
+   
+   return ss.str();
 }

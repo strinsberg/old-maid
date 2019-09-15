@@ -68,6 +68,13 @@ class Hand {
 	 */
     int size();
 
+    /**
+     * Return a textual representation of the hand.
+     *
+     * @return a string of cards in the hand.
+     */
+    std::string toString();
+    
  private:
     std::vector<Card const*> cards;
 };
