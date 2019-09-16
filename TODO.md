@@ -4,12 +4,13 @@
 * ~~Card Class~~
 * ~~Hand Class~~
 * ~~Deck Class~~
-* Player Class
-* Input for card choices
-* View Hand
-* View turn order and cards for each player
+* ~~Player Class~~
+* ~~Input for card choices~~
+* ~~View Hand~~
+* View turn order and ~~cards for each player~~
 * Full game round
 * Multiple players
+* Playable round demo
 
 
 # Backlog

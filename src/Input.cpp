@@ -9,6 +9,7 @@ Input::Input(View* v, std::istream& is) : view(v), in(is) {}
 
 std::string Input::getInput(const std::string& prompt) {
    std::string input;
+   view->displayMessage(prompt);
    in >> input;
-   return "";
+   return input;
 }  
