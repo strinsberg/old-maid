@@ -38,9 +38,11 @@ void OldMaidRound::play(std::vector<Player*>& players) {
     
     // deal hands
     int num_players = players.size();
-    std::vector<Hand*> hands = deck->deal(num_players);
-    for (int i = 0; i < num_players; i++)
+    std::vector<Hand*> hands = deck->deal(num_players, 10000000);
+    for (int i = 0; i < num_players; i++) {
         players[i]->setHand(hands[i]);
+        //std::cout << "DEBUG: " << hands[i]->toString() << std::endl;
+    }
     
     // while there are at least 2 players with cards left
     while(!gameOver(players)) {
@@ -56,15 +58,22 @@ void OldMaidRound::play(std::vector<Player*>& players) {
             // Display players statuses
             view->displayMessage("Game Status: ");
             view->displayPlayers(players);
+            view->displayMessage("\n");
+            
+            // Display your hand
+            view->displayMessage("\nYour Hand: ");
+            view->displayMessage(players[i]->getHand()->toString());
             view->displayMessage("\n\n");
             
             // Ask for a card
             std::string in = input->getInput("Choose a card> ");
-            int pick = std::stoi(in);
+            int pick = std::stoi(in) - 1;
             
             // Take the card from the opponent
-            int p_idx = i == players.size() - 1 ? 0 : i - 1;
+            int p_idx = i == 0 ? players.size() - 1 : i - 1;
+            //std::cout << "DEBUG: p_idx" << p_idx << std::endl;
             Card const* card = players[p_idx]->getHand()->takeCard(pick);
+            //std::cout << "DEBUG: card -> " << card->toString() << std::endl;
             
             // If the card is a match for one in the players hand
             // remove the matched card and delete them from the game.

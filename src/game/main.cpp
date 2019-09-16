@@ -21,7 +21,6 @@ int main() {
 	
 	std::cout << "==== Old Maid Demo ====" << std::endl << std::endl;
 	
-	
 	round.play(players);
 	
 	std::cout << "==== End ====" << std::endl;

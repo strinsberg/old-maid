@@ -7,11 +7,14 @@
 * ~~Player Class~~
 * ~~Input for card choices~~
 * ~~View Hand~~
-* View turn order and ~~cards for each player~~
-* Full game round
-* Multiple players
-* Playable round demo
+* ~~cards for each player~~
+* ~~Full game round~~
+* ~~Multiple players~~
+* ~~Playable round demo~~
 
+#Bugs
+
+* Deal does not deal all cards when n=0
 
 # Backlog
 
