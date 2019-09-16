@@ -52,9 +52,13 @@ TEST(TestOLDMaidView, display_players) {
    h1->addCard(c1);
    h2->addCard(c2);
    h2->addCard(c3);
+
+   p1->setHand(h1);
+   p2->setHand(h2);
    v.displayPlayers(players);
 
    EXPECT_EQ(ss.str(), "P1:1, P2:2"); 
 
-   delete p1, p2;
+   delete p1;
+   delete p2;
 }
