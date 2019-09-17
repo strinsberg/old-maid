@@ -9,10 +9,14 @@
 
 class MockOldMaidView : public OldMaidView {
  public:
-    MOCK_METHOD(void, playerInfo, (int currentPlayer), (const, override));
-    MOCK_METHOD(void, pickCard, (), (const, override));
-    MOCK_METHOD(void, result, (Card const* card, bool matched), (const, override));
-    MOCK_METHOD(void, endGame, (int loser), (const, override));
+    explicit MockOldMaidView(std::vector<Player*>* players, std::ostream& out)
+        : OldMaidView(players, out) {}
+    virtual ~MockOldMaidView() {}
+    
+    MOCK_METHOD1(playerInfo, void(int currentPlayer));
+    MOCK_METHOD0(pickCard, void());
+    MOCK_METHOD2(result, void(Card const* card, bool matched));
+    MOCK_METHOD1(endGame, void(int loser));
 };
 
 #endif

@@ -8,8 +8,11 @@
 
 class MockInput : public Input {
  public:
-    MOCK_METHOD(int, getInt, (), (override));
-    MOCK_METHOD(int, getString, (), (override));
+    explicit MockInput() {}
+    virtual ~MockInput() {}
+    
+    MOCK_METHOD0(getInt, int());
+    MOCK_METHOD0(getString, std::string());
 };
 
 #endif
