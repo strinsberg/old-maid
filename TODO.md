@@ -1,7 +1,5 @@
 # Current
 
-* Fix style errors from using emacs
-* Fix View to be game specific
 * Fix Input
 * Setup necessary Mocks for testing
 * Test view and input again with new design

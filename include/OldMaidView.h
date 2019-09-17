@@ -8,6 +8,7 @@
 #include "View.h"
 #include "Hand.h"
 #include "Player.h"
+#include "OldMaidRound.h"
 
 
 /**
@@ -18,20 +19,37 @@ class OldMaidView : public View {
     /**
      * Creates a view object for displaying information for a game of old maid.
      */
-    OldMaidView(std::ostream& out = std::cout);
+    OldMaidView(vector<Player*>* players, std::ostream& out = std::cout);
 
     /**
-     * Displays the contents of a players hand.
-     * @param hand The hand to display.
+     * Display the information for the start of a players turn.
+     *
+     * @param currentPlayer The index of the player whose turn it is.
      */
-    void displayHand(Hand* hand);
+    void playerInfo(int currentPlayer) const;
 
     /**
-     * Displays info about the players.
-     * The main purpose is to show how many cards each player has left.
-     * @param players The players to show information for.
+     * Display the prompt for picking a card.
      */
-    void displayPlayers(const std::vector<Player*>& players);
+    void pickCard() const;
+
+    /**
+     * Display the result of a turn.
+     *
+     * @param card The card that was picked.
+     * @param matched If the card gave the player a match.
+     */
+    void result(Card const* card, bool matched) const;
+
+    /**
+     * Display the end of round with the given loser.
+     *
+     * @param loser The index of the player that lost.
+     */
+    void endRound(int loser) const;
+
+ protected:
+    vector<Player*>* players;
 };
 
 #endif
