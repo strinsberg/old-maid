@@ -27,7 +27,7 @@ class Round {
      * Plays the round with the given players.
      * @param players The players playing the round.
      */
-    virtual void play(std::vector<Player*>& players) = 0;
+    virtual void play(std::vector<Player*>* players) = 0;
 
  protected:
     Deck* deck;

@@ -1,7 +1,7 @@
 # Current
 
 * Setup necessary Mocks for testing
-* Test view and input again with new design
+* Test view again with new design
 * Re-implement OldMaidRound with TDD
 * Implement some class or method to find pairs at the beginning of a round
 * Display hand in sorted order but don't sort it.

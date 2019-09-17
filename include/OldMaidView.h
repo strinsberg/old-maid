@@ -24,12 +24,12 @@ class OldMaidView {
      *
      * @param currentPlayer The index of the player whose turn it is.
      */
-    void playerInfo(int currentPlayer) const;
+    virtual void playerInfo(int currentPlayer) const;
 
     /**
      * Display the prompt for picking a card.
      */
-    void pickCard() const;
+    virtual void pickCard() const;
 
     /**
      * Display the result of a turn.
@@ -37,14 +37,14 @@ class OldMaidView {
      * @param card The card that was picked.
      * @param matched If the card gave the player a match.
      */
-    void result(Card const* card, bool matched) const;
+    virtual void result(Card const* card, bool matched) const;
 
     /**
      * Display the end of round with the given loser.
      *
      * @param loser The index of the player that lost.
      */
-    void endRound(int loser) const;
+    virtual void endRound(int loser) const;
 
  protected:
     std::vector<Player*>* players;

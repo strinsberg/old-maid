@@ -20,8 +20,8 @@ class OldMaidRound : public Round {
     /**
      * Creates a new round object to play a round of old maid.
      * @param deck The deck the round is played with.
-     * @param view The view object to display information for the round.
      * @param input An object to collect input from the user.
+     * @param view The view object to display information for the round.
      */
     OldMaidRound(Deck* deck, Input* input, OldMaidView* view);
 
@@ -29,7 +29,7 @@ class OldMaidRound : public Round {
      * Plays the round with the given players.
      * @param players The players playing the round.
      */
-    void play(std::vector<Player*>& player);
+    void play(std::vector<Player*>* player);
  
  protected:
     OldMaidView* view;
