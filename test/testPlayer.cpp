@@ -4,19 +4,19 @@
 
 
 TEST(PlayerTests, new_player_get_name) {
-   Player p("Steve");
+    Player p("Steve");
 
-   EXPECT_EQ(p.getName(), "Steve");
-   EXPECT_EQ(p.getHand(), nullptr);
+    EXPECT_EQ(p.getName(), "Steve");
+    EXPECT_EQ(p.getHand(), nullptr);
 }
 
 
 TEST(PlayerTests, set_hand_get_hand) {
-   Player p("Steve");
-   Hand* h = new Hand();
+    Player p("Steve");
+    Hand* h = new Hand();
 
-   p.setHand(h);
+    p.setHand(h);
 
-   EXPECT_EQ(p.getHand(), h);
-   EXPECT_EQ(p.getHand()->size(), 0);
+    EXPECT_EQ(p.getHand(), h);
+    EXPECT_EQ(p.getHand()->size(), 0);
 }

@@ -5,21 +5,21 @@
 Player::Player(const std::string& n) : name(n), hand(nullptr) {}
 
 Player::~Player() {
-   delete hand;
+    delete hand;
 }
 
 
 std::string Player::getName() const {
-   return name;
+    return name;
 }
 
 
 Hand* Player::getHand() {
-   return hand;
+    return hand;
 }
 
 
 void Player::setHand(Hand* h) {
-   delete hand;
-   hand = h;
+    delete hand;
+    hand = h;
 }

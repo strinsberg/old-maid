@@ -84,12 +84,12 @@ TEST(HandTests, take_card_out_of_range) {
 
 
 TEST(HandTests, to_string) {
-   Hand h;
+    Hand h;
 
-   h.addCard(new Card(2, Suit::SPADE));
-   h.addCard(new Card(10, Suit::HEART));
-   h.addCard(new Card(13, Suit::DIAMOND));
-   h.addCard(new Card(1, Suit::CLUB));
+    h.addCard(new Card(2, Suit::SPADE));
+    h.addCard(new Card(10, Suit::HEART));
+    h.addCard(new Card(13, Suit::DIAMOND));
+    h.addCard(new Card(1, Suit::CLUB));
 
-   EXPECT_EQ(h.toString(), "2S, 10H, KD, AC");
+    EXPECT_EQ(h.toString(), "2S, 10H, KD, AC");
 }

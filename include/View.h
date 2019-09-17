@@ -5,6 +5,7 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <vector>
 #include "Hand.h"
 #include "Player.h"
 
@@ -15,36 +16,36 @@
  * @date sept 15, 2019
  */
 class View {
-  public:
-   /**
-    * Creates a new view.
-    */
-   View(std::ostream& out=std::cout);
+ public:
+    /**
+     * Creates a new view.
+     */
+    View(std::ostream& out = std::cout);
 
-   /**
-    * Display the given message to the screen.
-    *
-    * Does not add a newline.
-    *
-    * @param message The string to display.
-    */
-   void displayMessage(const std::string& message);
-   
-   /**
-    * Displays the contents of a players hand.
-    * @param hand The hand to display.
-    */
-   virtual void displayHand(Hand* hand)=0;
+    /**
+     * Display the given message to the screen.
+     *
+     * Does not add a newline.
+     *
+     * @param message The string to display.
+     */
+    void displayMessage(const std::string& message);
 
-   /**
-    * Displays info about the players.
-    * The main purpose is to show how many cards each player has left.
-    * @param players The players to show information for.
-    */
-   virtual void displayPlayers(std::vector<Player*>& players)=0;
+    /**
+     * Displays the contents of a players hand.
+     * @param hand The hand to display.
+     */
+    virtual void displayHand(Hand* hand) = 0;
 
-  protected:
-   std::ostream& out;
+    /**
+     * Displays info about the players.
+     * The main purpose is to show how many cards each player has left.
+     * @param players The players to show information for.
+     */
+    virtual void displayPlayers(const std::vector<Player*>& players) = 0;
+
+ protected:
+    std::ostream& out;
 };
 
 #endif

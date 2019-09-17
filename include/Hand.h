@@ -3,6 +3,7 @@
 
 
 #include <vector>
+#include <string>
 #include "Card.h"
 
 
@@ -74,7 +75,7 @@ class Hand {
      * @return a string of cards in the hand.
      */
     std::string toString();
-    
+
  private:
     std::vector<Card const*> cards;
 };

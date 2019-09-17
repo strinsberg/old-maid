@@ -7,5 +7,5 @@ View::View(std::ostream& o) : out(o) {}
 
 
 void View::displayMessage(const std::string& message) {
-   out << message;
+    out << message;
 }

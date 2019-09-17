@@ -1,6 +1,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <string>
 #include "Hand.h"
 #include "Card.h"
 
@@ -50,13 +51,13 @@ int Hand::size() {
 
 
 std::string Hand::toString() {
-   std::stringstream ss;
-   
-   for (int i = 0; i < cards.size(); i++) {
-      ss << cards[i]->toString();
-      if (i < cards.size() - 1)
-	 ss << ", ";
-   }
-   
-   return ss.str();
+    std::stringstream ss;
+
+    for (int i = 0; i < cards.size(); i++) {
+        ss << cards[i]->toString();
+        if (i < cards.size() - 1)
+        ss << ", ";
+    }
+
+    return ss.str();
 }

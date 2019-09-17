@@ -5,6 +5,7 @@
 #include <string>
 #include "Suit.h"
 
+
 /**
  * A standard suited playing card.
  *
