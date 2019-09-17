@@ -1,16 +1,11 @@
 # Current
 
-* ~~Suit enum~~
-* ~~Card Class~~
-* ~~Hand Class~~
-* ~~Deck Class~~
-* ~~Player Class~~
-* ~~Input for card choices~~
-* ~~View Hand~~
-* ~~cards for each player~~
-* ~~Full game round~~
-* ~~Multiple players~~
-* ~~Playable round demo~~
+* Fix style errors from using emacs
+* Fix View to be game specific
+* Fix Input
+* Setup necessary Mocks for testing
+* Test view and input again with new design
+* Re-implement OldMaidRound with TDD
 
 #Bugs
 
