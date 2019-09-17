@@ -5,25 +5,33 @@
 #include <iostream>
 #include <istream>
 #include <string>
-#include "View.h"
 
 
+/**
+ * Gets input from the user.
+ * @author Steven Deutekom
+ * @date sept 17, 2019
+ */
 class Input {
  public:
     /**
      * Creates an object that can be used to get single string tokens of input.
      */
-    Input(View* view, std::istream& in = std::cin);
+    Input(std::istream& in = std::cin);
 
     /**
-     * Display the prompt and get a single token of input from the user.
-     * @param prompt The text to display before getting input.
+     * Get the first int from a line of input.
+     * @return the collected int.
+     */
+    int getInt();
+    
+    /**
+     * Get the first string from a line of input.
      * @return a single string token of input.
      */
-    std::string getInput(const std::string& prompt);
+    std::string getString();
 
  private:
-    View* view;  // does not own this
     std::istream& in;
 };
 

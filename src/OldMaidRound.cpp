@@ -1,9 +1,9 @@
 #include <vector>
 #include <string>
 #include "OldMaidRound.h"
+#include "OldMaidView.h"
 #include "Round.h"
 #include "Deck.h"
-#include "View.h"
 #include "Input.h"
 #include "Player.h"
 
@@ -27,72 +27,11 @@ std::string loser(std::vector<Player*>& players) {
 }
 
 
-OldMaidRound::OldMaidRound(Deck* deck, View* view, Input* input)
-        : Round(deck, view, input) {}
+OldMaidRound::OldMaidRound(Deck* deck, Input* input, OldMaidView* v)
+        : Round(deck, input), view(v) {}
 
 
 void OldMaidRound::play(std::vector<Player*>& players) {
-    // take out a queen
-    // shuffle the deck
-    deck->shuffle();
 
-    // deal hands
-    int num_players = players.size();
-    std::vector<Hand*> hands = deck->deal(num_players, 10000000);
-    for (int i = 0; i < num_players; i++) {
-        players[i]->setHand(hands[i]);
-        //std::cout << "DEBUG: " << hands[i]->toString() << std::endl;
-    }
-
-    // while there are at least 2 players with cards left
-    while (!gameOver(players)) {
-        for (int i = 0; i < players.size(); i++) {
-            // See if the player is still in the game
-            if (players[i]->getHand()->size() == 0)
-                continue;
-
-            // display whose turn it is
-            view->displayMessage(
-                "\n=== Player " + players[i]->getName() + "'s Turn ===\n\n");
-
-            // Display players statuses
-            view->displayMessage("Game Status: ");
-            view->displayPlayers(players);
-            view->displayMessage("\n");
-
-            // Display your hand
-            view->displayMessage("\nYour Hand: ");
-            view->displayMessage(players[i]->getHand()->toString());
-            view->displayMessage("\n\n");
-
-            // Ask for a card
-            std::string in = input->getInput("Choose a card> ");
-            int pick = std::stoi(in) - 1;
-
-            // Take the card from the opponent
-            int p_idx = i == 0 ? players.size() - 1 : i - 1;
-            //std::cout << "DEBUG: p_idx" << p_idx << std::endl;
-            Card const* card = players[p_idx]->getHand()->takeCard(pick);
-            //std::cout << "DEBUG: card -> " << card->toString() << std::endl;
-
-            // If the card is a match for one in the players hand
-            // remove the matched card and delete them from the game.
-            // Else add the card to the players hand.
-            int match = players[i]->getHand()->matchCard(card->getValue());
-            if (match != -1) {
-                view->displayMessage("\nThat gives you a match\n");
-                Card const* matched_card =
-                    players[i]->getHand()->takeCard(match);
-                delete card;
-                delete matched_card;
-            } else {
-                view->displayMessage("\nThe card does not give you a match\n");
-                players[i]->getHand()->addCard(card);
-            }
-        }
-    }
-    // display the player who is the old maid
-    view->displayMessage("\n*** Round Over ***\n");
-    view->displayMessage(loser(players) + "\n");
 }
 

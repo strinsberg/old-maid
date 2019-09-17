@@ -4,7 +4,6 @@
 
 #include <vector>
 #include "Deck.h"
-#include "View.h"
 #include "Input.h"
 #include "Player.h"
 
@@ -20,10 +19,9 @@ class Round {
      * Creates a new round object to play a round of the card game.
      *
      * @param d The deck the round is played with.
-     * @param v The view object to display information for the round.
      * @param in An object to collect input from the user.
      */
-    Round(Deck* d, View* v, Input* in) : deck(d), view(v), input(in) {}
+    Round(Deck* d, Input* in) : deck(d), input(in) {}
 
     /**
      * Plays the round with the given players.
@@ -33,7 +31,6 @@ class Round {
 
  protected:
     Deck* deck;
-    View* view;
     Input* input;
 };
 

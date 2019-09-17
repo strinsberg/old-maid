@@ -5,21 +5,19 @@
 #include <iostream>
 #include <ostream>
 #include <vector>
-#include "View.h"
-#include "Hand.h"
+#include "Card.h"
 #include "Player.h"
-#include "OldMaidRound.h"
 
 
 /**
  * Contains methods to display information for a game of old maid.
  */
-class OldMaidView : public View {
+class OldMaidView {
  public:
     /**
      * Creates a view object for displaying information for a game of old maid.
      */
-    OldMaidView(vector<Player*>* players, std::ostream& out = std::cout);
+    OldMaidView(std::vector<Player*>* players, std::ostream& out = std::cout);
 
     /**
      * Display the information for the start of a players turn.
@@ -49,7 +47,8 @@ class OldMaidView : public View {
     void endRound(int loser) const;
 
  protected:
-    vector<Player*>* players;
+    std::vector<Player*>* players;
+    std::ostream& out;
 };
 
 #endif

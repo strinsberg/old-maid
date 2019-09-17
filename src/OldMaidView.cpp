@@ -1,23 +1,25 @@
 #include <ostream>
 #include <vector>
 #include "OldMaidView.h"
-#include "View.h"
+#include "Player.h"
 
 
-OldMaidView::OldMaidView(std::ostream& out) : View(out) {}
+OldMaidView::OldMaidView(
+    std::vector<Player*>* p, std::ostream& os)
+    : players(p) , out(os) {}
 
 
-void OldMaidView::displayHand(Hand* hand) {
-    out << hand->toString();
+void OldMaidView::playerInfo(int currentPlayer) const {
 }
 
 
-void OldMaidView::displayPlayers(const std::vector<Player*>& players) {
-    for (int i = 0; i < players.size(); i++) {
-        out << players[i]->getName() << ":";
-        out << players[i]->getHand()->size();
+void OldMaidView::pickCard() const {
+}
 
-        if (i < players.size() - 1)
-            out << ", ";
-    }
+
+void OldMaidView::result(Card const* card, bool matched) const {
+}
+
+
+void OldMaidView::endRound(int loser) const {
 }

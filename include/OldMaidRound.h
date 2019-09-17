@@ -5,7 +5,7 @@
 #include <vector>
 #include "Round.h"
 #include "Deck.h"
-#include "View.h"
+#include "OldMaidView.h"
 #include "Input.h"
 #include "Player.h"
 
@@ -23,13 +23,16 @@ class OldMaidRound : public Round {
      * @param view The view object to display information for the round.
      * @param input An object to collect input from the user.
      */
-    OldMaidRound(Deck* deck, View* view, Input* input);
+    OldMaidRound(Deck* deck, Input* input, OldMaidView* view);
 
     /**
      * Plays the round with the given players.
      * @param players The players playing the round.
      */
     void play(std::vector<Player*>& player);
+ 
+ protected:
+    OldMaidView* view;
 };
 
 #endif
