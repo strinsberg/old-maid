@@ -7,11 +7,15 @@ Input::Input(std::istream& is) : in(is) {}
 
 
 int Input::getInt() {
-    return -1;
+    int temp;
+    in >> temp;
+    return temp;
 }
 
 
 std::string Input::getString() {
-    return "";
+    std::string str;
+    in >> str;
+    return str;
 }
 

@@ -1,6 +1,5 @@
 # Current
 
-* Fix Input
 * Setup necessary Mocks for testing
 * Test view and input again with new design
 * Re-implement OldMaidRound with TDD
