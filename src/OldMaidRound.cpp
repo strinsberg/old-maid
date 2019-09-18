@@ -31,11 +31,11 @@ OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* players,
         Input* input, OldMaidView* v)
             : Round(deck, players, input), view(v) {
     // All setup with the deck should be here
-    // could even get the hands ready        
+    // could even get the hands ready
 }
 
 
 int OldMaidRound::play() {
-    // 
+    //
 }
 

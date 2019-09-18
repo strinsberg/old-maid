@@ -31,7 +31,7 @@ class OldMaidRound : public Round {
      * Plays the round with the given players.
      */
     int play();
- 
+
  protected:
     OldMaidView* view;
 };

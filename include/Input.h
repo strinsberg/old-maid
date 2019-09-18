@@ -18,15 +18,15 @@ class Input {
      * Creates an object that can be used to get single string tokens of input.
      */
     Input(std::istream& in = std::cin);
-    
-    virtual ~Input() {};
+
+    virtual ~Input() {}
 
     /**
      * Get the first int from a line of input.
      * @return the collected int.
      */
     virtual int getInt();
-    
+
     /**
      * Get the first string from a line of input.
      * @return a single string token of input.
