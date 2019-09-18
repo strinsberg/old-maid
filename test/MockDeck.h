@@ -13,7 +13,7 @@
 class MockDeck : public Deck {
  public:
     explicit MockDeck() {}
-    virtual ~MockDeck() {};
+    virtual ~MockDeck() {}
 
     MOCK_METHOD2(findCard, int(int value, Suit suit));
     MOCK_CONST_METHOD1(getCard, Card const*(int i));

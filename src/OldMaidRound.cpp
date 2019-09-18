@@ -33,8 +33,7 @@ OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* players,
             : Round(deck, players, input), view(v) {
     deck->shuffle();
     int idx = deck->findCard(12, Suit::CLUB);
-    Card const* card = deck->getCard(idx);
-    std::cout << idx << std::endl;
+    deck->getCard(idx);
 }
 
 

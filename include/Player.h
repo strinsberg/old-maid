@@ -18,7 +18,7 @@ class Player {
      *
      * @param name The players name.
      */
-    Player(const std::string& name);
+    explicit Player(const std::string& name);
 
     ~Player();
 

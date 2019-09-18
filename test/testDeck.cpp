@@ -24,18 +24,18 @@ TEST(DeckTests, deck_with_2_packs) {
 
 TEST(TestDeck, find_card_assume_default_order) {
     Deck d;
-    
+
     int pos = d.findCard(1, Suit::HEART);
-    
+
     EXPECT_EQ(pos, 0);
 }
 
 
 TEST(TestDeck, find_card_not_present) {
     Deck d;
-    
+
     int pos = d.findCard(15, Suit::HEART);
-    
+
     EXPECT_EQ(pos, -1);
 }
 

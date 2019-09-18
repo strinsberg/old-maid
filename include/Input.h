@@ -17,7 +17,7 @@ class Input {
     /**
      * Creates an object that can be used to get single string tokens of input.
      */
-    Input(std::istream& in = std::cin);
+    explicit Input(std::istream& in = std::cin);
 
     virtual ~Input() {}
 
