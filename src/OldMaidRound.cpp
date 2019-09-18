@@ -9,25 +9,6 @@
 #include "Player.h"
 
 
-bool gameOver(std::vector<Player*>* players) {
-    /*int count = 0;
-    for (auto p : players) {
-        if (p->getHand()->size() > 0)
-            count++;
-    }*/
-    return false;
-}
-
-
-std::string loser(std::vector<Player*>* players) {
-    /*for (auto p : players) {
-        if (p->getHand()->size() > 0)
-            return p->getName();
-    }*/
-    return "Oops No-one was the old maid!!!";
-}
-
-
 OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* players,
         Input* input, OldMaidView* v)
             : Round(deck, players, input), view(v) {
@@ -39,6 +20,11 @@ OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* players,
 
 
 int OldMaidRound::play() {
-    //
+    // deal cards
+    // while the game is still going
+        // show turn info
+        // ask to pick a card from player
+        // show the result
+    // show result of round
 }
 

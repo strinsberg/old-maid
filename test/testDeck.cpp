@@ -76,9 +76,12 @@ TEST(DeckTest, take_card_and_default_deck_order) {
     EXPECT_EQ(ah->getSuit(), Suit::HEART);
     EXPECT_EQ(as->getValue(), 1);
     EXPECT_EQ(as->getSuit(), Suit::SPADE);
-    
+
     EXPECT_EQ(d.findCard(1, Suit::HEART), -1);
     EXPECT_EQ(d.findCard(1, Suit::SPADE), -1);
+
+    delete ah;
+    delete as;
 }
 
 
