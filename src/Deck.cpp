@@ -25,7 +25,7 @@ Deck::~Deck() {
     }
 }
 
-int Deck::findCard(int value, Suit suit) {
+int Deck::findCard(int value, Suit suit) const {
     for (int i = 0; i < cards.size(); i++) {
         if (cards[i]->getValue() == value && cards[i]->getSuit() == suit)
             return i;
@@ -35,6 +35,10 @@ int Deck::findCard(int value, Suit suit) {
 
 Card const* Deck::getCard(int i) const {
     return cards.at(i);
+}
+
+Card const* Deck::takeCard(int i) {
+    return cards.at(20);
 }
 
 void Deck::shuffle() {

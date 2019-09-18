@@ -65,6 +65,23 @@ TEST(DeckTest, get_card_out_of_range) {
     EXPECT_THROW(d.getCard(60), std::out_of_range);
 }
 
+
+TEST(DeckTest, take_card_and_default_deck_order) {
+    Deck d;
+
+    Card const* ah = d.takeCard(0);
+    Card const* as = d.takeCard(13);
+
+    EXPECT_EQ(ah->getValue(), 1);
+    EXPECT_EQ(ah->getSuit(), Suit::HEART);
+    EXPECT_EQ(as->getValue(), 1);
+    EXPECT_EQ(as->getSuit(), Suit::SPADE);
+    
+    EXPECT_EQ(d.findCard(1, Suit::HEART), -1);
+    EXPECT_EQ(d.findCard(1, Suit::SPADE), -1);
+}
+
+
 TEST(DeckTest, shuffle) {
     Deck d;
 

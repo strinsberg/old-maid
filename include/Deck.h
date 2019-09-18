@@ -37,7 +37,7 @@ class Deck {
      * @param suit The suit of the card.
      * @return the index of the card in the deck or -1.
      */
-    virtual int findCard(int value, Suit suit);
+    virtual int findCard(int value, Suit suit) const;
 
     /**
      * Get a card from the deck at position i.
@@ -47,6 +47,15 @@ class Deck {
      * @throw out_of_range if i < 0 or i > deck.size() - 1.
      */
     virtual Card const* getCard(int i) const;
+
+    /**
+     * Take a card from the deck at position i and remove it from the deck.
+     *
+     * @param i The index of the card to get.
+     * @return the card at position i.
+     * @throw out_of_range if i < 0 or i > deck.size() - 1.
+     */
+    virtual Card const* takeCard(int i);
 
     /**
      * Randomize the ordering of the cards in the deck.

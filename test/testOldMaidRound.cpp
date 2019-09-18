@@ -10,15 +10,13 @@
 #include "Player.h"
 #include "Suit.h"
 
-using Return testing::Return;
-
 
 TEST(OldMaidRoundTests, new_round) {
     std::vector<Player*>* players;
 
     MockDeck mDeck;
     EXPECT_CALL(mDeck, shuffle()).Times(1);
-    EXPECT_CALL(mDeck, findCard(12, Suit::CLUB)).Times(1).WillOnce(Return(0));
+    EXPECT_CALL(mDeck, findCard(12, Suit::CLUB)).Times(1).WillOnce(testing::Return(0));
     EXPECT_CALL(mDeck, getCard(0)).Times(1);
 
     MockInput mInput;
