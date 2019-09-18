@@ -37,7 +37,7 @@ class Deck {
      * @param suit The suit of the card.
      * @return the index of the card in the deck or -1.
      */
-    int findCard(int value, Suit suit);
+    virtual int findCard(int value, Suit suit);
 
     /**
      * Get a card from the deck at position i.
@@ -46,12 +46,12 @@ class Deck {
      * @return the card at position i.
      * @throw out_of_range if i < 0 or i > deck.size() - 1.
      */
-    Card const* getCard(int i) const;
+    virtual Card const* getCard(int i) const;
 
     /**
      * Randomize the ordering of the cards in the deck.
      */
-    void shuffle();
+    virtual void shuffle();
 
     /**
      * Deal out a given number of hands of size n.
@@ -63,14 +63,14 @@ class Deck {
      * @param n The size of each hand.
      * @return a vector of the hands created.
      */
-    std::vector<Hand*> deal(int hands, int n = 0);
+    virtual std::vector<Hand*> deal(int hands, int n = 0);
 
     /**
      * The number of cards currently in the deck.
      *
      * @return the size of the deck.
      */
-    int size() const;
+    virtual int size() const;
 
  private:
     std::vector<Card const*> cards;

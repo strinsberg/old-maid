@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 #include <string>
 #include "OldMaidRound.h"
@@ -30,8 +31,10 @@ std::string loser(std::vector<Player*>* players) {
 OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* players,
         Input* input, OldMaidView* v)
             : Round(deck, players, input), view(v) {
-    // All setup with the deck should be here
-    // could even get the hands ready
+    deck->shuffle();
+    int idx = deck->findCard(12, Suit::CLUB);
+    Card const* card = deck->getCard(idx);
+    std::cout << idx << std::endl;
 }
 
 
