@@ -6,5 +6,5 @@
 
 
 TEST(OldMaidRoundTests, new_round) {
-    OldMaidRound r(nullptr, nullptr, nullptr);
+    OldMaidRound r(nullptr, nullptr, nullptr, nullptr);
 }

@@ -19,18 +19,21 @@ class Round {
      * Creates a new round object to play a round of the card game.
      *
      * @param d The deck the round is played with.
+     * @param p The players for the round.
      * @param in An object to collect input from the user.
      */
-    Round(Deck* d, Input* in) : deck(d), input(in) {}
+    Round(Deck* d, std::vector<Player*>* p, Input* in)
+        : deck(d), players(p), input(in) {}
 
     /**
      * Plays the round with the given players.
-     * @param players The players playing the round.
+     * @return the index of the player who won or lost the round.
      */
-    virtual void play(std::vector<Player*>* players) = 0;
+    virtual int play() = 0;
 
  protected:
     Deck* deck;
+    std::vector<Player*>* players;
     Input* input;
 };
 

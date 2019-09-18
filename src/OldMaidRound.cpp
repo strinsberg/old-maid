@@ -27,11 +27,15 @@ std::string loser(std::vector<Player*>* players) {
 }
 
 
-OldMaidRound::OldMaidRound(Deck* deck, Input* input, OldMaidView* v)
-        : Round(deck, input), view(v) {}
+OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* players,
+        Input* input, OldMaidView* v)
+            : Round(deck, players, input), view(v) {
+    // All setup with the deck should be here
+    // could even get the hands ready        
+}
 
 
-void OldMaidRound::play(std::vector<Player*>* players) {
-
+int OldMaidRound::play() {
+    // 
 }
 
