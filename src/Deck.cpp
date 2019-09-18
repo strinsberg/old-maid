@@ -25,6 +25,13 @@ Deck::~Deck() {
     }
 }
 
+int Deck::findCard(int value, Suit suit) {
+    for (int i = 0; i < cards.size(); i++) {
+        if (cards[i]->getValue() == value && cards[i]->getSuit() == suit)
+            return i;
+    }
+    return -1;
+}
 
 Card const* Deck::getCard(int i) const {
     return cards.at(i);

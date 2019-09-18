@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "Card.h"
+#include "Suit.h"
 #include "Hand.h"
 
 
@@ -27,7 +28,16 @@ class Deck {
      */
     explicit Deck(int packs = 1);
 
-    ~Deck();
+    virtual ~Deck();
+
+    /**
+     * Find a card in the deck given a value and suit.
+     *
+     * @param value The value of the card.
+     * @param suit The suit of the card.
+     * @return the index of the card in the deck or -1.
+     */
+    int findCard(int value, Suit suit);
 
     /**
      * Get a card from the deck at position i.
