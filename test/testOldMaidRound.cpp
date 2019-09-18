@@ -17,7 +17,7 @@ TEST(OldMaidRoundTests, new_round) {
     MockDeck mDeck;
     EXPECT_CALL(mDeck, shuffle()).Times(1);
     EXPECT_CALL(mDeck, findCard(12, Suit::CLUB)).Times(1).WillOnce(testing::Return(0));
-    EXPECT_CALL(mDeck, getCard(0)).Times(1);
+    EXPECT_CALL(mDeck, takeCard(0)).Times(1);
 
     MockInput mInput;
     MockOldMaidView mView(players);

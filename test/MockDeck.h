@@ -17,6 +17,7 @@ class MockDeck : public Deck {
 
     MOCK_CONST_METHOD2(findCard, int(int value, Suit suit));
     MOCK_CONST_METHOD1(getCard, Card const*(int i));
+    MOCK_METHOD1(takeCard, Card const*(int i));
     MOCK_METHOD2(deal, std::vector<Hand*>(int hands, int cards));
     MOCK_METHOD0(shuffle, void());
     MOCK_METHOD0(size, int());
