@@ -38,7 +38,9 @@ Card const* Deck::getCard(int i) const {
 }
 
 Card const* Deck::takeCard(int i) {
-    return cards.at(20);
+    Card const* card = cards.at(i);
+    cards.erase(cards.begin() + i);
+    return card;
 }
 
 void Deck::shuffle() {
