@@ -12,9 +12,23 @@
 
 TEST(TestOldMaidView, turn_info) {
     std::stringstream ss;
-    // Should I mock out players?
-    //OldMaidView view(players, ss);
-    
+
+    Player steve("Steve");
+    Player comp("Comp1");
+    std::vector<Player*> players{&steve, &comp};
+
+    Card* c1 = new Card(1, Suit::HEART);
+    Card* c2 = new Card(2, Suit::HEART);
+    Card* c3 = new Card(1, Suit::SPADE);
+    Card* c4 = new Card(2, Suit::SPADE);
+
+    steve.getHand()->addCard(c1);
+    steve.getHand()->addCard(c2);
+    comp.getHand()->addCard(c3);
+    comp.getHand()->addCard(c4);
+
+    OldMaidView view(&players, ss);
+
     EXPECT_EQ("""=== Steve's Turn ===\n\n-- Hand Sizes --\nSteve: 2\nComp1: 2\n\n-- Your Cards --\nAH 2H\n""", ss.str());
 }
 

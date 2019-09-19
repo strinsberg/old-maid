@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Hand.h"
 
-Player::Player(const std::string& n) : name(n), hand(nullptr) {}
+Player::Player(const std::string& n) : name(n), hand(new Hand()) {}
 
 Player::~Player() {
     delete hand;

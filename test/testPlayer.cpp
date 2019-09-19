@@ -7,7 +7,7 @@ TEST(PlayerTests, new_player_get_name) {
     Player p("Steve");
 
     EXPECT_EQ(p.getName(), "Steve");
-    EXPECT_EQ(p.getHand(), nullptr);
+    EXPECT_NE(p.getHand(), nullptr);
 }
 
 
