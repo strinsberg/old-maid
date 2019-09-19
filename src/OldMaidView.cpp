@@ -9,11 +9,12 @@ OldMaidView::OldMaidView(
     : players(p) , out(os) {}
 
 
-void OldMaidView::playerInfo(int currentPlayer) const {
+void OldMaidView::turnInfo(int currentPlayer) const {
 }
 
 
 void OldMaidView::pickCard() const {
+    out << "Choose card: ";
 }
 
 

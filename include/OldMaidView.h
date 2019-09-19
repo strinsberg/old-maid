@@ -24,7 +24,7 @@ class OldMaidView {
      *
      * @param currentPlayer The index of the player whose turn it is.
      */
-    virtual void playerInfo(int currentPlayer) const;
+    virtual void turnInfo(int currentPlayer) const;
 
     /**
      * Display the prompt for picking a card.
