@@ -3,7 +3,6 @@
 * Setup necessary Mocks for testing
 * Test view again with new design
 * Re-implement OldMaidRound with TDD
-* Implement some class or method to find pairs at the beginning of a round
 * Display hand in sorted order but don't sort it.
 
 #Bugs
@@ -12,6 +11,7 @@
 
 # Backlog
 
+* Add sort and Remove pairs to hand class
 * Main menu to pick number of players
 * Game to play more than one round with same players and keep track of winners
 * Computer players
