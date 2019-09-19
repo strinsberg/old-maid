@@ -28,8 +28,10 @@ TEST(TestOldMaidView, turn_info) {
     comp.getHand()->addCard(c4);
 
     OldMaidView view(&players, ss);
+    
+    view.turnInfo(0);
 
-    EXPECT_EQ("""=== Steve's Turn ===\n\n-- Hand Sizes --\nSteve: 2\nComp1: 2\n\n-- Your Cards --\nAH 2H\n""", ss.str());
+    EXPECT_EQ("=== Steve's Turn ===\n\n-- Hand Sizes --\nSteve: 2\nComp1: 2\n\n-- Your Cards --\nAH 2H \n\n", ss.str());
 }
 
 
