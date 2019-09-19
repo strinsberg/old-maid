@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <sstream>
 #include <vector>
+#include <fstream>
+#include <iostream>
 #include "OldMaidView.h"
 #include "Player.h"
 #include "Hand.h"
@@ -9,9 +11,11 @@
 
 
 TEST(TestOldMaidView, turn_info) {
-    //std::stringstream ss;
+    std::stringstream ss;
     // Should I mock out players?
     //OldMaidView view(players, ss);
+    
+    EXPECT_EQ("""=== Steve's Turn ===\n\n-- Hand Sizes --\nSteve: 2\nComp1: 2\n\n-- Your Cards --\nAH 2H\n""", ss.str());
 }
 
 
