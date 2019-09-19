@@ -46,7 +46,7 @@ TEST(TestOldMaidView, end_round_throws) {
     Player steve("Steve");
     std::vector<Player*> players{&steve};
     OldMaidView view(&players, ss);
-    
+
     EXPECT_THROW(view.endRound(20), std::out_of_range);
     EXPECT_THROW(view.endRound(-1), std::out_of_range);
 }
