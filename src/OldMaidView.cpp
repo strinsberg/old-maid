@@ -1,3 +1,4 @@
+#include <iostream>
 #include <ostream>
 #include <vector>
 #include "OldMaidView.h"
@@ -23,4 +24,7 @@ void OldMaidView::result(Card const* card, bool matched) const {
 
 
 void OldMaidView::endRound(int loser) const {
+    out << "=== Round Over ===" << std::endl << std::endl;
+    out << "Old Maid: ";
+    out << players->at(loser)->getName() << std::endl;
 }

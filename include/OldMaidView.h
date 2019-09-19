@@ -43,6 +43,7 @@ class OldMaidView {
      * Display the end of round with the given loser.
      *
      * @param loser The index of the player that lost.
+     * @throws out_of_range if loser is >= players->size() or loser < -1.
      */
     virtual void endRound(int loser) const;
 
