@@ -64,7 +64,7 @@ coverage: $(PROGRAM_TEST)
 	$(LCOV) --extract $(COVERAGE_RESULTS) "*/OldMaid/src/*" -o $(COVERAGE_RESULTS)
 	genhtml $(COVERAGE_RESULTS) --output-directory $(COVERAGE_DIR)
 	rm -f *.gc*
-	$(BROWSER) $(COVERAGE_DIR)/index.html
+
 
 .PHONY: static
 static: ${SRC_DIR}
