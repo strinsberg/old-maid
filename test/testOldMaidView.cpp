@@ -8,7 +8,7 @@
 
 
 TEST(TestOldMaidView, turn_info) {
-    std::stringstream ss;
+    //std::stringstream ss;
     // Should I mock out players?
     //OldMaidView view(players, ss);
 }
@@ -24,13 +24,13 @@ TEST(TestOldMaidView, pick_card) {
 
 
 TEST(TestOldMaidView, result) {
-    std::stringstream ss;
+    //std::stringstream ss;
     //OldMaidView view(players, ss);
 }
 
 
 TEST(TestOldMaidView, end_round) {
-    std::stringstream ss;
+    //std::stringstream ss;
     //OldMaidView view(players, ss);
 
     //view.endRound(0);
