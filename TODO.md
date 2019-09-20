@@ -1,9 +1,8 @@
 # Current
 
-* Setup necessary Mocks for testing
-* Test view again with new design
+* ~~Setup necessary Mocks for testing~~
+* ~~Test view again with new design~~
 * Re-implement OldMaidRound with TDD
-* Display hand in sorted order but don't sort it.
 
 #Bugs
 

@@ -41,7 +41,7 @@ void OldMaidView::result(
         Card const* card, bool matched, Card const* other) const {
     out << std::endl;
     out << "Card Chosen: " << card->toString() << std::endl << std::endl;
-    
+
     if (matched) {
         out << "** It's a Match **" << std::endl;
         out << "The " << other->toString() << " was removed from your hand";
@@ -50,7 +50,7 @@ void OldMaidView::result(
         out << "The " << card->toString() << " was added to your hand";
     }
     out << std::endl << std:: endl;
-    
+
     out << "=== Turn Over ===" << std::endl << std::endl;
 }
 
