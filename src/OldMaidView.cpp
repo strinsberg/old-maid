@@ -37,7 +37,8 @@ void OldMaidView::pickCard() const {
 }
 
 
-void OldMaidView::result(Card const* card, bool matched) const {
+void OldMaidView::result(
+        Card const* card, bool matched, Card const* other) const {
 }
 
 

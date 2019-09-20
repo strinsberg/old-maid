@@ -36,8 +36,11 @@ class OldMaidView {
      *
      * @param card The card that was picked.
      * @param matched If the card gave the player a match.
+     * @param other The card that card is matched with. Default nullptr for
+     * when there is no match.
      */
-    virtual void result(Card const* card, bool matched) const;
+    virtual void result(
+        Card const* card, bool matched, Card const* other = nullptr) const;
 
     /**
      * Display the end of round with the given loser.

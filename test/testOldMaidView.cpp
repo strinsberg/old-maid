@@ -49,9 +49,32 @@ TEST(TestOldMaidView, pick_card) {
 }
 
 
-TEST(TestOldMaidView, result) {
-    //std::stringstream ss;
-    //OldMaidView view(players, ss);
+TEST(TestOldMaidView, result_not_a_match) {
+    std::stringstream ss;
+    OldMaidView view(nullptr, ss);
+
+    const Card c(12, Suit::HEART);
+    view.result(&c, false);
+
+    EXPECT_EQ("\nCard Chosen: QH\n"
+              "** Not a Match **\n"
+              "The QH was added to your hand\n\n"
+              "=== Turn Over ===\n\n", ss.str());
+}
+
+
+TEST(TestOldMaidView, result_a_match) {
+    std::stringstream ss;
+    OldMaidView view(nullptr, ss);
+
+    const Card c1(12, Suit::HEART);
+    const Card c2(12, Suit::SPADE);
+    view.result(&c1, true, &c2);
+
+    EXPECT_EQ("\nCard Chosen: QH\n"
+              "** It's a Match **\n"
+              "QS removed from your hand\n\n"
+              "=== Turn Over ===\n\n", ss.str());
 }
 
 
