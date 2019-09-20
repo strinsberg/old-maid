@@ -7,20 +7,24 @@
 #include "Deck.h"
 #include "Input.h"
 #include "Player.h"
+#include "Hand.h"
 
 
-OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* players,
+OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* pls,
         Input* input, OldMaidView* v)
-            : Round(deck, players, input), view(v) {
+            : Round(deck, pls, input), view(v) {
     deck->shuffle();
     int idx = deck->findCard(12, Suit::CLUB);
     Card const* card = deck->takeCard(idx);
     delete card;
+
+    std::vector<Hand*> hands = deck->deal(players->size(), 0);
+    for (int i = 0; i < players->size(); i++)
+       (*players)[i]->setHand(hands[i]);
 }
 
 
 int OldMaidRound::play() {
-    // deal cards
     // while the game is still going
         // show turn info
         // ask to pick a card from player

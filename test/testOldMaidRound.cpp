@@ -11,9 +11,17 @@
 #include "Suit.h"
 
 
-TEST(OldMaidRoundTests, new_round) {
-    std::vector<Player*>* players;
+TEST(OldMaidRoundTests, new_round_setup_deck) {
+    // setup players and hands
+    Player steve("Steve");
+    Player comp("Comp1");
+    std::vector<Player*> players{&steve, &comp};
 
+    Hand* hand1 = new Hand();
+    Hand* hand2 = new Hand();
+    std::vector<Hand*> hands{hand1, hand2};
+
+    // setup mock deck and expect calls
     MockDeck mDeck;
 
     EXPECT_CALL(mDeck, shuffle())
@@ -26,12 +34,22 @@ TEST(OldMaidRoundTests, new_round) {
     EXPECT_CALL(mDeck, takeCard(0))
         .Times(1);
 
-    MockInput mInput;
-    MockOldMaidView mView(players);
+    EXPECT_CALL(mDeck, deal(2, 0))
+       .Times(1)
+       .WillOnce(testing::Return(hands));
 
-    OldMaidRound r(&mDeck, players, &mInput, &mView);
+    // Other mocks
+    MockInput mInput;
+    MockOldMaidView mView(&players);
+
+    // create round and run expects
+    OldMaidRound r(&mDeck, &players, &mInput, &mView);
     r.play();
+
+    EXPECT_EQ(hand1, players[0]->getHand());
+    EXPECT_EQ(hand2, players[1]->getHand());
 }
+
 
 
 TEST(OldMaidRoundTests, play_simple) {
