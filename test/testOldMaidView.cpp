@@ -56,7 +56,7 @@ TEST(TestOldMaidView, result_not_a_match) {
     const Card c(12, Suit::HEART);
     view.result(&c, false);
 
-    EXPECT_EQ("\nCard Chosen: QH\n"
+    EXPECT_EQ("\nCard Chosen: QH\n\n"
               "** Not a Match **\n"
               "The QH was added to your hand\n\n"
               "=== Turn Over ===\n\n", ss.str());
@@ -71,9 +71,9 @@ TEST(TestOldMaidView, result_a_match) {
     const Card c2(12, Suit::SPADE);
     view.result(&c1, true, &c2);
 
-    EXPECT_EQ("\nCard Chosen: QH\n"
+    EXPECT_EQ("\nCard Chosen: QH\n\n"
               "** It's a Match **\n"
-              "QS removed from your hand\n\n"
+              "The QS was removed from your hand\n\n"
               "=== Turn Over ===\n\n", ss.str());
 }
 
