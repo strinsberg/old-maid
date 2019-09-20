@@ -46,6 +46,8 @@ class Player {
  private:
     std::string name;
     Hand* hand;
+
+    Player(const Player&) {}
 };
 
 #endif

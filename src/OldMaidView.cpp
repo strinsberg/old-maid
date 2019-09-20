@@ -13,14 +13,14 @@ OldMaidView::OldMaidView(
 
 void OldMaidView::turnInfo(int currentPlayer) const {
     Player* player = players->at(currentPlayer);
-    
+
     out << "=== " << player->getName() << "'s Turn ===" << std::endl;
     out << std::endl;
-    
-    out << "-- Hand Sizes --" << std::endl;    
+
+    out << "-- Hand Sizes --" << std::endl;
     for (auto p : *players)
         out << p->getName() << ": " << p->getHand()->size() << std::endl;
-    
+
     out << std::endl;
     out << "-- Your Cards --" << std::endl;
     for (int i = 0; i < player->getHand()->size(); i++) {
