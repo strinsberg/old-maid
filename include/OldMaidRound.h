@@ -34,6 +34,9 @@ class OldMaidRound : public Round {
 
  protected:
     OldMaidView* view;
+
+    bool roundOver() const;
+    int getLoser() const;
 };
 
 #endif

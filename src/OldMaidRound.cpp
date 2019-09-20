@@ -25,10 +25,47 @@ OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* pls,
 
 
 int OldMaidRound::play() {
-    // while the game is still going
-        // show turn info
-        // ask to pick a card from player
-        // show the result
-    // show result of round
+    while (!roundOver()) {
+        for (int i = 0; i < players->size(); i++) {
+            if ((*players)[i]->getHand()->size() == 0)
+                continue;
+
+            view->turnInfo(i);
+            view->pickCard();
+
+            int choice = input->getInt();
+            int to_left = i == players->size() - 1 ? 0 : i + 1;
+            Card const* pick = (*players)[to_left]->getHand()->takeCard(choice);
+
+            int idx = (*players)[i]->getHand()->matchCard(pick->getValue());
+            if (idx != -1) {
+               Card const* card = (*players)[i]->getHand()->takeCard(idx);
+               view->result(pick, true, card);
+               delete card;
+               delete pick;
+            } else {
+               view->result(pick, false);
+               (*players)[i]->getHand()->addCard(pick);
+            }
+        }
+    }
+    view->endRound(getLoser());
 }
 
+
+bool OldMaidRound::roundOver() const {
+    int count = 0;
+    for (auto p : *players) {
+        if (p->getHand()->size() > 0)
+            count++;
+    }
+    return count <= 1;
+}
+
+
+int OldMaidRound::getLoser() const {
+    for (int i = 0; i < players->size(); i++) {
+        if ((*players)[i]->getHand()->size() > 0)
+            return i;
+    }
+}
