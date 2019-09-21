@@ -1,5 +1,4 @@
 #include <vector>
-#include <climits>
 #include <algorithm>
 #include "Deck.h"
 #include "Card.h"
@@ -49,7 +48,7 @@ void Deck::shuffle() {
 
 
 std::vector<Hand*> Deck::deal(int h, int n) {
-    int N = n ? n : INT_MAX;
+    int N = n > 0 ? n : 1000;
     int size = cards.size();
 
     std::vector<Hand*> hands;

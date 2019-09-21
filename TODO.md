@@ -1,23 +1,23 @@
 # Current
 
-* ~~Setup necessary Mocks for testing~~
-* ~~Test view again with new design~~
-* Re-implement OldMaidRound with TDD
+* Input validation and a way to quit
+* Sorter for hand of cards
+* Remove Pairs from hand at game start and possibly adjust the way that checking for matches is done?
+* Computer players
+* A press enter to continue after your turn
+* different input for computer players and maybe a continue after each turn to make it easy to keep track of what happened easier
 
 #Bugs
 
-* Deal does not deal all cards when n=0
+* None
 
 # Backlog
 
-* Add sort and Remove pairs to hand class
 * Main menu to pick number of players
 * Game to play more than one round with same players and keep track of winners
-* Computer players
 * Program Commands
 * Show Score
 * Show some help/rules
-* Profiles or at least putting in a name for your player
-* Intuitive input
+* Give a name for your player and auto choose some names for computer players
+* More intuitive view and input
 * Open to extension for adding new games
-* Nice visual interface for each turn and results of actions

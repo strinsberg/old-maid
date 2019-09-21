@@ -144,7 +144,7 @@ TEST(DeckTest, deal_4_hands_of_4) {
 TEST(DeckTest, deal_3_whole_deck) {
     Deck d;
 
-    std::vector<Hand*> hands = d.deal(3);
+    std::vector<Hand*> hands = d.deal(3, 0);
 
     EXPECT_EQ(hands[0]->size(), 18);
     EXPECT_EQ(hands[1]->size(), 17);

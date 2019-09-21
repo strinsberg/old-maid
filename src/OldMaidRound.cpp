@@ -10,9 +10,9 @@
 #include "Hand.h"
 
 
-OldMaidRound::OldMaidRound(Deck* deck, std::vector<Player*>* pls,
-        Input* input, OldMaidView* v)
-            : Round(deck, pls, input), view(v) {
+OldMaidRound::OldMaidRound(Deck* d, std::vector<Player*>* pls,
+        Input* in, OldMaidView* v)
+            : Round(d, pls, in), view(v) {
     deck->shuffle();
     int idx = deck->findCard(12, Suit::CLUB);
     Card const* card = deck->takeCard(idx);
