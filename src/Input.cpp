@@ -7,9 +7,7 @@ Input::Input(std::istream& is) : in(is) {}
 
 
 int Input::getInt() {
-    int temp;
-    in >> temp;
-    return temp;
+    return std::stoi(getString());
 }
 
 

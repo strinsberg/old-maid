@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <sstream>
 #include <string>
+#include <stdexcept>
 #include "Input.h"
 #include "OldMaidView.h"
 
@@ -10,6 +11,14 @@ TEST(InputTests, get_int) {
     Input in(ss);
 
     EXPECT_EQ(in.getInt(), 4);
+}
+
+
+TEST(InputTests, get_int_throws) {
+    std::stringstream ss("help");
+    Input in(ss);
+
+    EXPECT_THROW(in.getInt(), std::invalid_argument);
 }
 
 
