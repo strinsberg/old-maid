@@ -27,7 +27,7 @@ TEST(PlayerTest, update_score) {
 
     int score = p.updateScore(10);
     EXPECT_EQ(score, 10);
-    EXPECT_EQ(p.getScore(),10);
+    EXPECT_EQ(p.getScore(), 10);
 
     score = p.updateScore(-25);
     EXPECT_EQ(score, -15);

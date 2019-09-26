@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Hand.h"
 
-Player::Player(const std::string& n) : name(n), hand(new Hand()) {}
+Player::Player(const std::string& n) : name(n), hand(new Hand()), score(0) {}
 
 Player::~Player() {
     delete hand;
@@ -25,13 +25,19 @@ void Player::setHand(Hand* h) {
 }
 
 
-
-int Player::getScore() {}
-int Player::updateScore(int amt) {}
-void Player::sortHand() {}
-std::vector<Card*> Player::updateHand() {}
-int Player::handSize() {
+int Player::getScore() {
+    return score;
 }
 
+int Player::updateScore(int amt) {
+    score += amt;
+    return score;
+}
 
+void Player::sortHand() {}
+
+std::vector<Card*> Player::updateHand() {}
+
+int Player::handSize() {
+}
 
