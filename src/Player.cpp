@@ -23,3 +23,15 @@ void Player::setHand(Hand* h) {
     delete hand;
     hand = h;
 }
+
+
+
+int Player::getScore() {}
+int Player::updateScore(int amt) {}
+void Player::sortHand() {}
+std::vector<Card*> Player::updateHand() {}
+int Player::handSize() {
+}
+
+
+

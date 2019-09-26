@@ -43,9 +43,52 @@ class Player {
      */
     void setHand(Hand* hand);
 
+    /**
+     * Return the players score.
+     *
+     * @return the score.
+     */
+    int getScore();
+
+    /**
+     * Update the players score by the given amount
+     *
+     * @param amt The amount to change the score by.
+     * @return The new score.
+     */
+    int updateScore(int amt);
+
+    /**
+     * Sorts the hand with handSorter.
+     * Players in each game will have a different hand sorter depending on
+     * what ordering is best. For OldMaid ordering by value is enough. For
+     * others ordering might be more complicated.
+     */
+    void sortHand();
+    
+    /**
+     * Updates the state of the hand using handUpdater.
+     * For example if a game requires removing pairs the updater will remove
+     * all the pairs from the hand. The removed cards will be returned in a
+     * vector.
+     * 
+     * @return A vector of all the cards removed during the update, if any.
+     */
+    std::vector<Card*> updateHand();
+
+    /**
+     * Return the size of the players hand.
+     *
+     * @return hand size.
+     */
+    int handSize();
+
  private:
     std::string name;
     Hand* hand;
+    int score;
+    //HandSorter* handSorter;
+    //HandUpdater* handUpdater;
 
     Player(const Player&) {}
 };
