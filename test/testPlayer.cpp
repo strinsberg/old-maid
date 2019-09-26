@@ -33,3 +33,13 @@ TEST(PlayerTest, update_score) {
     EXPECT_EQ(score, -15);
     EXPECT_EQ(p.getScore(), -15);
 }
+
+
+TEST(PlayerTest, hand_size) {
+    Player p("Steve");
+    Hand* h = new Hand();
+
+    p.setHand(h);
+    EXPECT_EQ(h->size(), p.handSize());
+}
+
