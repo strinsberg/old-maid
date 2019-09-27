@@ -107,13 +107,17 @@ TEST(HandTests, sort_by_suit) {
     h.addCard(new Card(4, Suit::HEART));
     h.addCard(new Card(1, Suit::SPADE));
     h.addCard(new Card(2, Suit::HEART));
+    h.addCard(new Card(2, Suit::DIAMOND));
+    h.addCard(new Card(2, Suit::CLUB));
 
     h.sortBy(false, true);
 
-    EXPECT_EQ(h.getCard(0)->getSuit(), Suit::SPADE);
-    EXPECT_EQ(h.getCard(1)->getSuit(), Suit::SPADE);
-    EXPECT_EQ(h.getCard(2)->getSuit(), Suit::HEART);
-    EXPECT_EQ(h.getCard(3)->getSuit(), Suit::HEART);
+    EXPECT_EQ(h.getCard(0)->getSuit(), Suit::HEART);
+    EXPECT_EQ(h.getCard(1)->getSuit(), Suit::HEART);
+    EXPECT_EQ(h.getCard(2)->getSuit(), Suit::SPADE);
+    EXPECT_EQ(h.getCard(3)->getSuit(), Suit::SPADE);
+    EXPECT_EQ(h.getCard(4)->getSuit(), Suit::DIAMOND);
+    EXPECT_EQ(h.getCard(5)->getSuit(), Suit::CLUB);
 }
 
 
@@ -124,18 +128,25 @@ TEST(HandTests, sort_by_value_and_suit) {
     h.addCard(new Card(4, Suit::HEART));
     h.addCard(new Card(1, Suit::SPADE));
     h.addCard(new Card(2, Suit::HEART));
+    h.addCard(new Card(2, Suit::DIAMOND));
+    h.addCard(new Card(2, Suit::CLUB));
 
-    h.sortBy(true, false);
+    h.sortBy(true, true);
 
-    EXPECT_EQ(h.getCard(0)->getValue(), 1);
-    EXPECT_EQ(h.getCard(1)->getValue(), 5);
-    EXPECT_EQ(h.getCard(2)->getValue(), 2);
-    EXPECT_EQ(h.getCard(3)->getValue(), 4);
 
-    EXPECT_EQ(h.getCard(0)->getSuit(), Suit::SPADE);
-    EXPECT_EQ(h.getCard(1)->getSuit(), Suit::SPADE);
-    EXPECT_EQ(h.getCard(2)->getSuit(), Suit::HEART);
-    EXPECT_EQ(h.getCard(3)->getSuit(), Suit::HEART);
+    EXPECT_EQ(2, h.getCard(0)->getValue());
+    EXPECT_EQ(4, h.getCard(1)->getValue());
+    EXPECT_EQ(1, h.getCard(2)->getValue());
+    EXPECT_EQ(3, h.getCard(3)->getValue());
+    EXPECT_EQ(2, h.getCard(4)->getValue());
+    EXPECT_EQ(2, h.getCard(5)->getValue());
+
+    EXPECT_EQ(Suit::HEART, h.getCard(0)->getSuit());
+    EXPECT_EQ(Suit::HEART, h.getCard(1)->getSuit());
+    EXPECT_EQ(Suit::SPADE, h.getCard(2)->getSuit());
+    EXPECT_EQ(Suit::SPADE, h.getCard(3)->getSuit());
+    EXPECT_EQ(Suit::DIAMOND, h.getCard(4)->getSuit());
+    EXPECT_EQ(Suit::CLUB, h.getCard(5)->getSuit());
 }
 
 TEST(HandTests, to_string) {

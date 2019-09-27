@@ -5,6 +5,9 @@
 #include "Hand.h"
 #include "Card.h"
 
+bool compareValues(Card const*, Card const*);
+bool compareSuits(Card const*, Card const*);
+bool compareBoth(Card const*, Card const*);
 
 Hand::Hand() {}
 
@@ -46,9 +49,14 @@ Card const* Hand::takeCard(int i) {
 
 
 void Hand::sortBy(bool byValue, bool bySuit) {
-    // do something
+    if (byValue && bySuit) {
+        std::sort(cards.begin(), cards.end(), compareBoth);
+    } else if (byValue) {
+        std::sort(cards.begin(), cards.end(), compareValues);
+    } else if (bySuit) {
+        std::sort(cards.begin(), cards.end(), compareSuits);
+    }
 }
-
 
 int Hand::size() {
     return static_cast<int>(cards.size());
@@ -65,4 +73,25 @@ std::string Hand::toString() {
     }
 
     return ss.str();
+}
+
+
+// Private /////////////////////////////////////////////////////
+
+bool compareValues(Card const* a, Card const* b) {
+    return a->getValue() < b->getValue();
+}
+
+
+bool compareSuits(Card const* a, Card const* b) {
+    return a->getSuit() < b->getSuit();
+}
+
+
+bool compareBoth(Card const* a, Card const* b) {
+    if (compareSuits(a, b))
+        return true;
+    else if (a->getSuit() == b->getSuit())
+        return compareValues(a, b);
+    return false;
 }
