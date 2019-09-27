@@ -1,11 +1,11 @@
 # Current
 
+* Implement redesigned controllers and view
+* Add sort to hand with flags for by value or by suit or both
+* put remove pairs code in OldMaidPlayerController
 * Input validation and a way to quit
-* Sorter for hand of cards
-* Remove Pairs from hand at game start and possibly adjust the way that checking for matches is done?
-* Computer players
+* Computer players with different controller and view
 * A press enter to continue after your turn
-* different input for computer players and maybe a continue after each turn to make it easy to keep track of what happened easier
 
 #Bugs
 
