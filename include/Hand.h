@@ -30,7 +30,7 @@ class Hand {
     void addCard(Card const* card);
 
     /**
-     * Finds a matching card in a hand.
+     * (Depricated) Finds a matching card in a hand.
      * 
      * If suit is ignored it will return the first card with the given value.
      * If there are more than one available matches it will only return the
@@ -61,6 +61,16 @@ class Hand {
      * than the hand size or less than 0.
      */
     Card const* takeCard(int i);
+
+    /**
+     * Sort the hand.
+     * If both parameters are true then the hand will be sorted like so
+     * AH 4H 2S 7S 5C KC.
+     *
+     * @param byValue Whether to sort the hand by value. Eg) 112233.
+     * @param bySuit Whether to sort the hand by suit. Eg) HHSSSCC.C
+     */
+    void sortBy(bool byValue, bool bySuit);
 
     /**
      * Returns the number of cards in the hand.

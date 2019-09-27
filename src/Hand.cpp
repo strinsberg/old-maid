@@ -19,7 +19,7 @@ void Hand::addCard(Card const* card) {
     cards.push_back(card);
 }
 
-
+//DEPRICATED//
 int Hand::matchCard(int value, Suit suit) const {
     for (int i = 0; i < cards.size(); i++) {
         if (cards[i]->getValue() == value) {
@@ -42,6 +42,11 @@ Card const* Hand::takeCard(int i) {
     Card const* card = cards.at(i);
     cards.erase(cards.begin()+i);
     return card;
+}
+
+
+void Hand::sort(bool byValue, bool bySuit) {
+    // do something
 }
 
 

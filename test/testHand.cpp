@@ -18,7 +18,7 @@ TEST(HandTests, add_card) {
 }
 
 
-TEST(HandTests, find_card) {
+TEST(HandTests, DISABLED_find_card) {
     Hand h;
     Card const* c = new Card(2, Suit::SPADE);
 
@@ -31,7 +31,7 @@ TEST(HandTests, find_card) {
     EXPECT_EQ(h.size(), 1);
 }
 
-TEST(HandTests, find_card_not_there) {
+TEST(HandTests, DISABLED_find_card_not_there) {
     Hand h;
     Card const* c = new Card(2, Suit::SPADE);
 
@@ -82,6 +82,20 @@ TEST(HandTests, take_card_out_of_range) {
     EXPECT_THROW(h.takeCard(10), std::out_of_range);
 }
 
+
+TEST(HandTests, sort_by_value) {
+    FAIL();
+}
+
+
+TEST(HandTests, sort_by_suit) {
+    FAIL();
+}
+
+
+TEST(HandTests, sort_by_value_and_suit) {
+    FAIL();
+}
 
 TEST(HandTests, to_string) {
     Hand h;
