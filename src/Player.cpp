@@ -34,10 +34,6 @@ int Player::updateScore(int amt) {
     return score;
 }
 
-void Player::sortHand() {}
-
-std::vector<Card*> Player::updateHand() {}
-
 int Player::handSize() {
     return hand->size();
 }
