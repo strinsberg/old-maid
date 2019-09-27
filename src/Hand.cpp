@@ -45,7 +45,7 @@ Card const* Hand::takeCard(int i) {
 }
 
 
-void Hand::sort(bool byValue, bool bySuit) {
+void Hand::sortBy(bool byValue, bool bySuit) {
     // do something
 }
 

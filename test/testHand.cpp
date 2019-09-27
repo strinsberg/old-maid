@@ -84,17 +84,58 @@ TEST(HandTests, take_card_out_of_range) {
 
 
 TEST(HandTests, sort_by_value) {
-    FAIL();
+    Hand h;
+
+    h.addCard(new Card(2, Suit::SPADE));
+    h.addCard(new Card(3, Suit::HEART));
+    h.addCard(new Card(1, Suit::SPADE));
+    h.addCard(new Card(2, Suit::HEART));
+
+    h.sortBy(true, false);
+
+    EXPECT_EQ(h.getCard(0)->getValue(), 1);
+    EXPECT_EQ(h.getCard(1)->getValue(), 2);
+    EXPECT_EQ(h.getCard(2)->getValue(), 2);
+    EXPECT_EQ(h.getCard(3)->getValue(), 3);
 }
 
 
 TEST(HandTests, sort_by_suit) {
-    FAIL();
+    Hand h;
+
+    h.addCard(new Card(3, Suit::SPADE));
+    h.addCard(new Card(4, Suit::HEART));
+    h.addCard(new Card(1, Suit::SPADE));
+    h.addCard(new Card(2, Suit::HEART));
+
+    h.sortBy(false, true);
+
+    EXPECT_EQ(h.getCard(0)->getSuit(), Suit::SPADE);
+    EXPECT_EQ(h.getCard(1)->getSuit(), Suit::SPADE);
+    EXPECT_EQ(h.getCard(2)->getSuit(), Suit::HEART);
+    EXPECT_EQ(h.getCard(3)->getSuit(), Suit::HEART);
 }
 
 
 TEST(HandTests, sort_by_value_and_suit) {
-    FAIL();
+    Hand h;
+
+    h.addCard(new Card(3, Suit::SPADE));
+    h.addCard(new Card(4, Suit::HEART));
+    h.addCard(new Card(1, Suit::SPADE));
+    h.addCard(new Card(2, Suit::HEART));
+
+    h.sortBy(true, false);
+
+    EXPECT_EQ(h.getCard(0)->getValue(), 1);
+    EXPECT_EQ(h.getCard(1)->getValue(), 5);
+    EXPECT_EQ(h.getCard(2)->getValue(), 2);
+    EXPECT_EQ(h.getCard(3)->getValue(), 4);
+
+    EXPECT_EQ(h.getCard(0)->getSuit(), Suit::SPADE);
+    EXPECT_EQ(h.getCard(1)->getSuit(), Suit::SPADE);
+    EXPECT_EQ(h.getCard(2)->getSuit(), Suit::HEART);
+    EXPECT_EQ(h.getCard(3)->getSuit(), Suit::HEART);
 }
 
 TEST(HandTests, to_string) {
