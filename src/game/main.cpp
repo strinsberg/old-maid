@@ -2,13 +2,11 @@
 #include <vector>
 #include "Deck.h"
 #include "Player.h"
-#include "OldMaidRound.h"
-#include "OldMaidView.h"
 #include "Input.h"
 
 
 int main() {
-	std::vector<Player*> players;
+	/*std::vector<Player*> players;
 	players.push_back(new Player("Steve"));
 	players.push_back(new Player("Other"));
 	
@@ -27,6 +25,6 @@ int main() {
 	
 	for (auto p : players)
 	    delete p;
-	
+	*/
 	return 0;
 }

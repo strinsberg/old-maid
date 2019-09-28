@@ -31,6 +31,8 @@ TEST(DeckTests, take_top) {
     EXPECT_EQ(13, top->getValue());
     EXPECT_EQ(Suit::CLUB, top->getSuit());
     EXPECT_EQ(51, d.getCards()->size());
+
+    delete top;
 }
 
 
