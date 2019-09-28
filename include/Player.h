@@ -4,7 +4,7 @@
 
 #include <string>
 #include <vector>
-#include "Hand.h"
+#include "CardCollection.h"
 
 
 /**
@@ -35,14 +35,14 @@ class Player {
      *
      * @param the players hand.
      */
-    Hand* getHand();
+    CardCollection* getHand();
 
     /**
      * Sets the players hand to a given hand.
      *
      * @param the new hand.
      */
-    void setHand(Hand* hand);
+    void setHand(CardCollection* hand);
 
     /**
      * Return the players score.
@@ -60,15 +60,18 @@ class Player {
     int updateScore(int amt);
 
     /**
-     * Return the size of the players hand.
+     * Sorts the players hand by value, suit, or both.
+     * For sorting by both the hand is first sorted into groups of suits
+     * and then sorted by value.
      *
-     * @return hand size.
+     * @param byValue Whether or not to sort by value.
+     * @param bySuit Whether or not to sort by suit.
      */
-    int handSize();
+    void sortHand(bool byValue, bool bySuit);
 
  private:
     std::string name;
-    Hand* hand;
+    CardCollection* hand;
     int score;
 
     Player(const Player&) {}

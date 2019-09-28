@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <stdexcept>
 #include <vector>
+#include "CardCollection.h"
 #include "Deck.h"
 #include "Card.h"
-#include "Hand.h"
 
 
 TEST(DeckTests, new_default_deck_and_size) {
