@@ -28,6 +28,11 @@ int CardCollection::findCard(int value, Suit suit) const {
 }
 
 
+Card const* CardCollection::getCard(int i) {
+    return cards.at(i);
+}
+
+
 Card const* CardCollection::takeCard(int i) {
     Card const* card = cards.at(i);
     cards.erase(cards.begin()+i);

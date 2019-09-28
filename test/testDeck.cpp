@@ -8,87 +8,29 @@
 
 TEST(DeckTests, new_default_deck_and_size) {
     Deck d;
-    EXPECT_EQ(d.size(), 52);
+    EXPECT_EQ(d.getCards()->size(), 52);
 }
 
 
 TEST(DeckTests, deck_with_2_packs) {
     Deck d(2);
 
-    Card const* ah = d.getCard(0);
+    Card const* ah = d.getCards()->getCard(0);
 
+    EXPECT_EQ(d.getCards()->size(), 104);
     EXPECT_EQ(ah->getValue(), 1);
     EXPECT_EQ(ah->getSuit(), Suit::HEART);
 }
 
 
-TEST(TestDeck, find_card_assume_default_order) {
+TEST(DeckTests, take_top) {
     Deck d;
 
-    int pos = d.findCard(1, Suit::HEART);
+    Card const* top = d.takeTop();
 
-    EXPECT_EQ(pos, 0);
-}
-
-
-TEST(TestDeck, find_card_not_present) {
-    Deck d;
-
-    int pos = d.findCard(15, Suit::HEART);
-
-    EXPECT_EQ(pos, -1);
-}
-
-
-TEST(DeckTest, get_card_and_default_deck_order) {
-    Deck d;
-
-    Card const* ah = d.getCard(0);
-    Card const* as = d.getCard(13);
-    Card const* ad = d.getCard(26);
-    Card const* ac = d.getCard(39);
-
-    EXPECT_EQ(ah->getValue(), 1);
-    EXPECT_EQ(ah->getSuit(), Suit::HEART);
-    EXPECT_EQ(as->getValue(), 1);
-    EXPECT_EQ(as->getSuit(), Suit::SPADE);
-    EXPECT_EQ(ad->getValue(), 1);
-    EXPECT_EQ(ad->getSuit(), Suit::DIAMOND);
-    EXPECT_EQ(ac->getValue(), 1);
-    EXPECT_EQ(ac->getSuit(), Suit::CLUB);
-}
-
-
-TEST(DeckTest, get_card_out_of_range) {
-    Deck d;
-    EXPECT_THROW(d.getCard(-1), std::out_of_range);
-    EXPECT_THROW(d.getCard(60), std::out_of_range);
-}
-
-
-TEST(DeckTest, take_card_and_default_deck_order) {
-    Deck d;
-
-    Card const* ah = d.takeCard(0);
-    Card const* as = d.takeCard(12);
-
-    EXPECT_EQ(ah->getValue(), 1);
-    EXPECT_EQ(ah->getSuit(), Suit::HEART);
-    EXPECT_EQ(as->getValue(), 1);
-    EXPECT_EQ(as->getSuit(), Suit::SPADE);
-
-    EXPECT_EQ(d.findCard(1, Suit::HEART), -1);
-    EXPECT_EQ(d.findCard(1, Suit::SPADE), -1);
-
-    delete ah;
-    delete as;
-}
-
-
-TEST(DeckTest, take_card_out_of_range) {
-    Deck d;
-    EXPECT_THROW(d.getCard(-1), std::out_of_range);
-    EXPECT_THROW(d.getCard(60), std::out_of_range);
+    EXPECT_EQ(13, top->getValue());
+    EXPECT_EQ(Suit::CLUB, top->getSuit());
+    EXPECT_EQ(51, d.getCards()->size());
 }
 
 
@@ -96,10 +38,10 @@ TEST(DeckTest, shuffle) {
     Deck d;
 
     d.shuffle();
-    Card const* ah = d.getCard(0);
-    Card const* as = d.getCard(13);
-    Card const* ad = d.getCard(26);
-    Card const* ac = d.getCard(39);
+    Card const* ah = d.getCards()->getCard(0);
+    Card const* as = d.getCards()->getCard(13);
+    Card const* ad = d.getCards()->getCard(26);
+    Card const* ac = d.getCards()->getCard(39);
 
     // if one of the cards is not the ace expected before the shuffle
     // then we will considered the deck shuffled. It is impossible to
@@ -116,7 +58,7 @@ TEST(DeckTest, shuffle) {
 TEST(DeckTest, deal_4_hands_of_4) {
     Deck d;
 
-    std::vector<Hand*> hands = d.deal(4, 4);
+    std::vector<CardCollection*> hands = d.deal(4, 4);
 
     for (auto h : hands) {
         EXPECT_EQ(h->size(), 4);
@@ -144,7 +86,7 @@ TEST(DeckTest, deal_4_hands_of_4) {
 TEST(DeckTest, deal_3_whole_deck) {
     Deck d;
 
-    std::vector<Hand*> hands = d.deal(3, 0);
+    std::vector<CardCollection*> hands = d.deal(3, 0);
 
     EXPECT_EQ(hands[0]->size(), 18);
     EXPECT_EQ(hands[1]->size(), 17);

@@ -3,9 +3,9 @@
 
 
 #include <vector>
+#include "CardCollection.h"
 #include "Card.h"
 #include "Suit.h"
-#include "Hand.h"
 
 
 /**
@@ -31,31 +31,11 @@ class Deck {
     virtual ~Deck();
 
     /**
-     * Find a card in the deck given a value and suit.
+     * Removes and returns the top card of the deck.
      *
-     * @param value The value of the card.
-     * @param suit The suit of the card.
-     * @return the index of the card in the deck or -1.
+     * @return the top card.
      */
-    virtual int findCard(int value, Suit suit) const;
-
-    /**
-     * Get a card from the deck at position i.
-     *
-     * @param i The index of the card to get.
-     * @return the card at position i.
-     * @throw out_of_range if i < 0 or i > deck.size() - 1.
-     */
-    virtual Card const* getCard(int i) const;
-
-    /**
-     * Take a card from the deck at position i and remove it from the deck.
-     *
-     * @param i The index of the card to get.
-     * @return the card at position i.
-     * @throw out_of_range if i < 0 or i > deck.size() - 1.
-     */
-    virtual Card const* takeCard(int i);
+    virtual Card const* takeTop();
 
     /**
      * Randomize the ordering of the cards in the deck.
@@ -68,21 +48,21 @@ class Deck {
      * If n is 0 or is large enough all cards will be dealt and the hand sizes
      * may not be even depending on the number of hands.
      *
-     * @param hands The number of hands to deal out.
-     * @param n The size of each hand.
+     * @param numHands The number of hands to deal out.
+     * @param handSize The size of each hand.
      * @return a vector of the hands created.
      */
-    virtual std::vector<Hand*> deal(int hands, int n = 0);
+    virtual std::vector<CardCollection*> deal(int numHands, int handSize = 0);
 
     /**
-     * The number of cards currently in the deck.
+     * Return the cards in the deck.
      *
-     * @return the size of the deck.
+     * @return the cards.
      */
-    virtual int size() const;
+    virtual CardCollection* getCards();
 
  private:
-    std::vector<Card const*> cards;
+    CardCollection* cards;
 };
 
 #endif

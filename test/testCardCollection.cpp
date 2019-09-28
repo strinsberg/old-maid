@@ -46,6 +46,25 @@ TEST(CardCollectionTests, find_card_not_present) {
 }
 
 
+TEST(CardCollectionTests, get_card) {
+    CardCollection h;
+
+    h.addCard(new Card(2, Suit::SPADE));
+    Card const* c = h.getCard(0);
+
+    EXPECT_EQ(c->getValue(), 2);
+    EXPECT_EQ(c->getSuit(), Suit::SPADE);
+}
+
+
+TEST(CardCollectionTests, get_card_out_of_range) {
+    CardCollection h;
+
+    EXPECT_THROW(h.getCard(10), std::out_of_range);
+}
+
+
+
 TEST(CardCollectionTests, take_card) {
     CardCollection h;
 

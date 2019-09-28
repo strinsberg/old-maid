@@ -3,7 +3,6 @@
 #include <string>
 #include <stdexcept>
 #include "Input.h"
-#include "OldMaidView.h"
 
 
 TEST(InputTests, get_int) {

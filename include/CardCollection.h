@@ -46,6 +46,16 @@ class CardCollection {
      * @throws invalud_argument if the position is greater
      * than the collection size or less than 0.
      */
+    Card const* getCard(int i);
+
+    /**
+     * Removes and returns the i-th card from the collection.
+     *
+     * @param i The position of the card to take.
+     * @return a pointer to the card.
+     * @throws invalud_argument if the position is greater
+     * than the collection size or less than 0.
+     */
     Card const* takeCard(int i);
 
     /**
