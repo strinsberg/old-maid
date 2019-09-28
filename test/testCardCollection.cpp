@@ -57,7 +57,17 @@ TEST(CardCollectionTests, take_card_out_of_range) {
 
 
 TEST(CardCollectionTests, DISABLED_iterators) {
-    //Nothing Yet
+    CardCollection h;
+
+    h.addCard(new Card(2, Suit::SPADE));
+    h.addCard(new Card(10, Suit::HEART));
+    h.addCard(new Card(13, Suit::DIAMOND));
+    h.addCard(new Card(1, Suit::CLUB));
+
+    EXPECT_EQ(2, (*h.begin())->getValue());
+    EXPECT_EQ(10, (*(h.begin() + 1))->getValue());
+    EXPECT_EQ(13, (*(h.begin() + 2))->getValue());
+    EXPECT_EQ(1, (*(h.begin() + 3))->getValue());
 }
 
 

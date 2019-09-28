@@ -35,6 +35,16 @@ Card const* CardCollection::takeCard(int i) {
 }
 
 
+std::vector<Card const*>::iterator CardCollection::begin() {
+    return cards.begin();
+}
+
+
+std::vector<Card const*>::iterator CardCollection::end() {
+    return cards.end();
+}
+
+
 int CardCollection::size() {
     return static_cast<int>(cards.size());
 }

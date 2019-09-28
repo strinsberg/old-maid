@@ -53,14 +53,14 @@ class CardCollection {
      *
      * @return iterator to the first element.
      */
-    std::vector<Card*>::iterator begin();
+    std::vector<Card const*>::iterator begin();
 
     /**
      * Return an iterator to the end of the collection.
      *
      * @return iterator to one past the last element.
      */
-    std::vector<Card*>::iterator end();
+    std::vector<Card const*>::iterator end();
 
     /**
      * Returns the number of cards in the collection.
