@@ -17,20 +17,30 @@ TEST(CardCollectionTests, add_card) {
     EXPECT_EQ(h.size(), 1);
 }
 
-// Not ready yet
-TEST(CardCollectionTests, DISABLED_find_card_assume_default_order) {
-    CardCollection c;
 
-    int pos = c.findCard(1, Suit::HEART);
+TEST(CardCollectionTests, find_card) {
+    CardCollection h;
 
-    EXPECT_EQ(pos, 0);
+    h.addCard(new Card(2, Suit::SPADE));
+    h.addCard(new Card(10, Suit::HEART));
+    h.addCard(new Card(13, Suit::DIAMOND));
+    h.addCard(new Card(1, Suit::CLUB));
+
+    int pos = h.findCard(10, Suit::HEART);
+
+    EXPECT_EQ(pos, 1);
 }
 
-// Not ready yet
-TEST(CardCollectionTests, DISABLED_find_card_not_present) {
-    CardCollection c;
 
-    int pos = c.findCard(15, Suit::HEART);
+TEST(CardCollectionTests, find_card_not_present) {
+    CardCollection h;
+
+    h.addCard(new Card(2, Suit::SPADE));
+    h.addCard(new Card(10, Suit::HEART));
+    h.addCard(new Card(13, Suit::DIAMOND));
+    h.addCard(new Card(1, Suit::CLUB));
+
+    int pos = h.findCard(5, Suit::HEART);
 
     EXPECT_EQ(pos, -1);
 }
@@ -56,7 +66,7 @@ TEST(CardCollectionTests, take_card_out_of_range) {
 }
 
 
-TEST(CardCollectionTests, DISABLED_iterators) {
+TEST(CardCollectionTests, iterators) {
     CardCollection h;
 
     h.addCard(new Card(2, Suit::SPADE));
