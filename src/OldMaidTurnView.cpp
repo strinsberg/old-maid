@@ -4,22 +4,22 @@
 #include "Card.h"
 
 
-void turnInfo(std::vector<Player*> players) {
+void OldMaidTurnView::turnInfo(std::vector<Player*> players) {
 }
 
 
-void playerInfo(Player* player) {
+void OldMaidTurnView::playerInfo(Player* player) {
 }
 
 
-void takeAction() {
+void OldMaidTurnView::takeAction() {
 }
 
 
-virtual void badInput(std::string message) {
+void OldMaidTurnView::badInput(std::string message) {
 }
 
 
-virtual void turnResult(Card* card, bool success) {
+void OldMaidTurnView::turnResult(Card* card, bool success) {
 }
 
