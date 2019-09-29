@@ -28,28 +28,28 @@ class Player {
      *
      * @return the players name.
      */
-    std::string getName() const;
+    virtual std::string getName() const;
 
     /**
      * Returns a pointer to the player's hand.
      *
      * @param the players hand.
      */
-    CardCollection* getHand();
+    virtual CardCollection* getHand();
 
     /**
      * Sets the players hand to a given hand.
      *
      * @param the new hand.
      */
-    void setHand(CardCollection* hand);
+    virtual void setHand(CardCollection* hand);
 
     /**
      * Return the players score.
      *
      * @return the score.
      */
-    int getScore();
+    virtual int getScore();
 
     /**
      * Update the players score by the given amount
@@ -57,7 +57,7 @@ class Player {
      * @param amt The amount to change the score by.
      * @return The new score.
      */
-    int updateScore(int amt);
+    virtual int updateScore(int amt);
 
     /**
      * Sorts the players hand by value, suit, or both.
@@ -67,13 +67,14 @@ class Player {
      * @param byValue Whether or not to sort by value.
      * @param bySuit Whether or not to sort by suit.
      */
-    void sortHand(bool byValue, bool bySuit);
+    virtual void sortHand(bool byValue, bool bySuit);
 
- private:
+ protected:
     std::string name;
     CardCollection* hand;
     int score;
 
+ private:
     Player(const Player&) {}
 };
 

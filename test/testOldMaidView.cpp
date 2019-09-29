@@ -8,7 +8,7 @@ using testing::internal::CaptureStdout;
 using testing::internal::GetCapturedStdout;
 
 
-TEST(TestOldMaidView, welcome) {
+TEST(TestOldMaidView, DISABLED_welcome) {
     CaptureStdout();
     OldMaidView view;
 
@@ -18,7 +18,7 @@ TEST(TestOldMaidView, welcome) {
 }
 
 
-TEST(TestOldMaidView, get_name) {
+TEST(TestOldMaidView, DISABLED_get_name) {
     CaptureStdout();
     OldMaidView view;
 
@@ -28,7 +28,7 @@ TEST(TestOldMaidView, get_name) {
 }
 
 
-TEST(TestOldMaidView, get_num_AI) {
+TEST(TestOldMaidView, DISABLED_get_num_AI) {
     CaptureStdout();
     OldMaidView view;
 
@@ -39,7 +39,7 @@ TEST(TestOldMaidView, get_num_AI) {
 }
 
 
-TEST(TestOldMaidView, begin_round) {
+TEST(TestOldMaidView, DISABLED_begin_round) {
     CaptureStdout();
     OldMaidView view;
 
@@ -51,7 +51,7 @@ TEST(TestOldMaidView, begin_round) {
 }
 
 
-TEST(TestOldMaidView, end_round) {
+TEST(TestOldMaidView, DISABLED_end_round) {
     CaptureStdout();
     OldMaidView view;
 

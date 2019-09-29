@@ -27,7 +27,7 @@ class CardCollection {
      *
      * @param card The card to add.
      */
-    void addCard(Card const* card);
+    virtual void addCard(Card const* card);
 
     /**
      * Find a card in the collection given a value and suit.
@@ -36,7 +36,7 @@ class CardCollection {
      * @param suit The suit of the card.
      * @return the index of the card in the collection or -1.
      */
-    int findCard(int value, Suit suit) const;
+    virtual int findCard(int value, Suit suit) const;
 
     /**
      * Returns the i-th card from the collection.
@@ -46,7 +46,7 @@ class CardCollection {
      * @throws invalud_argument if the position is greater
      * than the collection size or less than 0.
      */
-    Card const* getCard(int i);
+    virtual Card const* getCard(int i);
 
     /**
      * Removes and returns the i-th card from the collection.
@@ -56,37 +56,37 @@ class CardCollection {
      * @throws invalud_argument if the position is greater
      * than the collection size or less than 0.
      */
-    Card const* takeCard(int i);
+    virtual Card const* takeCard(int i);
 
     /**
      * Return an iterator to the beginning of the collection.
      *
      * @return iterator to the first element.
      */
-    std::vector<Card const*>::iterator begin();
+    virtual std::vector<Card const*>::iterator begin();
 
     /**
      * Return an iterator to the end of the collection.
      *
      * @return iterator to one past the last element.
      */
-    std::vector<Card const*>::iterator end();
+    virtual std::vector<Card const*>::iterator end();
 
     /**
      * Returns the number of cards in the collection.
      *
      * @return the collection size.
      */
-    int size();
+    virtual int size();
 
     /**
      * Return a textual representation of the collection.
      *
      * @return a string of cards in the collection.
      */
-    std::string toString();
+    virtual std::string toString();
 
- private:
+ protected:
     std::vector<Card const*> cards;
 };
 
