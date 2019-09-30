@@ -32,34 +32,41 @@ void OldMaidRound::setup() {
     }
 }
 
+#include <iostream>
 
 int OldMaidRound::play() {
-    // for each player
-    // play the players turn
-    // if the player is out decrement count or something
-    // display round over when finished
-    /*std::vector<bool> inGame(players.size(), true);
+    std::vector<bool> inGame(players->size(), true);
+    bool run = true;
 
-    for (int i = 0; i < players->size(); i++) {
-        bool out = (*players)[i]->takeTurn(deck, getPlayers(true));
-        if (out) {
-            psInGame[i] = false;
-        }
+    while (run) {
+        for (int i = 0; i < players->size(); i++) {
+            if (!inGame[i])
+                continue;
 
-        int status = gameStatus(inGame);
-        if (status != -1) {
-            view->endRound(getPlayers(), status);
+            bool out = (*players)[i]->takeTurn(deck, getPlayers(true));
+            if (out) {
+                inGame[i] = false;
+            }
+
+            int status = gameStatus(inGame);
+            if (status != -1) {
+                view->endRound(getPlayers(), status);
+                run = false;
+                break;
+            }
         }
-    }*/
+    }
 }
 
+
+// Private helpers ////////////////////////////////////////////////////
 
 std::vector<Player*> OldMaidRound::getPlayers(bool onlyPlaying) {
     std::vector<Player*> ps;
 
     for (int i = 0; i < players->size(); i++) {
         Player* player = (*players)[i]->getPlayer();
-    
+
         if (onlyPlaying && player->getHand()->size() == 0) {
             ps.push_back(player);
         } else {

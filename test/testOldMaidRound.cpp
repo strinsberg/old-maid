@@ -21,7 +21,7 @@ TEST(OldMaidRoundTests, setup) {
     MockPlayer p1;
     MockPlayerController pc1;
     std::vector<PlayerController*> players{&pc1, &pc1};
-    
+
     MockCardCollection cards;
     std::vector<CardCollection*> hands{&cards, &cards};
     MockDeck deck;
@@ -74,8 +74,8 @@ TEST(OldMaidRoundTests, play) {
     MockPlayer p1;
     std::vector<Player*> players{&p1, &p1, &p1};
     MockPlayerController pc1;
-    std::vector<PlayerController*> pcs{&pc1, &pc1};
-    
+    std::vector<PlayerController*> pcs{&pc1, &pc1, &pc1};
+
     MockCardCollection cards;
     std::vector<CardCollection*> hands{&cards, &cards};
     MockDeck deck;
@@ -93,7 +93,16 @@ TEST(OldMaidRoundTests, play) {
 
     EXPECT_CALL(view, endRound(players, 1))
         .Times(1);
-    
+
+    EXPECT_CALL(pc1, getPlayer())
+        .WillRepeatedly(Return(&p1));
+
+    EXPECT_CALL(p1, getHand())
+        .WillRepeatedly(Return(&cards));
+
+    EXPECT_CALL(cards, size())
+        .WillRepeatedly(Return(1));
+
     // Run the round
     round.play();
 }
