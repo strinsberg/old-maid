@@ -63,12 +63,34 @@ TEST(OldMaidRoundTests, setup) {
     EXPECT_CALL(p1, setHand(&cards))
         .Times(2);
 
+    // Run setup
     round.setup();
 }
 
 
 TEST(OldMaidRoundTests, play) {
+    MockView view;
 
+    MockPlayer p1;
+    std::vector<Player*> players{&p1, &p1};
+    MockPlayerController pc1;
+    std::vector<PlayerController*> pcs{&pc1, &pc1};
+    
+    MockCardCollection cards;
+    std::vector<CardCollection*> hands{&cards, &cards};
+    MockDeck deck;
 
+    OldMaidRound round(&pcs, &deck, &view);
 
+    // Take 2 player turns and then end round
+    EXPECT_CALL(pc1, takeTurn(&deck, _))
+        .Times(2)
+        .WillOnce(Return(false))
+        .WillOnce(Return(true));
+
+    EXPECT_CALL(view, endRound(players, 0))
+        .Times(1);
+    
+    // Run the round
+    round.play();
 }
