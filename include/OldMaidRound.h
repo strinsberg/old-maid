@@ -41,6 +41,9 @@ class OldMaidRound {
     Deck* deck;
     Input* input;
     View* view;
+
+    std::vector<Player*> getPlayers(bool stillPlaying = false);
+    int gameStatus(std::vector<bool> inGame);
 };
 
 #endif

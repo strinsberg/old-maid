@@ -72,7 +72,7 @@ TEST(OldMaidRoundTests, play) {
     MockView view;
 
     MockPlayer p1;
-    std::vector<Player*> players{&p1, &p1};
+    std::vector<Player*> players{&p1, &p1, &p1};
     MockPlayerController pc1;
     std::vector<PlayerController*> pcs{&pc1, &pc1};
     
@@ -82,13 +82,16 @@ TEST(OldMaidRoundTests, play) {
 
     OldMaidRound round(&pcs, &deck, &view);
 
-    // Take 2 player turns and then end round
+    // Player 3 goes out in first loop and then Player 1
+    // This means that Player 2 at idx 1 is the OldMaid after 4 turns
     EXPECT_CALL(pc1, takeTurn(&deck, _))
-        .Times(2)
+        .Times(4)
         .WillOnce(Return(false))
+        .WillOnce(Return(false))
+        .WillOnce(Return(true))
         .WillOnce(Return(true));
 
-    EXPECT_CALL(view, endRound(players, 0))
+    EXPECT_CALL(view, endRound(players, 1))
         .Times(1);
     
     // Run the round
