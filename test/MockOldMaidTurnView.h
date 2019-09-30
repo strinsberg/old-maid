@@ -2,6 +2,7 @@
 #define MOCK_OM_TURN_VIEW_H
 
 
+#include <gmock/gmock.h>
 #include <string>
 #include <vector>
 #include "OldMaidTurnView.h"

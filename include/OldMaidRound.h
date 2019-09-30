@@ -19,7 +19,7 @@ class OldMaidRound {
     /**
      * Creates a new round of OldMaid with the given players, deck and view.
      */
-    OldMaidRound(std::vector<PlayerController*> players, Deck* deck,
+    OldMaidRound(std::vector<PlayerController*>* players, Deck* deck,
         View* view);
 
     virtual ~OldMaidRound();
@@ -37,7 +37,7 @@ class OldMaidRound {
     int play();
 
  private:
-    std::vector<PlayerController*> players;
+    std::vector<PlayerController*>* players;
     Deck* deck;
     Input* input;
     View* view;

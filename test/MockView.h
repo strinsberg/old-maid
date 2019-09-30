@@ -2,6 +2,7 @@
 #define MOCK_VIEW_H
 
 
+#include <gmock/gmock.h>
 #include <vector>
 #include "View.h"
 #include "Player.h"
@@ -12,11 +13,11 @@ class MockView : public View {
     explicit MockView() {}
     virtual ~MockView() {}
 
-    Mock_Method0(welcome, void());
-    Mock_Method0(getName, void());
-    Mock_Method0(askNumAI, void());
-    Mock_Method1(beginRound, void(std::vector<Player*> players));
-    Mock_Method2(endRound, void(std::vector<Player*> players, int winner));
+    MOCK_METHOD0(welcome, void());
+    MOCK_METHOD0(getName, void());
+    MOCK_METHOD0(askNumAI, void());
+    MOCK_METHOD1(beginRound, void(std::vector<Player*> players));
+    MOCK_METHOD2(endRound, void(std::vector<Player*> players, int winner));
 };
 
 #endif

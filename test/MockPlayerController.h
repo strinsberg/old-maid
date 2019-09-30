@@ -2,6 +2,7 @@
 #define MOCK_PLAYER_CONTROLLER_H
 
 
+#include <gmock/gmock.h>
 #include <vector>
 #include "Player.h"
 #include "Deck.h"
