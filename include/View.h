@@ -19,12 +19,12 @@ class View {
      * Displays information to welcome the player to the specific game.
      */
     virtual void welcome() = 0;
-    
+
     /**
      * Displaysy text to ask a player for their name.
      */
     virtual void getName() = 0;
-    
+
     /**
      * Displays text to ask how many AI opponents to include.
      */

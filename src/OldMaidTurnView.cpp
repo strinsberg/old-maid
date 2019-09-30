@@ -1,3 +1,4 @@
+#include <string>
 #include <vector>
 #include "OldMaidTurnView.h"
 #include "Player.h"

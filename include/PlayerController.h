@@ -18,7 +18,7 @@ class PlayerController {
      * Creates a new player controller.
      */
     PlayerController() {}
-    
+
     virtual ~PlayerController() {}
 
     /**

@@ -21,7 +21,7 @@ class OldMaidRound {
      */
     OldMaidRound(std::vector<PlayerController*> players, Deck* deck,
         View* view);
-    
+
     virtual ~OldMaidRound();
 
     /**
