@@ -5,6 +5,8 @@
 #include <vector>
 #include "Player.h"
 #include "Deck.h"
+#include "OldMaidTurnView.h"
+#include "Input.h"
 
 
 /**
@@ -15,9 +17,11 @@
 class PlayerController {
  public:
     /**
-     * Creates a new player controller.
+     * Creates a new player controller for a given player.
+     *
+     * @param p The player to control.
      */
-    PlayerController() {}
+    PlayerController(Player* p, OldMaidTurnView* v);
 
     virtual ~PlayerController() {}
 
@@ -31,21 +35,26 @@ class PlayerController {
      * @param players The players participating in the round.
      * @return whether or not the player is now out of the game.
      */
-    virtual bool takeTurn(Deck* deck, std::vector<Player*> players) = 0;
+    virtual bool takeTurn(Deck* deck, std::vector<Player*> players);
 
     /**
      * Returns the player being controlled.
      *
      * @return the player.
      */
-    virtual Player* getPlayer() = 0;
+    virtual Player* getPlayer();
 
     /**
      * Returns whether the player is out of the round or not.
      *
      * @return true if the player is out, otherwise false.
      */
-    virtual bool isOut() = 0;
+    virtual bool isOut();
+
+ protected:
+    Player* player;
+    OldMaidTurnView* view;
+    Input* input;
 };
 
 #endif
