@@ -31,7 +31,7 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     }
 
     Card const* taken = players[left]->getHand()->takeCard(pos);
-/*
+    
     // add the card to the players hand and remove pairs
     player->getHand()->addCard(taken);
     int numCards = player->getHand()->size();
@@ -39,11 +39,11 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
 
     // display the result. If the players hand size has decresed the
     // card they picked up gave them a pair.
-    if (numCards > player->getHand()->getSize()) {
-        view->result(card, true);
+    if (numCards > player->getHand()->size()) {
+        view->turnResult(taken, true);
     } else {
-        view->result(card, false);
-    }*/
+        view->turnResult(taken, false);
+    }
 }
 
 Player* OldMaidPlayer::getPlayer() {

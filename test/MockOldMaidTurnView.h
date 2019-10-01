@@ -19,7 +19,7 @@ class MockOldMaidTurnView : public OldMaidTurnView {
     MOCK_METHOD1(playerInfo, void(Player* player));
     MOCK_METHOD0(takeAction, void());
     MOCK_METHOD1(badInput, void(std::string message));
-    MOCK_METHOD2(turnResult, void(Card* card, bool success));
+    MOCK_METHOD2(turnResult, void(Card const* card, bool success));
 };
 
 #endif

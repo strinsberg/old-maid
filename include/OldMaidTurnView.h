@@ -47,7 +47,7 @@ class OldMaidTurnView {
     /**
      * Display the result of a turn.
      */
-    virtual void turnResult(Card* card, bool success);
+    virtual void turnResult(Card const* card, bool success);
 };
 
 #endif

@@ -21,6 +21,6 @@ void OldMaidTurnView::badInput(std::string message) {
 }
 
 
-void OldMaidTurnView::turnResult(Card* card, bool success) {
+void OldMaidTurnView::turnResult(Card const* card, bool success) {
 }
 

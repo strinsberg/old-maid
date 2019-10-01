@@ -42,12 +42,29 @@ TEST(OldMaidPlayerTests, take_turn) {
     EXPECT_CALL(player, getHand())
         .WillRepeatedly(Return(&cards));
 
+    Card const* card = new Card(4, Suit::HEART);
+
     EXPECT_CALL(cards, takeCard(2))
         .Times(1)
-        .WillOnce(Return(new Card(4, Suit::HEART)));
+        .WillOnce(Return(card));
+
+    // Add the card to the players hand and remove pairs
+    EXPECT_CALL(cards, addCard(card))
+        .Times(1);
+
+    EXPECT_CALL(cards, size())
+        .Times(2)
+        .WillOnce(Return(0))
+        .WillOnce(Return(1));
+
+    // show result
+    EXPECT_CALL(view, turnResult(card, false))
+        .Times(1);
 
     // Call take turn
     pc.takeTurn(&deck, players);
+
+    delete card;
 }
 
 
