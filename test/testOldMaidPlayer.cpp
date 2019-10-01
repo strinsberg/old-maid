@@ -38,7 +38,13 @@ TEST(OldMaidPlayerTests, take_turn) {
         .Times(1)
         .WillOnce(Return("2"));
 
+    // Take the card indicated by the input
+    EXPECT_CALL(player, getHand())
+        .WillRepeatedly(Return(&cards));
 
+    EXPECT_CALL(cards, takeCard(2))
+        .Times(1)
+        .WillOnce(Return(new Card(4, Suit::HEART)));
 
     // Call take turn
     pc.takeTurn(&deck, players);

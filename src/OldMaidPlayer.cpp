@@ -21,7 +21,6 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     std::string in = input->getString();
     int pos = std::stoi(in);
 
-    /*
     // get the card from the player to your left
     int left;
     for (int i = 0; i < players.size(); ++i) {
@@ -31,8 +30,8 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
         }
     }
 
-    Card* taken = players[left]->takeCard(idx);
-
+    Card const* taken = players[left]->getHand()->takeCard(pos);
+/*
     // add the card to the players hand and remove pairs
     player->getHand()->addCard(taken);
     int numCards = player->getHand()->size();
