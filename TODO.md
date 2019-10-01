@@ -1,10 +1,10 @@
 # Current
 
-* Implement redesigned controllers and view
-* Add sort to hand with flags for by value or by suit or both
+* Check when picking player to left that they are still in game
+* Implement redesigned round and player turn views
 * put remove pairs code in OldMaidPlayerController
-* Input validation and a way to quit
-* Computer players with different controller and view
+* Input validation
+* parse some commands like help and quit
 * A press enter to continue after your turn
 
 #Bugs
@@ -13,6 +13,7 @@
 
 # Backlog
 
+* Computer players with different controller and view
 * Main menu to pick number of players
 * Game to play more than one round with same players and keep track of winners
 * Program Commands
