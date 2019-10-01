@@ -23,10 +23,11 @@ class OldMaidPlayer : public PlayerController {
      *
      * @param player The player to control.
      * @param view The view for a players turn.
+     * @param input The method of getting player input.
      */
-    OldMaidPlayer(Player* player, OldMaidTurnView* view);
+    OldMaidPlayer(Player* player, OldMaidTurnView* view, Input* input);
 
-    virtual ~OldMaidPlayer() {delete input;}
+    virtual ~OldMaidPlayer() {}
 
     virtual bool takeTurn(Deck* deck, std::vector<Player*> players);
     virtual Player* getPlayer();

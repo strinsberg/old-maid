@@ -4,24 +4,52 @@
 #include "MockPlayer.h"
 #include "MockCardCollection.h"
 #include "MockOldMaidTurnView.h"
+#include "MockDeck.h"
+#include "MockInput.h"
 
 
 using testing::Return;
+using testing::_;
 
 
 TEST(OldMaidPlayerTests, take_turn) {
-    MockPlayer mPlayer;
     MockOldMaidTurnView view;
-    OldMaidPlayer pc(&mPlayer, &view);
+    MockInput input;
 
+    MockPlayer player;
+    OldMaidPlayer pc(&player, &view, &input);
+    std::vector<Player*> players{&player, &player, &player};
+
+    MockDeck deck;
     MockCardCollection cards;
+
+    // Begin Turn output
+    EXPECT_CALL(view, turnInfo(players))
+        .Times(1);
+
+    EXPECT_CALL(view, playerInfo(&player))
+        .Times(1);
+
+    EXPECT_CALL(view, takeAction())
+        .Times(1);
+
+    // Get input
+    EXPECT_CALL(input, getString())
+        .Times(1)
+        .WillOnce(Return("2"));
+
+
+
+    // Call take turn
+    pc.takeTurn(&deck, players);
 }
 
 
 TEST(OldMaidPlayerTests, get_player) {
     MockPlayer mPlayer;
     MockOldMaidTurnView view;
-    OldMaidPlayer pc(&mPlayer, &view);
+    MockInput input;
+    OldMaidPlayer pc(&mPlayer, &view, &input);
 
     EXPECT_EQ(&mPlayer, pc.getPlayer());
 }
@@ -30,7 +58,8 @@ TEST(OldMaidPlayerTests, get_player) {
 TEST(OldMaidPlayerTests, is_out) {
     MockPlayer mPlayer;
     MockOldMaidTurnView view;
-    OldMaidPlayer pc(&mPlayer, &view);
+    MockInput input;
+    OldMaidPlayer pc(&mPlayer, &view, &input);
 
     MockCardCollection cards;
 

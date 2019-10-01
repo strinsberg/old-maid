@@ -6,12 +6,11 @@
 #include "Input.h"
 
 
-OldMaidPlayer::OldMaidPlayer(Player* p, OldMaidTurnView* v)
-    : player(p), view(v), input(new Input()) {}
+OldMaidPlayer::OldMaidPlayer(Player* p, OldMaidTurnView* v, Input* in)
+    : player(p), view(v), input(in) {}
 
 
 bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
-    /*
     view->turnInfo(players);
     view->playerInfo(player);
     view->takeAction();
@@ -22,6 +21,7 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     std::string in = input->getString();
     int pos = std::stoi(in);
 
+    /*
     // get the card from the player to your left
     int left;
     for (int i = 0; i < players.size(); ++i) {
@@ -53,4 +53,8 @@ Player* OldMaidPlayer::getPlayer() {
 
 bool OldMaidPlayer::isOut() {
     return player->getHand()->size() == 0;
+}
+
+
+void OldMaidPlayer::removePairs(CardCollection* cards) {
 }
