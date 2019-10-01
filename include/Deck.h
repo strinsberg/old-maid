@@ -63,6 +63,8 @@ class Deck {
 
  private:
     CardCollection* cards;
+
+    Deck(const Deck&) {}
 };
 
 #endif

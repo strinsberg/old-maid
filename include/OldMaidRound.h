@@ -62,6 +62,8 @@ class OldMaidRound {
      * otherwise -1.
      */
     int gameStatus(std::vector<bool> inGame);
+
+    OldMaidRound(const OldMaidRound&) {}
 };
 
 #endif

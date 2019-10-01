@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 #include "OldMaidPlayer.h"
 #include "OldMaidTurnView.h"
 #include "Deck.h"
@@ -14,7 +15,7 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     view->turnInfo(players);
     view->playerInfo(player);
     view->takeAction();
-    
+
     // Get a choice from the player
     // Needs input validation for choosing out of range
     // and also for entering quit/help or nonsense.
@@ -31,7 +32,7 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     }
 
     Card const* taken = players[left]->getHand()->takeCard(pos);
-    
+
     // add the card to the players hand and remove pairs
     player->getHand()->addCard(taken);
     int numCards = player->getHand()->size();

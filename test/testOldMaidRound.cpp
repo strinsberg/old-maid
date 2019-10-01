@@ -77,7 +77,7 @@ TEST(OldMaidRoundTests, play) {
     std::vector<PlayerController*> pcs{&pc1, &pc1, &pc1};
 
     MockCardCollection cards;
-    std::vector<CardCollection*> hands{&cards, &cards};
+    //std::vector<CardCollection*> hands{&cards, &cards};
     MockDeck deck;
 
     OldMaidRound round(&pcs, &deck, &view);

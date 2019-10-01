@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <vector>
 #include "OldMaidPlayer.h"
 #include "MockPlayer.h"
 #include "MockCardCollection.h"
