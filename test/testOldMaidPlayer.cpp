@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "PlayerController.h"
+#include "OldMaidPlayer.h"
 #include "MockPlayer.h"
 #include "MockCardCollection.h"
 #include "MockOldMaidTurnView.h"
@@ -9,28 +9,28 @@
 using testing::Return;
 
 
-TEST(PlayerControllerTests, take_turn) {
+TEST(OldMaidPlayerTests, take_turn) {
     MockPlayer mPlayer;
     MockOldMaidTurnView view;
-    PlayerController pc(&mPlayer, &view);
+    OldMaidPlayer pc(&mPlayer, &view);
 
     MockCardCollection cards;
 }
 
 
-TEST(PlayerControllerTests, get_player) {
+TEST(OldMaidPlayerTests, get_player) {
     MockPlayer mPlayer;
     MockOldMaidTurnView view;
-    PlayerController pc(&mPlayer, &view);
+    OldMaidPlayer pc(&mPlayer, &view);
 
     EXPECT_EQ(&mPlayer, pc.getPlayer());
 }
 
 
-TEST(PlayerControllerTests, is_out) {
+TEST(OldMaidPlayerTests, is_out) {
     MockPlayer mPlayer;
     MockOldMaidTurnView view;
-    PlayerController pc(&mPlayer, &view);
+    OldMaidPlayer pc(&mPlayer, &view);
 
     MockCardCollection cards;
 

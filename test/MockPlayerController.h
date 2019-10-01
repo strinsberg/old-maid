@@ -10,7 +10,7 @@
 
 class MockPlayerController : public PlayerController {
  public:
-    explicit MockPlayerController() : PlayerController(nullptr, nullptr) {}
+    explicit MockPlayerController() {}
     virtual ~MockPlayerController() {}
 
     MOCK_METHOD2(takeTurn, bool(Deck* deck, std::vector<Player*> players));

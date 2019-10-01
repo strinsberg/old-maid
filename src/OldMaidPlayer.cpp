@@ -1,16 +1,16 @@
 #include <vector>
-#include "PlayerController.h"
+#include "OldMaidPlayer.h"
 #include "OldMaidTurnView.h"
 #include "Deck.h"
 #include "Player.h"
 #include "Input.h"
 
 
-PlayerController::PlayerController(Player* p, OldMaidTurnView* v)
+OldMaidPlayer::OldMaidPlayer(Player* p, OldMaidTurnView* v)
     : player(p), view(v), input(new Input()) {}
 
 
-bool PlayerController::takeTurn(Deck* deck, std::vector<Player*> players) {
+bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     /*
     view->turnInfo(players);
     view->playerInfo(player);
@@ -47,10 +47,10 @@ bool PlayerController::takeTurn(Deck* deck, std::vector<Player*> players) {
     }*/
 }
 
-Player* PlayerController::getPlayer() {
+Player* OldMaidPlayer::getPlayer() {
     return player;
 }
 
-bool PlayerController::isOut() {
+bool OldMaidPlayer::isOut() {
     return player->getHand()->size() == 0;
 }
