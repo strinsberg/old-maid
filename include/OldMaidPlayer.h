@@ -39,6 +39,9 @@ class OldMaidPlayer : public PlayerController {
     Input* input;
 
     void removePairs(CardCollection* hand);
+    Player* getLeftPlayer(const std::vector<Player*>& players);
+    Card const* getCard(Player* toTheLeft);
+    void determineResult(Card const* taken);
 };
 
 #endif

@@ -13,39 +13,16 @@ OldMaidPlayer::OldMaidPlayer(Player* p, OldMaidTurnView* v, Input* in)
 
 bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     // get player positions
-    int left, playerI;
-    for (int i = 0; i < players.size(); ++i) {
-        if (player == players[i]) {
-            left = i == 0 ? players.size() - 1 : i - 1;
-            playerI = i;
-            break;
-        }
-    }
+    Player* left = getLeftPlayer(players);
 
     view->turnInfo();
     view->takeAction();
 
-    // Get a choice from the player
-    // Needs input validation for choosing out of range
-    // and also for entering quit/help or nonsense.
-    std::string in = input->getString();
-    int pos = std::stoi(in);
-
-    Card const* taken = players[left]->getHand()->takeCard(pos);
+    Card const* taken = getCard(left);
 
     // add the card to the players hand and remove pairs
-    player->getHand()->addCard(taken);
-    int numCards = player->getHand()->size();
-    removePairs(player->getHand());
+    determineResult(taken);
 
-    // display the result. If the players hand size has decresed the
-    // card they picked up gave them a pair.
-    if (numCards > player->getHand()->size()) {
-        view->turnResult(taken, true);
-    } else {
-        view->turnResult(taken, false);
-    }
-    
     if (player->getHand()->size() == 0)
         return true;
     
@@ -62,4 +39,39 @@ bool OldMaidPlayer::isOut() {
 
 
 void OldMaidPlayer::removePairs(CardCollection* cards) {
+}
+
+Player*  OldMaidPlayer::getLeftPlayer(const std::vector<Player*>& players) {
+    int left;    
+
+    for (int i = 0; i < players.size(); ++i) {
+        if (player == players[i]) {
+            left = i == 0 ? players.size() - 1 : i - 1;
+            break;
+        }
+    }
+
+    return players[left];
+}
+
+// redefine for AI to give input
+// needs some kind of input validation and command handling
+Card const* OldMaidPlayer::getCard(Player* left) {
+    std::string in = input->getString();
+    int pos = std::stoi(in);
+
+   return left->getHand()->takeCard(pos);
+}
+
+void OldMaidPlayer::determineResult(Card const* taken) {
+    player->getHand()->addCard(taken);
+
+    int numCards = player->getHand()->size();
+    removePairs(player->getHand());
+
+    if (numCards > player->getHand()->size()) {
+        view->turnResult(taken, true);
+    } else {
+        view->turnResult(taken, false);
+    }
 }
