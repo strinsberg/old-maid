@@ -29,7 +29,7 @@ int main() {
     std::string name = input->getString();
     
     std::vector<PlayerController*> pcs;
-    Player* p = new Player(name)
+    Player* p = new Player(name);
     OldMaidPlayer* player = new OldMaidPlayer(
         p, new OldMaidTurnView(p), input);
     pcs.push_back(player);

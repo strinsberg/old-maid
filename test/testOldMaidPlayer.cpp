@@ -51,9 +51,9 @@ TEST(OldMaidPlayerTests, take_turn) {
         .Times(1);
 
     EXPECT_CALL(cards, size())
-        .Times(2)
+        .Times(3)
         .WillOnce(Return(0))
-        .WillOnce(Return(1));
+        .WillRepeatedly(Return(1));
 
     // show result
     EXPECT_CALL(view, turnResult(card, false))

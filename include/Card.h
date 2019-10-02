@@ -35,7 +35,7 @@ class Card {
      *
      * @return the card's suit.
      */
-    int getSuit() const {return suit;}
+    Suit getSuit() const {return suit;}
 
     /**
      * Get a textual representation of the card. ie) val=11 suit=HEART -> JH
