@@ -38,6 +38,15 @@ class View {
     virtual void beginRound(std::vector<Player*> players) = 0;
 
     /**
+     * Displays information game related information like hand sizes.
+     * Anything that players might need to know between every turn should
+     * be displayed here.
+     *
+     * @param players The players participating in the round.
+     */
+    virtual void gameStatus(std::vector<Player*> players) = 0;
+
+    /**
      * Displays information at the end of a round.
      *
      * @param players The players participating in the round.

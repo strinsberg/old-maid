@@ -12,8 +12,17 @@ OldMaidPlayer::OldMaidPlayer(Player* p, OldMaidTurnView* v, Input* in)
 
 
 bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
-    view->turnInfo(players);
-    view->playerInfo(player);
+    // get player positions
+    int left, playerI;
+    for (int i = 0; i < players.size(); ++i) {
+        if (player == players[i]) {
+            left = i == 0 ? players.size() - 1 : i - 1;
+            playerI = i;
+            break;
+        }
+    }
+
+    view->turnInfo();
     view->takeAction();
 
     // Get a choice from the player
@@ -21,15 +30,6 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     // and also for entering quit/help or nonsense.
     std::string in = input->getString();
     int pos = std::stoi(in);
-
-    // get the card from the player to your left
-    int left;
-    for (int i = 0; i < players.size(); ++i) {
-        if (player == players[i]) {
-            left = i == 0 ? players.size() - 1 : i - 1;
-            break;
-        }
-    }
 
     Card const* taken = players[left]->getHand()->takeCard(pos);
 
@@ -45,6 +45,11 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     } else {
         view->turnResult(taken, false);
     }
+    
+    if (player->getHand()->size() == 0)
+        return true;
+    
+    return false;
 }
 
 Player* OldMaidPlayer::getPlayer() {

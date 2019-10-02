@@ -15,22 +15,15 @@
  */
 class OldMaidTurnView {
  public:
-    OldMaidTurnView() {}
+    OldMaidTurnView(Player* player);
     virtual ~OldMaidTurnView() {}
 
     /**
-     * Displays information that should come at the start of a turn.
+     * Displays player information that should come at the start of a turn.
      *
      * @param players The players participating in the round.
      */
-    virtual void turnInfo(std::vector<Player*> players);
-
-    /**
-     * Displays player specific information for a player's turn.
-     *
-     * @param player The player taking their turn.
-     */
-    virtual void playerInfo(Player* player);
+    virtual void turnInfo();
 
     /**
      * Display information for actions a player will take on their turn.
@@ -48,6 +41,9 @@ class OldMaidTurnView {
      * Display the result of a turn.
      */
     virtual void turnResult(Card const* card, bool success);
+
+ protected:
+    Player* player;
 };
 
 #endif

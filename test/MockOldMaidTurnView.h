@@ -12,11 +12,10 @@
 
 class MockOldMaidTurnView : public OldMaidTurnView {
  public:
-    explicit MockOldMaidTurnView() {}
+    explicit MockOldMaidTurnView() : OldMaidTurnView(NULL) {}
     virtual ~MockOldMaidTurnView() {}
 
-    MOCK_METHOD1(turnInfo, void(std::vector<Player*> players));
-    MOCK_METHOD1(playerInfo, void(Player* player));
+    MOCK_METHOD0(turnInfo, void());
     MOCK_METHOD0(takeAction, void());
     MOCK_METHOD1(badInput, void(std::string message));
     MOCK_METHOD2(turnResult, void(Card const* card, bool success));

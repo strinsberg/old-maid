@@ -25,10 +25,7 @@ TEST(OldMaidPlayerTests, take_turn) {
     MockCardCollection cards;
 
     // Begin Turn output
-    EXPECT_CALL(view, turnInfo(players))
-        .Times(1);
-
-    EXPECT_CALL(view, playerInfo(&player))
+    EXPECT_CALL(view, turnInfo())
         .Times(1);
 
     EXPECT_CALL(view, takeAction())

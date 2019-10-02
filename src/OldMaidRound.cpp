@@ -43,7 +43,10 @@ int OldMaidRound::play() {
             if (!inGame[i])
                 continue;
 
-            bool out = (*players)[i]->takeTurn(deck, getPlayers(true));
+            std::vector<Player*> pls = getPlayers(true);
+            view->gameStatus(pls);
+
+            bool out = (*players)[i]->takeTurn(deck, pls);
             if (out) {
                 inGame[i] = false;
             }

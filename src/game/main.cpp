@@ -1,30 +1,53 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Deck.h"
 #include "Player.h"
 #include "Input.h"
+#include "OldMaidView.h"
+#include "Deck.h"
+#include "OldMaidTurnView.h"
+#include "PlayerController.h"
+#include "OldMaidRound.h"
+#include "OldMaidPlayer.h"
+
+
+std::string aiNames[] = {"Bill", "Jane", "Wnedy", "Max", "Shane", "Alex"};
 
 
 int main() {
-	/*std::vector<Player*> players;
-	players.push_back(new Player("Steve"));
-	players.push_back(new Player("Other"));
-	
-	
-	Deck* d = new Deck();
-	OldMaidView* v = new OldMaidView(&players);
-	Input* in = new Input();
-	
-	OldMaidRound round(d, &players, in, v);
-	
-	std::cout << "==== Old Maid Demo ====" << std::endl << std::endl;
-	
-	round.play();
-	
-	std::cout << "==== End ====" << std::endl;
-	
-	for (auto p : players)
-	    delete p;
-	*/
+    // create objects
+    OldMaidView* view = new OldMaidView();
+    Input* input = new Input();
+    Deck* deck = new Deck(); 
+    
+
+    // display and collect information
+    view->welcome();
+
+    view->getName();
+    std::string name = input->getString();
+    
+    std::vector<PlayerController*> pcs;
+    Player* p = new Player(name)
+    OldMaidPlayer* player = new OldMaidPlayer(
+        p, new OldMaidTurnView(p), input);
+    pcs.push_back(player);
+
+    view->askNumAI();
+    int numOpp = input->getInt();
+    
+    for (int i = 0; i < numOpp; i++) {
+        Player* opp = new Player(aiNames[i]);
+        pcs.push_back(
+            new OldMaidPlayer(opp, new OldMaidTurnView(opp), input));
+    }
+    
+    OldMaidRound* round = new OldMaidRound(&pcs, deck, view);
+    
+    // start round
+    round->setup();
+    int loser = round->play();
+
 	return 0;
 }

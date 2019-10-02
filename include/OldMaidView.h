@@ -24,6 +24,7 @@ class OldMaidView : public View {
     virtual void getName();
     virtual void askNumAI();
     virtual void beginRound(std::vector<Player*> players);
+    virtual void gameStatus(std::vector<Player*> players);
     virtual void endRound(std::vector<Player*> players, int winner);
 };
 
