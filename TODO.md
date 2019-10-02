@@ -1,11 +1,11 @@
 # Current
 
-* Check when picking player to left that they are still in game
-* Implement redesigned round and player turn views
-* put remove pairs code in OldMaidPlayerController
+* Finish properly implementing a useable view
+* Make update hand method in PlayerController so remove pairs can be public.
 * Input validation
 * parse some commands like help and quit
 * A press enter to continue after your turn
+* finish tests and make sure you have a working game
 
 #Bugs
 
