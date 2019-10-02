@@ -38,7 +38,19 @@ bool OldMaidPlayer::isOut() {
 }
 
 
+// precondition -> the cards must be sorted by value so that
+// pairs are next to eachother.
 void OldMaidPlayer::removePairs(CardCollection* cards) {
+    int lastValue = -1;
+    for (int i = 0; i < cards->size(); i++) {
+        int value = cards->getCard(i)->getValue();
+        if (value == lastValue) {
+            delete cards->takeCard(i);
+            delete cards->takeCard(i - 1);
+            i -= 2;
+        }
+        lastValue = value;
+    }
 }
 
 Player*  OldMaidPlayer::getLeftPlayer(const std::vector<Player*>& players) {
@@ -65,6 +77,7 @@ Card const* OldMaidPlayer::getCard(Player* left) {
 
 void OldMaidPlayer::determineResult(Card const* taken) {
     player->getHand()->addCard(taken);
+    player->sortHand(true, false);
 
     int numCards = player->getHand()->size();
     removePairs(player->getHand());
