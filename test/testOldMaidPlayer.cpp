@@ -97,13 +97,11 @@ TEST(OldMaidPlayerTests, update_hand) {
         .WillOnce(Return(cards));
 
     pc.updateHand();
-
+    
     EXPECT_EQ(2, cards->size());
 
-    std::vector<int> expect{6,7};
-    for (int i = 0; i < cards->size(); i++) {
-        EXPECT_EQ(expect.at(i), cards->getCard(i)->getValue());
-    }
+    EXPECT_EQ(6, cards->getCard(0)->getValue());
+    EXPECT_EQ(7, cards->getCard(1)->getValue());
 }
 
 
