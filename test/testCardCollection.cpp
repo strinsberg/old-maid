@@ -96,8 +96,8 @@ TEST(CardCollection, take_all_cards) {
     EXPECT_EQ(2, taken.size());
     EXPECT_EQ(2, h.size());
     
-    EXPECT_EQ(10, taken.at(0)->getValue());
-    EXPECT_EQ(13, taken.at(1)->getValue());
+    EXPECT_EQ(13, taken.at(0)->getValue());
+    EXPECT_EQ(10, taken.at(1)->getValue());
 
     EXPECT_EQ(2, h.getCard(0)->getValue());
     EXPECT_EQ(1, h.getCard(1)->getValue());

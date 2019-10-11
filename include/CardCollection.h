@@ -61,6 +61,8 @@ class CardCollection {
     /**
      * Remove cards at all indexes in a given list.
      *
+     * @precondition idxs must be sorted in increasing order.
+     *
      * @param idxs A list of cards to remove.
      * @return a list of the card pointers that were removed.
      */

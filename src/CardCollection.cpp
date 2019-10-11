@@ -33,9 +33,20 @@ Card const* CardCollection::getCard(int i) {
 }
 
 
+// idx must be sorted in incresing order
 std::vector<Card const*> CardCollection::takeAllCards(std::vector<int> idxs) {
-    std::vector<Card const*> cards;
-    return cards;
+    std::vector<Card const*> taken;
+
+    for (int i = (int)idxs.size() - 1; i >= 0; i--) {
+        int idx = idxs[i];
+        Card const* c = cards[idx];
+        taken.push_back(c);
+
+        cards[idx] = cards.back();
+        cards.pop_back();
+    }
+
+    return taken;
 
 }
 
