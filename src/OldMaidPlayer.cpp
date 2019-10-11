@@ -3,6 +3,8 @@
 #include "OldMaidPlayer.h"
 #include "OldMaidTurnView.h"
 #include "Deck.h"
+#include "Card.h"
+#include "CardCollection.h"
 #include "Player.h"
 #include "Input.h"
 
@@ -29,6 +31,13 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     return false;
 }
 
+void OldMaidPlayer::updateHand() {
+   // remove cards in this case
+   player->sortHand(true, false);
+   removePairs(player->getHand());
+}
+
+
 Player* OldMaidPlayer::getPlayer() {
     return player;
 }
@@ -41,26 +50,7 @@ bool OldMaidPlayer::isOut() {
 // precondition -> the cards must be sorted by value so that
 // pairs are next to eachother.
 void OldMaidPlayer::removePairs(CardCollection* cards) {
-   /* bool pairs = false;
-    CardCollection* newCards = new CardCollection();
-    int lastValue = -1;
 
-    for (int i = 0; i < cards->size(); i++) {
-        int value = cards->getCard(i)->getValue();
-        if (value != lastValue) {
-            Card const* card = cards->getCard(i);
-            newCards->addCard(new Card(card->getValue(), card->getSuit()));
-        } else {
-            pairs = true;
-        }
-        lastValue = value;
-    }
-
-    if (pairs)
-        player->setHand(newCards);
-    else
-        delete newCards;
-        */
 }
 
 Player*  OldMaidPlayer::getLeftPlayer(const std::vector<Player*>& players) {
@@ -90,7 +80,7 @@ void OldMaidPlayer::determineResult(Card const* taken) {
     player->sortHand(true, false);
 
     int numCards = player->getHand()->size();
-    removePairs(player->getHand());
+    //removePairs(player->getHand());
 
     if (numCards > player->getHand()->size()) {
         view->turnResult(taken, true);

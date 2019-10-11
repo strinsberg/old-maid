@@ -14,6 +14,7 @@ class MockPlayerController : public PlayerController {
     virtual ~MockPlayerController() {}
 
     MOCK_METHOD2(takeTurn, bool(Deck* deck, std::vector<Player*> players));
+    MOCK_METHOD0(updateHand, void());
     MOCK_METHOD0(getPlayer, Player*());
     MOCK_METHOD0(isOut, bool());
 };

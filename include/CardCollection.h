@@ -59,6 +59,14 @@ class CardCollection {
     virtual Card const* takeCard(int i);
 
     /**
+     * Remove cards at all indexes in a given list.
+     *
+     * @param idxs A list of cards to remove.
+     * @return a list of the card pointers that were removed.
+     */
+    virtual std::vector<Card const*> takeAllCards(std::vector<int> idxs);
+
+    /**
      * Return an iterator to the beginning of the collection.
      *
      * @return iterator to the first element.

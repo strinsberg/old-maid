@@ -33,6 +33,12 @@ Card const* CardCollection::getCard(int i) {
 }
 
 
+std::vector<Card const*> CardCollection::takeAllCards(std::vector<int> idxs) {
+    std::vector<Card const*> cards;
+    return cards;
+
+}
+
 Card const* CardCollection::takeCard(int i) {
     Card const* card = cards.at(i);
     cards.erase(cards.begin()+i);

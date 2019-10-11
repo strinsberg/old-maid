@@ -7,7 +7,8 @@
 #include "MockOldMaidTurnView.h"
 #include "MockDeck.h"
 #include "MockInput.h"
-
+#include "CardCollection.h"
+#include "Card.h"
 
 using testing::Return;
 using testing::_;
@@ -47,6 +48,9 @@ TEST(OldMaidPlayerTests, take_turn) {
         .WillOnce(Return(card));
 
     // Add the card to the players hand and remove pairs
+    EXPECT_CALL(player, sortHand(true, false))
+        .Times(1);
+
     EXPECT_CALL(cards, addCard(card))
         .Times(1);
 
@@ -63,6 +67,43 @@ TEST(OldMaidPlayerTests, take_turn) {
     pc.takeTurn(&deck, players);
 
     delete card;
+}
+
+
+TEST(OldMaidPlayerTests, update_hand) {
+    MockPlayer mPlayer;
+    MockOldMaidTurnView view;
+    MockInput input;
+    OldMaidPlayer pc(&mPlayer, &view, &input);
+
+    // create a collection of cards and give it to the player
+    // make sure it is sorted.
+    // call updateHand
+    // expect call to sort for player
+    // then expect a certain makeup of cards when you are finished
+    // might be possible to mock it out
+    
+    CardCollection* cards = new CardCollection();
+    cards->addCard(new Card(2, Suit::HEART));
+    cards->addCard(new Card(2, Suit::SPADE));
+    cards->addCard(new Card(6, Suit::HEART));
+    cards->addCard(new Card(7, Suit::HEART));
+
+    EXPECT_CALL(mPlayer, sortHand(true, false))
+        .Times(1);
+
+    EXPECT_CALL(mPlayer, getHand())
+        .Times(1)
+        .WillOnce(Return(cards));
+
+    pc.updateHand();
+
+    EXPECT_EQ(2, cards->size());
+
+    std::vector<int> expect{6,7};
+    for (int i = 0; i < cards->size(); i++) {
+        EXPECT_EQ(expect.at(i), cards->getCard(i)->getValue());
+    }
 }
 
 

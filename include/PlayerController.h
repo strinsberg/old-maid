@@ -34,6 +34,14 @@ class PlayerController {
     virtual bool takeTurn(Deck* deck, std::vector<Player*> players) = 0;
 
     /**
+     * Update the players hand.
+     *
+     * Should differ depending on what the game needs. Could be to remove pairs
+     * or something more complicated depending on the game.
+     */
+    virtual void updateHand() = 0;
+
+    /**
      * Returns the player being controlled.
      *
      * @return the player.

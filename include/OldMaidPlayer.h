@@ -30,6 +30,7 @@ class OldMaidPlayer : public PlayerController {
     virtual ~OldMaidPlayer() {}
 
     virtual bool takeTurn(Deck* deck, std::vector<Player*> players);
+    virtual void updateHand();
     virtual Player* getPlayer();
     virtual bool isOut();
 

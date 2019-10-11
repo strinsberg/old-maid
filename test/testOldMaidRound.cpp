@@ -97,6 +97,9 @@ TEST(OldMaidRoundTests, play) {
     EXPECT_CALL(pc1, getPlayer())
         .WillRepeatedly(Return(&p1));
 
+    EXPECT_CALL(view, gameStatus(_))
+        .Times(4);
+
     EXPECT_CALL(p1, getHand())
         .WillRepeatedly(Return(&cards));
 
