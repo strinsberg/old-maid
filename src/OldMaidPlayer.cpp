@@ -25,7 +25,7 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
 
     if (player->getHand()->size() == 0)
         return true;
-    
+
     return false;
 }
 
@@ -64,7 +64,7 @@ void OldMaidPlayer::removePairs(CardCollection* cards) {
 }
 
 Player*  OldMaidPlayer::getLeftPlayer(const std::vector<Player*>& players) {
-    int left;    
+    int left;
 
     for (int i = 0; i < players.size(); ++i) {
         if (player == players[i]) {
@@ -82,7 +82,7 @@ Card const* OldMaidPlayer::getCard(Player* left) {
     std::string in = input->getString();
     int pos = std::stoi(in);
 
-   return left->getHand()->takeCard(pos);
+    return left->getHand()->takeCard(pos);
 }
 
 void OldMaidPlayer::determineResult(Card const* taken) {

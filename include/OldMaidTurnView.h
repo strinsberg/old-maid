@@ -15,7 +15,7 @@
  */
 class OldMaidTurnView {
  public:
-    OldMaidTurnView(Player* player);
+    explicit OldMaidTurnView(Player* player);
     virtual ~OldMaidTurnView() {}
 
     /**

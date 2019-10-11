@@ -49,5 +49,7 @@ int main() {
     round->setup();
     int loser = round->play();
 
+    std::cout << loser << std::endl;
+
 	return 0;
 }
