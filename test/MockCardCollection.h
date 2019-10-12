@@ -4,6 +4,7 @@
 
 #include <gmock/gmock.h>
 #include <string>
+#include <vector>
 #include "CardCollection.h"
 #include "Suit.h"
 #include "Card.h"

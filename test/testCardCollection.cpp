@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <stdexcept>
+#include <vector>
 #include "CardCollection.h"
 #include "Card.h"
 #include "Suit.h"
@@ -83,24 +84,27 @@ TEST(CardCollectionTests, take_card) {
 
 TEST(CardCollection, take_all_cards) {
     CardCollection h;
-    
+
     h.addCard(new Card(2, Suit::SPADE));
     h.addCard(new Card(10, Suit::HEART));
     h.addCard(new Card(13, Suit::DIAMOND));
     h.addCard(new Card(1, Suit::CLUB));
 
-    std::vector<int> idxs{1,2};
+    std::vector<int> idxs{1, 2};
 
     std::vector<Card const*> taken = h.takeAllCards(idxs);
 
     EXPECT_EQ(2, taken.size());
     EXPECT_EQ(2, h.size());
-    
+
     EXPECT_EQ(13, taken.at(0)->getValue());
     EXPECT_EQ(10, taken.at(1)->getValue());
 
     EXPECT_EQ(2, h.getCard(0)->getValue());
     EXPECT_EQ(1, h.getCard(1)->getValue());
+
+    for (auto c : taken)
+        delete c;
 }
 
 

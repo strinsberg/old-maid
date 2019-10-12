@@ -37,7 +37,7 @@ Card const* CardCollection::getCard(int i) {
 std::vector<Card const*> CardCollection::takeAllCards(std::vector<int> idxs) {
     std::vector<Card const*> taken;
 
-    for (int i = (int)idxs.size() - 1; i >= 0; i--) {
+    for (int i = static_cast<int>(idxs.size()) - 1; i >= 0; i--) {
         int idx = idxs[i];
         Card const* c = cards[idx];
         taken.push_back(c);
@@ -47,7 +47,6 @@ std::vector<Card const*> CardCollection::takeAllCards(std::vector<int> idxs) {
     }
 
     return taken;
-
 }
 
 Card const* CardCollection::takeCard(int i) {

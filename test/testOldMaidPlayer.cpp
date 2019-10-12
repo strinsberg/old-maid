@@ -82,7 +82,7 @@ TEST(OldMaidPlayerTests, update_hand) {
     // expect call to sort for player
     // then expect a certain makeup of cards when you are finished
     // might be possible to mock it out
-    
+
     CardCollection* cards = new CardCollection();
     cards->addCard(new Card(2, Suit::HEART));
     cards->addCard(new Card(2, Suit::SPADE));
@@ -97,11 +97,13 @@ TEST(OldMaidPlayerTests, update_hand) {
         .WillOnce(Return(cards));
 
     pc.updateHand();
-    
+
     EXPECT_EQ(2, cards->size());
 
     EXPECT_EQ(6, cards->getCard(0)->getValue());
     EXPECT_EQ(7, cards->getCard(1)->getValue());
+
+    delete cards;
 }
 
 

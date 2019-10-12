@@ -32,9 +32,9 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
 }
 
 void OldMaidPlayer::updateHand() {
-   // remove cards in this case
-   player->sortHand(true, false);
-   removePairs(player->getHand());
+    // remove cards in this case
+    player->sortHand(true, false);
+    removePairs(player->getHand());
 }
 
 
@@ -63,7 +63,7 @@ void OldMaidPlayer::removePairs(CardCollection* cards) {
         }
     }
     std::vector<Card const*> taken = cards->takeAllCards(pairIdxs);
-    
+
     for (auto c : taken)
         delete c;
 }
