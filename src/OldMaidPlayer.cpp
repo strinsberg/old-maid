@@ -1,5 +1,6 @@
 #include <vector>
 #include <string>
+#include <iostream>
 #include "OldMaidPlayer.h"
 #include "OldMaidTurnView.h"
 #include "Deck.h"
@@ -23,7 +24,15 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     Card const* taken = getCard(left);
 
     // add the card to the players hand and remove pairs
-    determineResult(taken);
+    player->getHand()->addCard(taken);
+    int numCards = player->getHand()->size();
+    updateHand();
+
+    if (numCards > player->getHand()->size()) {
+        view->turnResult(taken, true);
+    } else {
+        view->turnResult(taken, false);
+    }
 
     if (player->getHand()->size() == 0)
         return true;
@@ -90,16 +99,3 @@ Card const* OldMaidPlayer::getCard(Player* left) {
     return left->getHand()->takeCard(pos);
 }
 
-void OldMaidPlayer::determineResult(Card const* taken) {
-    player->getHand()->addCard(taken);
-    player->sortHand(true, false);
-
-    int numCards = player->getHand()->size();
-    //removePairs(player->getHand());
-
-    if (numCards > player->getHand()->size()) {
-        view->turnResult(taken, true);
-    } else {
-        view->turnResult(taken, false);
-    }
-}

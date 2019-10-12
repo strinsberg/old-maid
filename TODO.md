@@ -1,7 +1,6 @@
 # Current
 
 * Finish properly implementing a useable view
-* Make update hand method in PlayerController so remove pairs can be public.
 * Input validation
 * parse some commands like help and quit
 * A press enter to continue after your turn
