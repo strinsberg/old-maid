@@ -19,9 +19,17 @@ class TurnTests : public ::testing::Test {
  public: 
     TurnTests() {
         pc = new OldMaidPlayer(&player, &view, &input);
+
         players.push_back(&player);
         players.push_back(&player);
         players.push_back(&player);
+
+        card = new Card(4, Suit::HEART);
+    }
+
+    ~TurnTests() {
+        delete card;
+        delete pc;
     }
 
     void SetUp() {
@@ -35,8 +43,6 @@ class TurnTests : public ::testing::Test {
         // Take the card indicated by the input
         EXPECT_CALL(player, getHand())
             .WillRepeatedly(Return(&cards));
-
-        card = new Card(4, Suit::HEART);
 
         EXPECT_CALL(cards, takeCard(2))
             .Times(1)
@@ -54,11 +60,6 @@ class TurnTests : public ::testing::Test {
             .WillOnce(Return(std::vector<Card const*>()));
     }
 
-    void TearDown() {
-        delete pc;
-        delete card;
-    }
-
     MockOldMaidTurnView view;
     MockInput input;
     MockDeck deck;
@@ -68,125 +69,39 @@ class TurnTests : public ::testing::Test {
     OldMaidPlayer* pc;
     std::vector<Player*> players;
     Card const* card;
-
 };
 
-TEST(OldMaidPlayerTests, take_turn) {
-    MockOldMaidTurnView view;
-    MockInput input;
 
-    MockPlayer player;
-    OldMaidPlayer pc(&player, &view, &input);
-    std::vector<Player*> players{&player, &player, &player};
-
-    MockDeck deck;
-    MockCardCollection cards;
-
-    // Begin Turn output
-    EXPECT_CALL(view, turnInfo())
-        .Times(1);
-
-    EXPECT_CALL(view, takeAction())
-        .Times(1);
-
-    // Get input
+TEST_F(TurnTests, take_turn_false) {
     EXPECT_CALL(input, getString())
         .Times(1)
         .WillOnce(Return("2"));
-
-    // Take the card indicated by the input
-    EXPECT_CALL(player, getHand())
-        .WillRepeatedly(Return(&cards));
-
-    Card const* card = new Card(4, Suit::HEART);
-
-    EXPECT_CALL(cards, takeCard(2))
-        .Times(1)
-        .WillOnce(Return(card));
-
-    // Add the card to the players hand and remove pairs
-    EXPECT_CALL(player, sortHand(true, false))
-        .Times(1);
-
-    EXPECT_CALL(cards, addCard(card))
-        .Times(1);
 
     EXPECT_CALL(cards, size())
         .Times(4)
         .WillRepeatedly(Return(1));
 
-    EXPECT_CALL(cards, takeAllCards(_))
-        .Times(1)
-        .WillOnce(Return(std::vector<Card const*>()));
-
-    // show result
     EXPECT_CALL(view, turnResult(card, false))
         .Times(1);
 
-    // Call take turn
-    EXPECT_FALSE(pc.takeTurn(&deck, players));
-
-    delete card;
+    EXPECT_FALSE(pc->takeTurn(&deck, players));
 }
 
 
-TEST(OldMaidPlayerTests, take_turn_true) {
-    MockOldMaidTurnView view;
-    MockInput input;
-
-    MockPlayer player;
-    OldMaidPlayer pc(&player, &view, &input);
-    std::vector<Player*> players{&player, &player, &player};
-
-    MockDeck deck;
-    MockCardCollection cards;
-
-    // Begin Turn output
-    EXPECT_CALL(view, turnInfo())
-        .Times(1);
-
-    EXPECT_CALL(view, takeAction())
-        .Times(1);
-
-    // Get input
+TEST_F(TurnTests, take_turn_true) {
     EXPECT_CALL(input, getString())
         .Times(1)
         .WillOnce(Return("2"));
-
-    // Take the card indicated by the input
-    EXPECT_CALL(player, getHand())
-        .WillRepeatedly(Return(&cards));
-
-    Card const* card = new Card(4, Suit::HEART);
-
-    EXPECT_CALL(cards, takeCard(2))
-        .Times(1)
-        .WillOnce(Return(card));
-
-    // Add the card to the players hand and remove pairs
-    EXPECT_CALL(player, sortHand(true, false))
-        .Times(1);
-
-    EXPECT_CALL(cards, addCard(card))
-        .Times(1);
 
     EXPECT_CALL(cards, size())
         .Times(4)
         .WillOnce(Return(1))
         .WillRepeatedly(Return(0));
 
-    EXPECT_CALL(cards, takeAllCards(_))
-        .Times(1)
-        .WillOnce(Return(std::vector<Card const*>()));
-
-    // show result
     EXPECT_CALL(view, turnResult(card, true))
         .Times(1);
 
-    // Call take turn
-    EXPECT_TRUE(pc.takeTurn(&deck, players));
-
-    delete card;
+    EXPECT_TRUE(pc->takeTurn(&deck, players));
 }
 
 
@@ -216,23 +131,29 @@ TEST_F(TurnTests, invalid_input) {
         .Times(1);
 
     pc->takeTurn(&deck, players);
-
 }
 
 
-TEST(OldMaidPlayerTests, update_hand) {
+// Other tests ////////////////////////////////////////////////////////
+
+class OtherPlayerTests : public ::testing::Test {
+ public:
+    OtherPlayerTests () {
+        pc = new OldMaidPlayer(&mPlayer, &view, &input);
+    }
+
+    ~OtherPlayerTests () {
+        delete pc;
+    }
+
     MockPlayer mPlayer;
     MockOldMaidTurnView view;
     MockInput input;
-    OldMaidPlayer pc(&mPlayer, &view, &input);
+    OldMaidPlayer* pc;
+};
 
-    // create a collection of cards and give it to the player
-    // make sure it is sorted.
-    // call updateHand
-    // expect call to sort for player
-    // then expect a certain makeup of cards when you are finished
-    // might be possible to mock it out
 
+TEST_F(OtherPlayerTests, update_hand) {
     CardCollection* cards = new CardCollection();
     cards->addCard(new Card(2, Suit::HEART));
     cards->addCard(new Card(2, Suit::SPADE));
@@ -246,7 +167,7 @@ TEST(OldMaidPlayerTests, update_hand) {
         .Times(1)
         .WillOnce(Return(cards));
 
-    pc.updateHand();
+    pc->updateHand();
 
     EXPECT_EQ(2, cards->size());
 
@@ -257,24 +178,12 @@ TEST(OldMaidPlayerTests, update_hand) {
 }
 
 
-
-
-TEST(OldMaidPlayerTests, get_player) {
-    MockPlayer mPlayer;
-    MockOldMaidTurnView view;
-    MockInput input;
-    OldMaidPlayer pc(&mPlayer, &view, &input);
-
-    EXPECT_EQ(&mPlayer, pc.getPlayer());
+TEST_F(OtherPlayerTests, get_player) {
+    EXPECT_EQ(&mPlayer, pc->getPlayer());
 }
 
 
-TEST(OldMaidPlayerTests, is_out) {
-    MockPlayer mPlayer;
-    MockOldMaidTurnView view;
-    MockInput input;
-    OldMaidPlayer pc(&mPlayer, &view, &input);
-
+TEST_F(OtherPlayerTests, is_out) {
     MockCardCollection cards;
 
     EXPECT_CALL(mPlayer, getHand())
@@ -285,5 +194,5 @@ TEST(OldMaidPlayerTests, is_out) {
         .Times(1)
         .WillOnce(Return(0));
 
-    EXPECT_EQ(true, pc.isOut());
+    EXPECT_EQ(true, pc->isOut());
 }

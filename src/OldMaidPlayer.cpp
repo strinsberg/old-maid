@@ -28,7 +28,7 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     player->getHand()->addCard(taken);
     int numCards = player->getHand()->size();
     updateHand();
-    std::cout << "after update" << std::endl;
+
     if (numCards > player->getHand()->size()) {
         view->turnResult(taken, true);
     } else {
@@ -98,11 +98,11 @@ Card const* OldMaidPlayer::getCard(Player* left) {
         try {
             std::string in = input->getString();
             int pos = std::stoi(in);
-            std::cout << pos << " In hand" << std::endl;
             return left->getHand()->takeCard(pos);
+
         } catch (const std::invalid_argument& e) {
-            std::cout << "invalid" << std::endl;
             view->badInput("** Please enter a number **");
+
         } catch (const std::out_of_range& e) {
             std::cout << "out of range" << std::endl;
             std::string error = "** Choose a card index between 0 and ";
@@ -111,7 +111,6 @@ Card const* OldMaidPlayer::getCard(Player* left) {
             view->badInput(error);    
         }
     }
-    std::cout << "too many tries" << std::endl;
     return left->getHand()->takeCard(0);
 }
 
