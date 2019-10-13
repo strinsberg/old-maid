@@ -99,16 +99,13 @@ Card const* OldMaidPlayer::getCard(Player* left) {
             std::string in = input->getString();
             int pos = std::stoi(in);
             return left->getHand()->takeCard(pos);
-
         } catch (const std::invalid_argument& e) {
             view->badInput("** Please enter a number **");
-
         } catch (const std::out_of_range& e) {
-            std::cout << "out of range" << std::endl;
             std::string error = "** Choose a card index between 0 and ";
             error += std::to_string(left->getHand()->size() - 1);
             error += " **";
-            view->badInput(error);    
+            view->badInput(error);
         }
     }
     return left->getHand()->takeCard(0);

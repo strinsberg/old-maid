@@ -16,7 +16,7 @@ using testing::Throw;
 using testing::_;
 
 class TurnTests : public ::testing::Test {
- public: 
+ public:
     TurnTests() {
         pc = new OldMaidPlayer(&player, &view, &input);
 
@@ -32,7 +32,7 @@ class TurnTests : public ::testing::Test {
         delete pc;
     }
 
-    void SetUp() {
+    void SetUp() {  //NOLINT for unused function.
         // Begin Turn output
         EXPECT_CALL(view, turnInfo())
             .Times(1);
@@ -118,7 +118,7 @@ TEST_F(TurnTests, invalid_input) {
 
     EXPECT_CALL(view, badInput("** Please enter a number **"))
         .Times(1);
-    
+
     EXPECT_CALL(view, badInput("** Choose a card index between 0 and 4 **"))
         .Times(1);
 
@@ -138,11 +138,11 @@ TEST_F(TurnTests, invalid_input) {
 
 class OtherPlayerTests : public ::testing::Test {
  public:
-    OtherPlayerTests () {
+    OtherPlayerTests() {
         pc = new OldMaidPlayer(&mPlayer, &view, &input);
     }
 
-    ~OtherPlayerTests () {
+    ~OtherPlayerTests() {
         delete pc;
     }
 
