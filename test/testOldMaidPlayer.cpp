@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <vector>
+#include <stdexcept>
 #include "OldMaidPlayer.h"
 #include "MockPlayer.h"
 #include "MockCardCollection.h"
@@ -11,8 +12,64 @@
 #include "Card.h"
 
 using testing::Return;
+using testing::Throw;
 using testing::_;
 
+class TurnTests : public ::testing::Test {
+ public: 
+    TurnTests() {
+        pc = new OldMaidPlayer(&player, &view, &input);
+        players.push_back(&player);
+        players.push_back(&player);
+        players.push_back(&player);
+    }
+
+    void SetUp() {
+        // Begin Turn output
+        EXPECT_CALL(view, turnInfo())
+            .Times(1);
+
+        EXPECT_CALL(view, takeAction())
+            .Times(1);
+
+        // Take the card indicated by the input
+        EXPECT_CALL(player, getHand())
+            .WillRepeatedly(Return(&cards));
+
+        card = new Card(4, Suit::HEART);
+
+        EXPECT_CALL(cards, takeCard(2))
+            .Times(1)
+            .WillOnce(Return(card));
+
+        // Add the card to the players hand and remove pairs
+        EXPECT_CALL(player, sortHand(true, false))
+            .Times(1);
+
+        EXPECT_CALL(cards, addCard(card))
+            .Times(1);
+
+        EXPECT_CALL(cards, takeAllCards(_))
+            .Times(1)
+            .WillOnce(Return(std::vector<Card const*>()));
+    }
+
+    void TearDown() {
+        delete pc;
+        delete card;
+    }
+
+    MockOldMaidTurnView view;
+    MockInput input;
+    MockDeck deck;
+    MockCardCollection cards;
+    MockPlayer player;
+
+    OldMaidPlayer* pc;
+    std::vector<Player*> players;
+    Card const* card;
+
+};
 
 TEST(OldMaidPlayerTests, take_turn) {
     MockOldMaidTurnView view;
@@ -130,6 +187,36 @@ TEST(OldMaidPlayerTests, take_turn_true) {
     EXPECT_TRUE(pc.takeTurn(&deck, players));
 
     delete card;
+}
+
+
+TEST_F(TurnTests, invalid_input) {
+    EXPECT_CALL(input, getString())
+        .Times(3)
+        .WillOnce(Return("steve"))
+        .WillOnce(Return("6"))
+        .WillOnce(Return("2"));
+
+    EXPECT_CALL(cards, takeCard(6))
+        .Times(1)
+        .WillOnce(Throw(std::out_of_range("error")));
+
+    EXPECT_CALL(view, badInput("** Please enter a number **"))
+        .Times(1);
+    
+    EXPECT_CALL(view, badInput("** Choose a card index between 0 and 4 **"))
+        .Times(1);
+
+    EXPECT_CALL(cards, size())
+        .Times(5)
+        .WillOnce(Return(5))
+        .WillRepeatedly(Return(1));
+
+    EXPECT_CALL(view, turnResult(card, _))
+        .Times(1);
+
+    pc->takeTurn(&deck, players);
+
 }
 
 
