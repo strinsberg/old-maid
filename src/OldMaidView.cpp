@@ -67,6 +67,9 @@ void OldMaidView::gameStatus(std::vector<Player*> players) {
 }
 
 void OldMaidView::endRound(std::vector<Player*> players, int winner) {
-    std::cout << std::endl << players[winner]->getName();
-    std::cout << " is the Old Maid" << std::endl;
+    std::cout << "============ Game Over =============" << std::endl;
+    std::cout << "!!! " << players[winner]->getName();
+    std::cout << " is the Old Maid !!!" << std::endl << std::endl;
+
+    std::cout << "*** Thanks For Playing ***" << std::endl;
 }

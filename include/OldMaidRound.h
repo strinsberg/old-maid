@@ -52,17 +52,6 @@ class OldMaidRound {
      */
     std::vector<Player*> getPlayers(bool stillPlaying = false);
 
-    /**
-     * Check to see if the game is over yet and return the remaining player.
-     * In old maid the remaining player is the loser and the Old Maid.
-     *
-     * @param inGame A vector of player indexes. True for still playing and
-     * false if the player is out of cards.
-     * @return The remaining player if there is only one still playing,
-     * otherwise -1.
-     */
-    int gameStatus(std::vector<bool> inGame);
-
     OldMaidRound(const OldMaidRound&) {}
 };
 

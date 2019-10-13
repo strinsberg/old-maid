@@ -36,30 +36,25 @@ void OldMaidRound::setup() {
 #include <iostream>
 
 int OldMaidRound::play() {
-    std::vector<bool> inGame(players->size(), true);
-    bool run = true;
 
-    view->beginRound(getPlayers());
-
-    while (run) {
+    std::vector<Player*> stillInGame = getPlayers(true);
+    view->beginRound(stillInGame);
+    
+    while (stillInGame.size() > 0) {
         for (int i = 0; i < players->size(); i++) {
-            if (!inGame[i])
+            if ((*players)[i]->isOut()) {
                 continue;
-
-            std::vector<Player*> pls = getPlayers(true);
-            view->gameStatus(pls);
-
-            bool out = (*players)[i]->takeTurn(deck, pls);
-            if (out) {
-                inGame[i] = false;
             }
 
-            int status = gameStatus(inGame);
-            if (status != -1) {
-                view->endRound(getPlayers(), status);
-                run = false;
-                break;
+            // take the players turn with the remaining players
+            stillInGame = getPlayers(true);
+            if (stillInGame.size() <= 1) {
+                view->endRound(getPlayers(), i);
+                return i;
             }
+
+            view->gameStatus(stillInGame);
+            (*players)[i]->takeTurn(deck, stillInGame);
         }
     }
 }
@@ -71,32 +66,13 @@ std::vector<Player*> OldMaidRound::getPlayers(bool onlyPlaying) {
     std::vector<Player*> ps;
 
     for (int i = 0; i < players->size(); i++) {
-        Player* player = (*players)[i]->getPlayer();
-
-        if (onlyPlaying && player->getHand()->size() == 0) {
-            ps.push_back(player);
-        } else {
-            ps.push_back(player);
+        if (onlyPlaying && (*players)[i]->isOut()) {
+                continue;
         }
+
+        ps.push_back((*players)[i]->getPlayer());
     }
 
     return ps;
 }
 
-
-int OldMaidRound::gameStatus(std::vector<bool> inGame) {
-    int count = 0;
-    int last = 0;
-
-    for (int i = 0; i < inGame.size(); i++) {
-        if (inGame[i]) {
-            count++;
-            last = i;
-        }
-    }
-
-    if (count == 1) {
-        return last;
-    }
-    return -1;
-}

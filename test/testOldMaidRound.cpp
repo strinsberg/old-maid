@@ -12,6 +12,7 @@
 
 
 using testing::Return;
+using testing::InSequence;
 using testing::_;
 
 
@@ -88,8 +89,27 @@ TEST(OldMaidRoundTests, play) {
     EXPECT_CALL(view, beginRound(players))
         .Times(1);
 
-    // Player 3 goes out in first loop and then Player 1
-    // This means that Player 2 at idx 1 is the OldMaid after 4 turns
+    EXPECT_CALL(pc1, getPlayer())
+        .WillRepeatedly(Return(&p1));
+
+    {
+        InSequence s;
+        EXPECT_CALL(pc1, isOut())
+            .Times(18)
+            .WillRepeatedly(Return(false));
+
+        EXPECT_CALL(pc1, isOut())
+            .Times(5)
+            .WillOnce(Return(true))
+            .WillOnce(Return(false))
+            .WillOnce(Return(true))
+            .WillOnce(Return(false))
+            .WillRepeatedly(Return(true));  // to stop mistake infinit loops
+    }
+
+    EXPECT_CALL(view, gameStatus(_))
+        .Times(4);
+
     EXPECT_CALL(pc1, takeTurn(&deck, _))
         .Times(4)
         .WillOnce(Return(false))
@@ -100,18 +120,6 @@ TEST(OldMaidRoundTests, play) {
     EXPECT_CALL(view, endRound(players, 1))
         .Times(1);
 
-    EXPECT_CALL(pc1, getPlayer())
-        .WillRepeatedly(Return(&p1));
-
-    EXPECT_CALL(view, gameStatus(_))
-        .Times(4);
-
-    EXPECT_CALL(p1, getHand())
-        .WillRepeatedly(Return(&cards));
-
-    EXPECT_CALL(cards, size())
-        .WillRepeatedly(Return(1));
-
     // Run the round
-    round.play();
+    EXPECT_EQ(1, round.play());
 }
