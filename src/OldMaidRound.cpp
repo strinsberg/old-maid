@@ -29,6 +29,7 @@ void OldMaidRound::setup() {
     std::vector<CardCollection*> hands = deck->deal(players->size(), 0);
     for (int i = 0; i < players->size(); ++i) {
         (*players)[i]->getPlayer()->setHand(hands[i]);
+        (*players)[i]->updateHand();
     }
 }
 
@@ -37,6 +38,8 @@ void OldMaidRound::setup() {
 int OldMaidRound::play() {
     std::vector<bool> inGame(players->size(), true);
     bool run = true;
+
+    view->beginRound(getPlayers());
 
     while (run) {
         for (int i = 0; i < players->size(); i++) {

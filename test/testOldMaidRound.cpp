@@ -60,6 +60,9 @@ TEST(OldMaidRoundTests, setup) {
         .Times(2)
         .WillRepeatedly(Return(&p1));
 
+    EXPECT_CALL(pc1, updateHand())
+        .Times(2);
+
     EXPECT_CALL(p1, setHand(&cards))
         .Times(2);
 
