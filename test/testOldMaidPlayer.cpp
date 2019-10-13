@@ -32,19 +32,16 @@ class TurnTests : public ::testing::Test {
         delete pc;
     }
 
-    void SetUp() {  //NOLINT for unused function.
+    void SetUp() {
         // Begin Turn output
         EXPECT_CALL(view, turnInfo())
-            .Times(1);
-
-        EXPECT_CALL(view, takeAction())
             .Times(1);
 
         // Take the card indicated by the input
         EXPECT_CALL(player, getHand())
             .WillRepeatedly(Return(&cards));
 
-        EXPECT_CALL(cards, takeCard(2))
+        EXPECT_CALL(cards, takeCard(1))
             .Times(1)
             .WillOnce(Return(card));
 
@@ -73,6 +70,9 @@ class TurnTests : public ::testing::Test {
 
 
 TEST_F(TurnTests, take_turn_false) {
+    EXPECT_CALL(view, takeAction(&player))
+        .Times(1);
+
     EXPECT_CALL(input, getString())
         .Times(1)
         .WillOnce(Return("2"));
@@ -81,7 +81,7 @@ TEST_F(TurnTests, take_turn_false) {
         .Times(4)
         .WillRepeatedly(Return(1));
 
-    EXPECT_CALL(view, turnResult(card, false))
+    EXPECT_CALL(view, turnResult(_, false))
         .Times(1);
 
     EXPECT_FALSE(pc->takeTurn(&deck, players));
@@ -89,6 +89,9 @@ TEST_F(TurnTests, take_turn_false) {
 
 
 TEST_F(TurnTests, take_turn_true) {
+    EXPECT_CALL(view, takeAction(&player))
+        .Times(1);
+
     EXPECT_CALL(input, getString())
         .Times(1)
         .WillOnce(Return("2"));
@@ -98,7 +101,7 @@ TEST_F(TurnTests, take_turn_true) {
         .WillOnce(Return(1))
         .WillRepeatedly(Return(0));
 
-    EXPECT_CALL(view, turnResult(card, true))
+    EXPECT_CALL(view, turnResult(_, true))
         .Times(1);
 
     EXPECT_TRUE(pc->takeTurn(&deck, players));
@@ -112,14 +115,17 @@ TEST_F(TurnTests, invalid_input) {
         .WillOnce(Return("6"))
         .WillOnce(Return("2"));
 
-    EXPECT_CALL(cards, takeCard(6))
+    EXPECT_CALL(view, takeAction(&player))
+        .Times(3);
+
+    EXPECT_CALL(cards, takeCard(5))
         .Times(1)
         .WillOnce(Throw(std::out_of_range("error")));
 
-    EXPECT_CALL(view, badInput("** Please enter a number **"))
+    EXPECT_CALL(view, badInput("** Please enter a number **\n"))
         .Times(1);
 
-    EXPECT_CALL(view, badInput("** Choose a card index between 0 and 4 **"))
+    EXPECT_CALL(view, badInput("** Choose a number between 1 and 5 **\n"))
         .Times(1);
 
     EXPECT_CALL(cards, size())
@@ -127,7 +133,7 @@ TEST_F(TurnTests, invalid_input) {
         .WillOnce(Return(5))
         .WillRepeatedly(Return(1));
 
-    EXPECT_CALL(view, turnResult(card, _))
+    EXPECT_CALL(view, turnResult(_, _))
         .Times(1);
 
     pc->takeTurn(&deck, players);

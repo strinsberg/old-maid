@@ -85,6 +85,9 @@ TEST(OldMaidRoundTests, play) {
 
     OldMaidRound round(&pcs, &deck, &view);
 
+    EXPECT_CALL(view, beginRound(players))
+        .Times(1);
+
     // Player 3 goes out in first loop and then Player 1
     // This means that Player 2 at idx 1 is the OldMaid after 4 turns
     EXPECT_CALL(pc1, takeTurn(&deck, _))

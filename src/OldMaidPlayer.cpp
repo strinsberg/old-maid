@@ -20,21 +20,24 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     Player* left = getLeftPlayer(players);
 
     view->turnInfo();
-    view->takeAction();
+    view->takeAction(left);
 
     Card const* taken = getCard(left);
+    Card card(taken->getValue(), taken->getSuit());
 
     // add the card to the players hand and remove pairs
     player->getHand()->addCard(taken);
     int numCards = player->getHand()->size();
     updateHand();
 
+    // determine if a match was made
     if (numCards > player->getHand()->size()) {
-        view->turnResult(taken, true);
+        view->turnResult(&card, true);
     } else {
-        view->turnResult(taken, false);
+        view->turnResult(&card, false);
     }
 
+    // return whether the player is out of the round or not
     if (player->getHand()->size() == 0)
         return true;
 
@@ -42,7 +45,6 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
 }
 
 void OldMaidPlayer::updateHand() {
-    // remove cards in this case
     player->sortHand(true, false);
     removePairs(player->getHand());
 }
@@ -98,15 +100,16 @@ Card const* OldMaidPlayer::getCard(Player* left) {
         try {
             std::string in = input->getString();
             int pos = std::stoi(in);
-            return left->getHand()->takeCard(pos);
+            return left->getHand()->takeCard(pos - 1);
         } catch (const std::invalid_argument& e) {
-            view->badInput("** Please enter a number **");
+            view->badInput("** Please enter a number **\n");
         } catch (const std::out_of_range& e) {
-            std::string error = "** Choose a card index between 0 and ";
-            error += std::to_string(left->getHand()->size() - 1);
-            error += " **";
+            std::string error = "** Choose a number between 1 and ";
+            error += std::to_string(left->getHand()->size());
+            error += " **\n";
             view->badInput(error);
         }
+        view->takeAction(left);
     }
     return left->getHand()->takeCard(0);
 }

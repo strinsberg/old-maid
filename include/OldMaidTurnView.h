@@ -27,8 +27,10 @@ class OldMaidTurnView {
 
     /**
      * Display information for actions a player will take on their turn.
+     *
+     * @param opponent The player to take a card from.
      */
-    virtual void takeAction();
+    virtual void takeAction(Player* opponent);
 
     /**
      * Display info and a message if the player gives bad input.
