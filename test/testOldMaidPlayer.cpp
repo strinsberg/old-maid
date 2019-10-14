@@ -55,6 +55,9 @@ class TurnTests : public ::testing::Test {
         EXPECT_CALL(cards, takeAllCards(_))
             .Times(1)
             .WillOnce(Return(std::vector<Card const*>()));
+
+        EXPECT_CALL(view, wait())
+            .Times(1);
     }
 
     MockOldMaidTurnView view;
@@ -74,8 +77,9 @@ TEST_F(TurnTests, take_turn_false) {
         .Times(1);
 
     EXPECT_CALL(input, getString())
-        .Times(1)
-        .WillOnce(Return("2"));
+        .Times(2)
+        .WillOnce(Return("2"))
+        .WillOnce(Return("nothing"));
 
     EXPECT_CALL(cards, size())
         .Times(4)
@@ -93,8 +97,9 @@ TEST_F(TurnTests, take_turn_true) {
         .Times(1);
 
     EXPECT_CALL(input, getString())
-        .Times(1)
-        .WillOnce(Return("2"));
+        .Times(2)
+        .WillOnce(Return("2"))
+        .WillOnce(Return("nothing"));
 
     EXPECT_CALL(cards, size())
         .Times(4)
@@ -110,10 +115,11 @@ TEST_F(TurnTests, take_turn_true) {
 
 TEST_F(TurnTests, invalid_input) {
     EXPECT_CALL(input, getString())
-        .Times(3)
+        .Times(4)
         .WillOnce(Return("steve"))
         .WillOnce(Return("6"))
-        .WillOnce(Return("2"));
+        .WillOnce(Return("2"))
+        .WillOnce(Return("nothing"));
 
     EXPECT_CALL(view, takeAction(&player))
         .Times(3);

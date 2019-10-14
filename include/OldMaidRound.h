@@ -39,7 +39,6 @@ class OldMaidRound {
  private:
     std::vector<PlayerController*>* players;
     Deck* deck;
-    Input* input;
     View* view;
 
     /**

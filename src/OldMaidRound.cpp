@@ -7,12 +7,10 @@
 
 
 OldMaidRound::OldMaidRound(std::vector<PlayerController*>* ps, Deck* d,
-    View* v) : players(ps), deck(d), input(new Input()), view(v) {}
+    View* v) : players(ps), deck(d), view(v) {}
 
 
-OldMaidRound::~OldMaidRound() {
-    delete input;
-}
+OldMaidRound::~OldMaidRound() {}
 
 
 void OldMaidRound::setup() {

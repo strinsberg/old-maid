@@ -44,6 +44,11 @@ class OldMaidTurnView {
      */
     virtual void turnResult(Card const* card, bool success);
 
+    /**
+     * Display Press ENTER to continue.
+     */
+    virtual void wait();
+
  protected:
     Player* player;
 };

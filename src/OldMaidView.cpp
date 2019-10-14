@@ -42,6 +42,7 @@ void OldMaidView::askNumAI() {
     std::cout << "Enter Opponents (2-5): ";
 }
 
+
 void OldMaidView::beginRound(std::vector<Player*> players) {
     std::cout << std::endl << "=== Begin Round ===" << std::endl;
     std::cout << "The players are:" << std::endl;

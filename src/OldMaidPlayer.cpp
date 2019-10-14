@@ -37,6 +37,10 @@ bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
         view->turnResult(&card, false);
     }
 
+    // Wait so player can see their turn info before moving on
+    view->wait();
+    input->getString();
+
     // return whether the player is out of the round or not
     if (player->getHand()->size() == 0)
         return true;

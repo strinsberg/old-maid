@@ -40,3 +40,6 @@ void OldMaidTurnView::turnResult(Card const* card, bool success) {
     std::cout << std::endl << std::endl;
 }
 
+void OldMaidTurnView::wait() {
+    std::cout << "** Press ENTER to continue ... **";
+}
