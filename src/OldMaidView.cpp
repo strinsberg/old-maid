@@ -9,7 +9,7 @@ void OldMaidView::welcome() {
     std::cout << "= Welcome to Old Maid =" << std::endl;
     std::cout << "=======================" << std::endl << std::endl;
 
-    std::cout << "=== How to Play ===" << std::endl;
+    std::cout << "=== How to Play =================" << std::endl;
     std::cout << "1. At the start of each players turn you will see each";
     std::cout << std::endl;
     std::cout << "   player's current hand size." << std::endl;
@@ -31,7 +31,7 @@ void OldMaidView::welcome() {
     std::cout << "-- The last remaining player is the Old Maid." << std::endl;
     std::cout << std::endl;
     std::cout << "** To quit press '<control> c' **" << std::endl;
-    std::cout << "====================" << std::endl << std::endl;
+    std::cout << "=================================" << std::endl << std::endl;
 }
 
 void OldMaidView::getName() {
@@ -44,11 +44,14 @@ void OldMaidView::askNumAI() {
 
 
 void OldMaidView::beginRound(std::vector<Player*> players) {
-    std::cout << std::endl << "=== Begin Round ===" << std::endl;
+    std::cout << std::endl << "=== Begin Round =============================";
+    std::cout << std::endl;
     std::cout << "The players are:" << std::endl;
 
+    int i = 0;
     for (auto p : players) {
-        std::cout << p->getName() << std:: endl;
+        std::cout << "  " << i + 1 << ". " << p->getName() << std:: endl;
+        i++;
     }
 
     std::cout << std::endl;
@@ -56,19 +59,24 @@ void OldMaidView::beginRound(std::vector<Player*> players) {
 
 
 void OldMaidView::gameStatus(std::vector<Player*> players) {
-    std::cout << std::endl << "=== Game Status ===" << std::endl;
-    std::cout << "There are " << players.size() << " players:" << std::endl;
+    std::cout << std::endl << "=== Game Status =============================";
+    std::cout << std::endl;
+    std::cout << "There are " << players.size() << " players remaining:";
+    std::cout << std::endl;
 
+    int i = 0;
     for (auto p : players) {
-        std::cout << p->getName() << " has " << p->getHand()->size();
-        std::cout << " cards" << std:: endl;
+        std::cout << "  " << i + 1 << ". " << p->getName() << " has ";
+        std::cout << p->getHand()->size() << " cards" << std:: endl;
+        i++;
     }
 
     std::cout << std::endl;
 }
 
 void OldMaidView::endRound(std::vector<Player*> players, int winner) {
-    std::cout << "============ Game Over =============" << std::endl;
+    std::cout << std::endl;
+    std::cout << "============ Game Over =======================" << std::endl;
     std::cout << "!!! " << players[winner]->getName();
     std::cout << " is the Old Maid !!!" << std::endl << std::endl;
 

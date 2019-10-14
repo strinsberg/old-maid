@@ -134,10 +134,10 @@ TEST_F(TurnTests, invalid_input) {
         .Times(1)
         .WillOnce(Throw(std::out_of_range("error")));
 
-    EXPECT_CALL(view, badInput("** Please enter a number **\n"))
+    EXPECT_CALL(view, badInput("Please enter a number"))
         .Times(1);
 
-    EXPECT_CALL(view, badInput("** Choose a number between 1 and 5 **\n"))
+    EXPECT_CALL(view, badInput("Choose a number between 1 and 5"))
         .Times(1);
 
     EXPECT_CALL(cards, size())

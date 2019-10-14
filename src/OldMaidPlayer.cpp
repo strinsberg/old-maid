@@ -106,11 +106,10 @@ Card const* OldMaidPlayer::getCard(Player* left) {
             int pos = std::stoi(in);
             return left->getHand()->takeCard(pos - 1);
         } catch (const std::invalid_argument& e) {
-            view->badInput("** Please enter a number **\n");
+            view->badInput("Please enter a number");
         } catch (const std::out_of_range& e) {
-            std::string error = "** Choose a number between 1 and ";
+            std::string error = "Choose a number between 1 and ";
             error += std::to_string(left->getHand()->size());
-            error += " **\n";
             view->badInput(error);
         }
         view->takeAction(left);

@@ -32,7 +32,7 @@ TEST(InputTests, get_string) {
 TEST(InputTests, wait) {
     std::stringstream ss;
     Input in(ss);
-    
+
     in.wait();
     EXPECT_EQ("", ss.str());
 }
