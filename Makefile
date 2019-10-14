@@ -54,7 +54,7 @@ $(PROGRAM_TEST):
 	$(PROGRAM_TEST)
 
 memcheck-game: $(PROGRAM)
-	valgrind --tool=memcheck --leak-check=yes --xml=yes --xml-file=$(MEMCHECK_RESULTS) $(PROGRAM)
+	valgrind --tool=memcheck --leak-check=yes $(PROGRAM)
 
 
 memcheck-test: $(PROGRAM_TEST)

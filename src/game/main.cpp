@@ -27,13 +27,17 @@ int main() {
 
     view->getName();
     std::string name = input->getString();
-    
+
+    // Create PlayerControllers and a user player
     std::vector<PlayerController*> pcs;
+
     Player* p = new Player(name);
     OldMaidPlayer* player = new OldMaidPlayer(
         p, new OldMaidTurnView(p), input);
     pcs.push_back(player);
 
+    // Create other players
+    // currently there are not AI players so just creates more regular players
     view->askNumAI();
     int numOpp = input->getInt();
     
@@ -48,6 +52,16 @@ int main() {
     // start round
     round->setup();
     round->play();
+
+    // clean up
+    delete round;
+    delete view;
+    delete input;
+    delete deck;
+
+    for (auto p : pcs) {
+        delete p;
+    }
 
 	return 0;
 }

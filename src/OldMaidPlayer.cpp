@@ -14,6 +14,10 @@
 OldMaidPlayer::OldMaidPlayer(Player* p, OldMaidTurnView* v, Input* in)
     : player(p), view(v), input(in) {}
 
+OldMaidPlayer::~OldMaidPlayer() {
+    delete view;
+    delete player;
+}
 
 bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     // get player positions

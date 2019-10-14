@@ -28,7 +28,7 @@ class OldMaidPlayer : public PlayerController {
      */
     OldMaidPlayer(Player* player, OldMaidTurnView* view, Input* input);
 
-    virtual ~OldMaidPlayer() {}
+    virtual ~OldMaidPlayer();
 
     virtual bool takeTurn(Deck* deck, std::vector<Player*> players);
     virtual void updateHand();
@@ -36,8 +36,8 @@ class OldMaidPlayer : public PlayerController {
     virtual bool isOut();
 
  protected:
-    Player* player;  // Does not own this
-    OldMaidTurnView* view;  // Does not own this
+    Player* player;  // Owns this
+    OldMaidTurnView* view;  // Owns this
     Input* input;  // Does not own this
 
     void removePairs(CardCollection* hand);
