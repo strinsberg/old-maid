@@ -7,6 +7,7 @@
 
 
 Deck::Deck(int packs) : cards(new CardCollection()) {
+    // Create the cards for each deck that is needed and add them to the deck
     for (int i = 0; i < packs; i++) {
         for (int suit = 1; suit <= 4; suit++) {
             for (int val = 1; val <= 13; val++) {

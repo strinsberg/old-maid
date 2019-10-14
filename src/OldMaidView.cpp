@@ -34,9 +34,11 @@ void OldMaidView::welcome() {
     std::cout << "=================================" << std::endl << std::endl;
 }
 
+
 void OldMaidView::getName() {
     std::cout << "Enter Name: ";
 }
+
 
 void OldMaidView::askNumAI() {
     std::cout << "Enter Opponents (2-5): ";

@@ -19,6 +19,7 @@ OldMaidPlayer::~OldMaidPlayer() {
     delete player;
 }
 
+
 bool OldMaidPlayer::takeTurn(Deck* deck, std::vector<Player*> players) {
     // get player positions
     Player* left = getLeftPlayer(players);
@@ -62,6 +63,7 @@ Player* OldMaidPlayer::getPlayer() {
     return player;
 }
 
+
 bool OldMaidPlayer::isOut() {
     return player->getHand()->size() == 0;
 }
@@ -74,6 +76,7 @@ bool OldMaidPlayer::isOut() {
 void OldMaidPlayer::removePairs(CardCollection* cards) {
     std::vector<int> pairIdxs;
 
+    // finds the indicies of matched cards
     for (int i = 0; i < cards->size() - 1; i++) {
         Card const* c1 = cards->getCard(i);
         Card const* c2 = cards->getCard(i + 1);
@@ -84,11 +87,14 @@ void OldMaidPlayer::removePairs(CardCollection* cards) {
             i++;
         }
     }
+    // Tell the card collection to remove all matched cards
     std::vector<Card const*> taken = cards->takeAllCards(pairIdxs);
 
+    // Delete the memory for all the removed cards
     for (auto c : taken)
         delete c;
 }
+
 
 Player*  OldMaidPlayer::getLeftPlayer(const std::vector<Player*>& players) {
     int left;
@@ -103,8 +109,12 @@ Player*  OldMaidPlayer::getLeftPlayer(const std::vector<Player*>& players) {
     return players[left];
 }
 
+
 Card const* OldMaidPlayer::getCard(Player* left) {
     for (int i = 0; i < 10; i++) {
+        // Try to get a number from the player
+        // If it is out of bounds or not a number ask again
+        // If they get it wrong 10 times just take the first card
         try {
             std::string in = input->getString();
             int pos = std::stoi(in);

@@ -36,7 +36,8 @@ int OldMaidRound::play() {
     std::vector<Player*> stillInGame = getPlayers(true);
     view->beginRound(stillInGame);
 
-    while (stillInGame.size() > 0) {
+    // Loop while more than 1 players are still in the game
+    while (stillInGame.size() > 1) {
         for (int i = 0; i < players->size(); i++) {
             if ((*players)[i]->isOut()) {
                 continue;

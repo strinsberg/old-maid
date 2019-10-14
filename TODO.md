@@ -1,6 +1,5 @@
 # Current
 
-* Review and revise doxygen comments
 * Make sure everything is clean and tidy in the code
 * Ensure project is set up as directed
 * Tidy up tests using test classes where possible to simplify test logic
