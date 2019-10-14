@@ -21,17 +21,13 @@ int main() {
     OldMaidView* view = new OldMaidView();
     Input* input = new Input();
     Deck* deck = new Deck();
-    
-    OldMaidRound* round;
-    
 
-    // display and collect information
+    // display welcome and collect name information
     view->welcome();
-
     view->getName();
     std::string name = input->getString();
 
-    // Create PlayerControllers and a user player
+    // Create PlayerControllers and a human player
     std::vector<PlayerController*> pcs;
 
     Player* p = new Player(name);
@@ -55,7 +51,8 @@ int main() {
         std::cout << "Wrong!!!" << std::endl;
         std::cout << "Game Over" << std::endl;
     } else {
-        // Create the players for the given opponents
+        // Create the players for the given opponents. Didn't make it to create
+        // actual AI so they are still human players.
         for (int i = 0; i < numOpp; i++) {
             Player* opp = new Player(aiNames[i]);
             pcs.push_back(
@@ -63,7 +60,7 @@ int main() {
         }
         
         // Create round and play
-        round = new OldMaidRound(&pcs, deck, view);
+        OldMaidRound *round = new OldMaidRound(&pcs, deck, view);
 
         round->setup();
         round->play();

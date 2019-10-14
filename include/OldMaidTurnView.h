@@ -59,7 +59,7 @@ class OldMaidTurnView {
  protected:
     Player* player;  // Does not own this.
 
-    OldMaidTurnView(const OldMaidTurnView&) {}
+    OldMaidTurnView(const OldMaidTurnView&);
 };
 
 #endif

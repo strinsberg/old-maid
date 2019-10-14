@@ -45,7 +45,7 @@ class OldMaidPlayer : public PlayerController {
     Card const* getCard(Player* toTheLeft);
     void determineResult(Card const* taken);
 
-    OldMaidPlayer(const OldMaidPlayer&) {}
+    OldMaidPlayer(const OldMaidPlayer&);
 };
 
 #endif
