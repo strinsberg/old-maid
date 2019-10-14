@@ -45,11 +45,11 @@ TEST(DeckTest, shuffle) {
     Card const* ad = d.getCards()->getCard(26);
     Card const* ac = d.getCards()->getCard(39);
 
-    // if one of the cards is not the ace expected before the shuffle
-    // then we will considered the deck shuffled. It is impossible to
-    // know what will be in any position if we are randomizing it. So we
-    // try a few things we know should be in those positions if the suffle
-    // did not work.
+    // This may fail every once in a blue moon, but it checks to make sure that
+    // if one of the aces is not in it's original position the deck is
+    // considered shuffled. It is very unlikely after a shuffle that all 4
+    // aces will still be where they started. Could easily add a few more cards
+    // to make this more strict.
     EXPECT_TRUE((ah->getValue() != 1 && ah->getSuit() != Suit::HEART)
         || (as->getValue() != 1 && as->getSuit() != Suit::SPADE)
         || (ad->getValue() != 1 && ad->getSuit() != Suit::DIAMOND)

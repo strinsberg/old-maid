@@ -15,9 +15,9 @@ using testing::Return;
 using testing::Throw;
 using testing::_;
 
-class TurnTests : public ::testing::Test {
+class PlayerTurnTests : public ::testing::Test {
  public:
-    TurnTests() {
+    PlayerTurnTests() {
         pc = new OldMaidPlayer(player, view, &input);
 
         players.push_back(player);
@@ -27,17 +27,15 @@ class TurnTests : public ::testing::Test {
         card = new Card(4, Suit::HEART);
     }
 
-    ~TurnTests() {
+    ~PlayerTurnTests() {
         delete card;
         delete pc;
     }
 
     void SetUp() {
-        // Begin Turn output
         EXPECT_CALL(*view, turnInfo())
             .Times(1);
 
-        // Take the card indicated by the input
         EXPECT_CALL(*player, getHand())
             .WillRepeatedly(Return(&cards));
 
@@ -45,7 +43,6 @@ class TurnTests : public ::testing::Test {
             .Times(1)
             .WillOnce(Return(card));
 
-        // Add the card to the players hand and remove pairs
         EXPECT_CALL(*player, sortHand(true, false))
             .Times(1);
 
@@ -72,7 +69,7 @@ class TurnTests : public ::testing::Test {
 };
 
 
-TEST_F(TurnTests, take_turn_false) {
+TEST_F(PlayerTurnTests, take_turn_false) {
     EXPECT_CALL(*view, takeAction(player))
         .Times(1);
 
@@ -94,7 +91,7 @@ TEST_F(TurnTests, take_turn_false) {
 }
 
 
-TEST_F(TurnTests, take_turn_true) {
+TEST_F(PlayerTurnTests, take_turn_true) {
     EXPECT_CALL(*view, takeAction(player))
         .Times(1);
 
@@ -117,7 +114,7 @@ TEST_F(TurnTests, take_turn_true) {
 }
 
 
-TEST_F(TurnTests, invalid_input) {
+TEST_F(PlayerTurnTests, invalid_input) {
     EXPECT_CALL(input, getString())
         .Times(3)
         .WillOnce(Return("steve"))
@@ -152,7 +149,7 @@ TEST_F(TurnTests, invalid_input) {
 }
 
 
-TEST_F(TurnTests, give_bad_input_too_many_times) {
+TEST_F(PlayerTurnTests, give_bad_input_too_many_times) {
     EXPECT_CALL(input, getString())
         .Times(10)
         .WillRepeatedly(Return("steve"));

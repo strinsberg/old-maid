@@ -58,6 +58,7 @@ TEST(PlayerTests, sort_hand_by_value) {
 
 TEST(PlayerTests, sort_hand_by_suit) {
     Player p("Steve");
+
     CardCollection* hand = p.getHand();
     hand->addCard(new Card(2, Suit::HEART));
     hand->addCard(new Card(1, Suit::SPADE));

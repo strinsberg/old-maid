@@ -34,7 +34,6 @@ TEST(CardCollectionTests, find_card) {
 
 
 
-
 TEST(CardCollectionTests, find_card_not_present) {
     CardCollection h;
 

@@ -125,7 +125,7 @@ TEST(OldMaidRoundTests, play) {
 }
 
 
-TEST(OldMaidRoundTests, payer_is_out_on_their_turn) {
+TEST(OldMaidRoundTests, play_player_is_out_on_their_turn) {
     MockView view;
 
     MockPlayer p1;
