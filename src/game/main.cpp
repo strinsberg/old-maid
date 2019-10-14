@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <stdexcept>
 #include "Deck.h"
 #include "Player.h"
 #include "Input.h"
@@ -12,14 +13,16 @@
 #include "OldMaidPlayer.h"
 
 
-std::string aiNames[] = {"Bill", "Jane", "Wnedy", "Max", "Shane", "Alex"};
+std::string aiNames[] = {"Bill", "Jane", "Wendy", "Max", "Shane", "Alex"};
 
 
 int main() {
     // create objects
     OldMaidView* view = new OldMaidView();
     Input* input = new Input();
-    Deck* deck = new Deck(); 
+    Deck* deck = new Deck();
+    
+    OldMaidRound* round;
     
 
     // display and collect information
@@ -36,25 +39,39 @@ int main() {
         p, new OldMaidTurnView(p), input);
     pcs.push_back(player);
 
-    // Create other players
-    // currently there are not AI players so just creates more regular players
+    // Ask for opponent numbers
     view->askNumAI();
-    int numOpp = input->getInt();
+    int numOpp;
     
-    for (int i = 0; i < numOpp; i++) {
-        Player* opp = new Player(aiNames[i]);
-        pcs.push_back(
-            new OldMaidPlayer(opp, new OldMaidTurnView(opp), input));
+    // make sure a number or valid value is given
+    try {
+        numOpp = input->getInt();
+    } catch (std::invalid_argument& e) {
+        numOpp = 0;
     }
     
-    OldMaidRound* round = new OldMaidRound(&pcs, deck, view);
-    
-    // start round
-    round->setup();
-    round->play();
+    if (numOpp < 2 || numOpp > 5) {
+        std::cout << std::endl;
+        std::cout << "Wrong!!!" << std::endl;
+        std::cout << "Game Over" << std::endl;
+    } else {
+        // Create the players for the given opponents
+        for (int i = 0; i < numOpp; i++) {
+            Player* opp = new Player(aiNames[i]);
+            pcs.push_back(
+                new OldMaidPlayer(opp, new OldMaidTurnView(opp), input));
+        }
+        
+        // Create round and play
+        round = new OldMaidRound(&pcs, deck, view);
+
+        round->setup();
+        round->play();
+        
+        delete round;
+    }
 
     // clean up
-    delete round;
     delete view;
     delete input;
     delete deck;
