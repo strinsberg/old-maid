@@ -36,10 +36,9 @@ void OldMaidRound::setup() {
 #include <iostream>
 
 int OldMaidRound::play() {
-
     std::vector<Player*> stillInGame = getPlayers(true);
     view->beginRound(stillInGame);
-    
+
     while (stillInGame.size() > 0) {
         for (int i = 0; i < players->size(); i++) {
             if ((*players)[i]->isOut()) {
