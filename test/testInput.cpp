@@ -28,3 +28,12 @@ TEST(InputTests, get_string) {
     EXPECT_EQ(in.getString(), "steve");
 }
 
+
+TEST(InputTests, wait) {
+    std::stringstream ss;
+    Input in(ss);
+    
+    in.wait();
+    EXPECT_EQ("", ss.str());
+}
+

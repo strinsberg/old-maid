@@ -77,9 +77,11 @@ TEST_F(TurnTests, take_turn_false) {
         .Times(1);
 
     EXPECT_CALL(input, getString())
-        .Times(2)
-        .WillOnce(Return("2"))
-        .WillOnce(Return("nothing"));
+        .Times(1)
+        .WillOnce(Return("2"));
+
+    EXPECT_CALL(input, wait())
+        .Times(1);
 
     EXPECT_CALL(cards, size())
         .Times(4)
@@ -97,9 +99,11 @@ TEST_F(TurnTests, take_turn_true) {
         .Times(1);
 
     EXPECT_CALL(input, getString())
-        .Times(2)
-        .WillOnce(Return("2"))
-        .WillOnce(Return("nothing"));
+        .Times(1)
+        .WillOnce(Return("2"));
+
+    EXPECT_CALL(input, wait())
+        .Times(1);
 
     EXPECT_CALL(cards, size())
         .Times(4)
@@ -115,11 +119,13 @@ TEST_F(TurnTests, take_turn_true) {
 
 TEST_F(TurnTests, invalid_input) {
     EXPECT_CALL(input, getString())
-        .Times(4)
+        .Times(3)
         .WillOnce(Return("steve"))
         .WillOnce(Return("6"))
-        .WillOnce(Return("2"))
-        .WillOnce(Return("nothing"));
+        .WillOnce(Return("2"));
+
+    EXPECT_CALL(input, wait())
+        .Times(1);
 
     EXPECT_CALL(view, takeAction(&player))
         .Times(3);
