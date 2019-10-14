@@ -16,7 +16,7 @@ void OldMaidTurnView::turnInfo() {
 }
 
 
-// Take a player so that you can see their hand size
+// Takes a player so that you can see their hand size
 void OldMaidTurnView::takeAction(Player* opponent) {
     std::cout << "Pick a card from " << opponent->getName() << std::endl;
     std::cout << "Enter number between 1 and ";

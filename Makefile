@@ -39,7 +39,7 @@ all: $(PROGRAM) $(PROGRAM_TEST) memcheck-test coverage docs static style
 
 .PHONY: clean
 clean:
-	rm -rf *~ $(SRC)/*.o $(TEST_SRC)/*.o *.gcov *.gcda *.gcno $(COVERAGE_RESULTS) $(PROGRAM) $(PROGRAM_TEST) $(COVERAGE_DIR)
+	rm -rf *~ $(SRC)/*.o $(TEST_SRC)/*.o *.gcov *.gcda *.gcno *.xml $(COVERAGE_RESULTS) $(PROGRAM) $(PROGRAM_TEST) $(COVERAGE_DIR)
 
 
 .PHONY: clean-all
@@ -54,7 +54,7 @@ $(PROGRAM_TEST):
 	$(PROGRAM_TEST)
 
 memcheck-game: $(PROGRAM)
-	valgrind --tool=memcheck --leak-check=yes --xml=yes --xml-file=$(MEMCHECK_RESULTS) $(PROGRAM)
+	valgrind --tool=memcheck --leak-check=yes $(PROGRAM)
 
 
 memcheck-test: $(PROGRAM_TEST)

@@ -9,6 +9,9 @@
 
 /**
  * The view of game related information for Old Maid.
+ * This holds the specific implementation for a view in an OldMaidGame or Round
+ * for things that need to be displayed for the player.
+ *
  * @author Steven Deutekom
  * @date sept 29, 2019
  */

@@ -44,16 +44,21 @@ TEST(DeckTest, shuffle) {
     Card const* as = d.getCards()->getCard(13);
     Card const* ad = d.getCards()->getCard(26);
     Card const* ac = d.getCards()->getCard(39);
+    Card const* _2h = d.getCards()->getCard(1);
+    Card const* _2s = d.getCards()->getCard(14);
+    Card const* _2d = d.getCards()->getCard(27);
+    Card const* _2c = d.getCards()->getCard(40);
 
-    // if one of the cards is not the ace expected before the shuffle
-    // then we will considered the deck shuffled. It is impossible to
-    // know what will be in any position if we are randomizing it. So we
-    // try a few things we know should be in those positions if the suffle
-    // did not work.
-    EXPECT_TRUE(ah->getValue() != 1 && ah->getSuit() != Suit::HEART
-        || as->getValue() != 1 && as->getSuit() != Suit::SPADE
-        || ad->getValue() != 1 && ad->getSuit() != Suit::DIAMOND
-        || ac->getValue() != 1 && ac->getSuit() != Suit::CLUB);
+    // This may fail every once in a blue moon, It is hard to check for
+    // a random shuffle, but at least one of these cards should have moved
+    EXPECT_TRUE((ah->getValue() != 1 && ah->getSuit() != Suit::HEART)
+        || (as->getValue() != 1 && as->getSuit() != Suit::SPADE)
+        || (ad->getValue() != 1 && ad->getSuit() != Suit::DIAMOND)
+        || (ac->getValue() != 1 && ac->getSuit() != Suit::CLUB)
+        || (_2h->getValue() != 1 && _2h->getSuit() != Suit::HEART)
+        || (_2s->getValue() != 1 && _2s->getSuit() != Suit::SPADE)
+        || (_2d->getValue() != 1 && _2d->getSuit() != Suit::DIAMOND)
+        || (_2c->getValue() != 1 && _2c->getSuit() != Suit::CLUB));
 }
 
 

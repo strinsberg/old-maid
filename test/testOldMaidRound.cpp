@@ -123,3 +123,43 @@ TEST(OldMaidRoundTests, play) {
     // Run the round
     EXPECT_EQ(1, round.play());
 }
+
+
+TEST(OldMaidRoundTests, play_player_is_out_on_their_turn) {
+    MockView view;
+
+    MockPlayer p1;
+    std::vector<Player*> players{&p1, &p1, &p1};
+    MockPlayerController pc1;
+    std::vector<PlayerController*> pcs{&pc1, &pc1, &pc1};
+
+    MockCardCollection cards;
+    MockDeck deck;
+
+    OldMaidRound round(&pcs, &deck, &view);
+
+    EXPECT_CALL(view, beginRound(players))
+        .Times(1);
+
+    EXPECT_CALL(pc1, getPlayer())
+        .WillRepeatedly(Return(&p1));
+
+    {
+        InSequence s;
+        EXPECT_CALL(pc1, isOut())
+            .Times(3)
+            .WillRepeatedly(Return(false));
+
+        EXPECT_CALL(pc1, isOut())
+            .WillOnce(Return(true))
+            .WillOnce(Return(false))
+            .WillRepeatedly(Return(true));  // to stop mistake infinit loops
+    }
+
+
+    EXPECT_CALL(view, endRound(players, 1))
+        .Times(1);
+
+    // Run the round
+    EXPECT_EQ(1, round.play());
+}
