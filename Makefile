@@ -19,6 +19,8 @@ LCOV = lcov
 COVERAGE_RESULTS = results.coverage
 COVERAGE_DIR = coverage
 
+MEMCHECK_RESULTS = mem.xml
+
 STATIC_ANALYSIS = cppcheck
 
 STYLE_CHECK = cpplint.py

@@ -1,62 +1,84 @@
 #include <iostream>
-#include <ostream>
 #include <vector>
 #include "OldMaidView.h"
 #include "Player.h"
-#include "Card.h"
 
 
-OldMaidView::OldMaidView(
-    std::vector<Player*>* p, std::ostream& os)
-    : players(p) , out(os) {}
+void OldMaidView::welcome() {
+    std::cout << "=======================" << std::endl;
+    std::cout << "= Welcome to Old Maid =" << std::endl;
+    std::cout << "=======================" << std::endl << std::endl;
+
+    std::cout << "=== How to Play =================" << std::endl;
+    std::cout << "1. At the start of each players turn you will see each";
+    std::cout << std::endl;
+    std::cout << "   player's current hand size." << std::endl;
+    std::cout << "2. On your turn will select the position of a card in the";
+    std::cout << std::endl;
+    std::cout << "   hand of the player to your right." << std::endl;
+    std::cout << "   - If you enter a string or a position larger than the";
+    std::cout << std::endl;
+    std::cout << "     other players hand size you must choose again.";
+    std::cout << std::endl;
+    std::cout << "3.  You will be shown the card you picked and if it gave";
+    std::cout << std::endl;
+    std::cout << "    you a pair." << std::endl;
+    std::cout << "    - If you got a pair the paired cards will be removed";
+    std::cout << std::endl;
+    std::cout << "      from your hand." << std::endl << std::endl;
+
+    std::cout << "-- Players that run out of cards are done." << std::endl;
+    std::cout << "-- The last remaining player is the Old Maid." << std::endl;
+    std::cout << std::endl;
+    std::cout << "** To quit press '<control> c' **" << std::endl;
+    std::cout << "=================================" << std::endl << std::endl;
+}
+
+void OldMaidView::getName() {
+    std::cout << "Enter Name: ";
+}
+
+void OldMaidView::askNumAI() {
+    std::cout << "Enter Opponents (2-5): ";
+}
 
 
-void OldMaidView::turnInfo(int currentPlayer) const {
-    Player* player = players->at(currentPlayer);
+void OldMaidView::beginRound(std::vector<Player*> players) {
+    std::cout << std::endl << "=== Begin Round =============================";
+    std::cout << std::endl;
+    std::cout << "The players are:" << std::endl;
 
-    out << "=== " << player->getName() << "'s Turn ===" << std::endl;
-    out << std::endl;
-
-    out << "-- Hand Sizes --" << std::endl;
-    for (auto p : *players)
-        out << p->getName() << ": " << p->getHand()->size() << std::endl;
-
-    out << std::endl;
-    out << "-- Your Cards --" << std::endl;
-    for (int i = 0; i < player->getHand()->size(); i++) {
-        Card const* c = player->getHand()->getCard(i);
-        out << c->toString() << " ";
+    int i = 0;
+    for (auto p : players) {
+        std::cout << "  " << i + 1 << ". " << p->getName() << std:: endl;
+        i++;
     }
-    out << std::endl;
-    out << std::endl;
+
+    std::cout << std::endl;
 }
 
 
-void OldMaidView::pickCard() const {
-    out << "Choose card: ";
-}
+void OldMaidView::gameStatus(std::vector<Player*> players) {
+    std::cout << std::endl << "=== Game Status =============================";
+    std::cout << std::endl;
+    std::cout << "There are " << players.size() << " players remaining:";
+    std::cout << std::endl;
 
-
-void OldMaidView::result(
-        Card const* card, bool matched, Card const* other) const {
-    out << std::endl;
-    out << "Card Chosen: " << card->toString() << std::endl << std::endl;
-
-    if (matched) {
-        out << "** It's a Match **" << std::endl;
-        out << "The " << other->toString() << " was removed from your hand";
-    } else {
-        out << "** Not a Match **" << std::endl;
-        out << "The " << card->toString() << " was added to your hand";
+    int i = 0;
+    for (auto p : players) {
+        std::cout << "  " << i + 1 << ". " << p->getName() << " has ";
+        std::cout << p->getHand()->size() << " cards" << std:: endl;
+        i++;
     }
-    out << std::endl << std:: endl;
 
-    out << "=== Turn Over ===" << std::endl << std::endl;
+    std::cout << std::endl;
 }
 
+void OldMaidView::endRound(std::vector<Player*> players, int winner) {
+    std::cout << std::endl;
+    std::cout << "============ Game Over =======================" << std::endl;
+    std::cout << "!!! " << players[winner]->getName();
+    std::cout << " is the Old Maid !!!" << std::endl << std::endl;
 
-void OldMaidView::endRound(int loser) const {
-    out << "=== Round Over ===" << std::endl << std::endl;
-    out << "Old Maid: ";
-    out << players->at(loser)->getName() << std::endl;
+    std::cout << "*** Thanks For Playing ***" << std::endl;
 }

@@ -1,4 +1,5 @@
 #include <istream>
+#include <iostream>
 #include <string>
 #include "Input.h"
 
@@ -15,5 +16,10 @@ std::string Input::getString() {
     std::string str;
     in >> str;
     return str;
+}
+
+void Input::wait() {
+    in.ignore();
+    in.get();
 }
 

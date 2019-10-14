@@ -14,6 +14,7 @@ class MockInput : public Input {
 
     MOCK_METHOD0(getInt, int());
     MOCK_METHOD0(getString, std::string());
+    MOCK_METHOD0(wait, void());
 };
 
 #endif

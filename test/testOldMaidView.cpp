@@ -1,100 +1,64 @@
 #include <gtest/gtest.h>
-#include <stdexcept>
-#include <sstream>
 #include <vector>
-#include <fstream>
-#include <iostream>
+#include <string>
 #include "OldMaidView.h"
 #include "Player.h"
-#include "Hand.h"
-#include "Card.h"
+
+using testing::internal::CaptureStdout;
+using testing::internal::GetCapturedStdout;
 
 
-TEST(TestOldMaidView, turn_info) {
-    std::stringstream ss;
+TEST(TestOldMaidView, DISABLED_welcome) {
+    CaptureStdout();
+    OldMaidView view;
 
-    Player steve("Steve");
-    Player comp("Comp1");
-    std::vector<Player*> players{&steve, &comp};
-
-    Card* c1 = new Card(1, Suit::HEART);
-    Card* c2 = new Card(2, Suit::HEART);
-    Card* c3 = new Card(1, Suit::SPADE);
-    Card* c4 = new Card(2, Suit::SPADE);
-
-    steve.getHand()->addCard(c1);
-    steve.getHand()->addCard(c2);
-    comp.getHand()->addCard(c3);
-    comp.getHand()->addCard(c4);
-
-    OldMaidView view(&players, ss);
-
-    view.turnInfo(0);
-
-    EXPECT_EQ("=== Steve's Turn ===\n\n"
-              "-- Hand Sizes --\n"
-              "Steve: 2\n"
-              "Comp1: 2\n\n"
-              "-- Your Cards --\n"
-              "AH 2H \n\n", ss.str());
+    view.welcome();
+    std::string output = GetCapturedStdout();
+    EXPECT_EQ("==== Old Maid ====\n\n", output);
 }
 
 
-TEST(TestOldMaidView, pick_card) {
-    std::stringstream ss;
-    OldMaidView view(nullptr, ss);
+TEST(TestOldMaidView, DISABLED_get_name) {
+    CaptureStdout();
+    OldMaidView view;
 
-    view.pickCard();
-    EXPECT_EQ("Choose card: ", ss.str());
+    view.getName();
+    std::string output = GetCapturedStdout();
+    EXPECT_EQ("Enter name: ", output);
 }
 
 
-TEST(TestOldMaidView, result_not_a_match) {
-    std::stringstream ss;
-    OldMaidView view(nullptr, ss);
+TEST(TestOldMaidView, DISABLED_get_num_AI) {
+    CaptureStdout();
+    OldMaidView view;
 
-    const Card c(12, Suit::HEART);
-    view.result(&c, false);
-
-    EXPECT_EQ("\nCard Chosen: QH\n\n"
-              "** Not a Match **\n"
-              "The QH was added to your hand\n\n"
-              "=== Turn Over ===\n\n", ss.str());
+    view.askNumAI();
+    std::string output = GetCapturedStdout();
+    EXPECT_EQ("How many opponents would you like (2-4): ",
+        output);
 }
 
 
-TEST(TestOldMaidView, result_a_match) {
-    std::stringstream ss;
-    OldMaidView view(nullptr, ss);
+TEST(TestOldMaidView, DISABLED_begin_round) {
+    CaptureStdout();
+    OldMaidView view;
 
-    const Card c1(12, Suit::HEART);
-    const Card c2(12, Suit::SPADE);
-    view.result(&c1, true, &c2);
+    std::vector<Player*> players;
 
-    EXPECT_EQ("\nCard Chosen: QH\n\n"
-              "** It's a Match **\n"
-              "The QS was removed from your hand\n\n"
-              "=== Turn Over ===\n\n", ss.str());
+    view.beginRound(players);
+    std::string output = GetCapturedStdout();
+    EXPECT_EQ("Some player Info", output);
 }
 
 
-TEST(TestOldMaidView, end_round) {
-    std::stringstream ss;
-    Player steve("Steve");
-    std::vector<Player*> players{&steve};
-    OldMaidView view(&players, ss);
+TEST(TestOldMaidView, DISABLED_end_round) {
+    CaptureStdout();
+    OldMaidView view;
 
-    view.endRound(0);
-    EXPECT_EQ("=== Round Over ===\n\nOld Maid: Steve\n", ss.str());
+    std::vector<Player*> players;
+
+    view.endRound(players, 0);
+    std::string output = GetCapturedStdout();
+    EXPECT_EQ("Some player Info", output);
 }
 
-
-TEST(TestOldMaidView, end_round_throws) {
-    std::stringstream ss;
-    Player steve("Steve");
-    std::vector<Player*> players{&steve};
-    OldMaidView view(&players, ss);
-
-    EXPECT_THROW(view.endRound(20), std::out_of_range);
-    EXPECT_THROW(view.endRound(-1), std::out_of_range);
-}

@@ -3,7 +3,6 @@
 #include <string>
 #include <stdexcept>
 #include "Input.h"
-#include "OldMaidView.h"
 
 
 TEST(InputTests, get_int) {
@@ -27,5 +26,14 @@ TEST(InputTests, get_string) {
     Input in(ss);
 
     EXPECT_EQ(in.getString(), "steve");
+}
+
+
+TEST(InputTests, wait) {
+    std::stringstream ss;
+    Input in(ss);
+
+    in.wait();
+    EXPECT_EQ("", ss.str());
 }
 

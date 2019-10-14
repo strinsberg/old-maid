@@ -1,9 +1,0 @@
-=== Steve's Turn ===
-
--- Hand Sizes --
-Steve: 2
-Comp1: 2
-
--- Your Cards --
-AH 2H
-

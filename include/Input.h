@@ -33,6 +33,11 @@ class Input {
      */
     virtual std::string getString();
 
+    /**
+     * Wait for the user to press enter.
+     */
+    virtual void wait();
+
  private:
     std::istream& in;
 };

@@ -1,71 +1,75 @@
-#include <iostream>
 #include <vector>
-#include <string>
 #include "OldMaidRound.h"
-#include "OldMaidView.h"
-#include "Round.h"
+#include "PlayerController.h"
 #include "Deck.h"
+#include "View.h"
 #include "Input.h"
-#include "Player.h"
-#include "Hand.h"
 
 
-OldMaidRound::OldMaidRound(Deck* d, std::vector<Player*>* pls,
-        Input* in, OldMaidView* v)
-            : Round(d, pls, in), view(v) {
+OldMaidRound::OldMaidRound(std::vector<PlayerController*>* ps, Deck* d,
+    View* v) : players(ps), deck(d), view(v) {}
+
+
+OldMaidRound::~OldMaidRound() {}
+
+
+void OldMaidRound::setup() {
+    // Remove 3 queens from the deck
+    CardCollection* cards = deck->getCards();
+    for (int i = 0; i < 3; i++) {
+        int pos = cards->findCard(12, static_cast<Suit>(i + 1));
+        Card const* queen = cards->takeCard(pos);
+        delete queen;
+    }
+
+    // Shuffle and deal out hands to each player
     deck->shuffle();
-    int idx = deck->findCard(12, Suit::CLUB);
-    Card const* card = deck->takeCard(idx);
-    delete card;
-
-    std::vector<Hand*> hands = deck->deal(players->size(), 0);
-    for (int i = 0; i < players->size(); i++)
-       (*players)[i]->setHand(hands[i]);
+    std::vector<CardCollection*> hands = deck->deal(players->size(), 0);
+    for (int i = 0; i < players->size(); ++i) {
+        (*players)[i]->getPlayer()->setHand(hands[i]);
+        (*players)[i]->updateHand();
+    }
 }
 
+#include <iostream>
 
 int OldMaidRound::play() {
-    while (!roundOver()) {
+    std::vector<Player*> stillInGame = getPlayers(true);
+    view->beginRound(stillInGame);
+
+    while (stillInGame.size() > 0) {
         for (int i = 0; i < players->size(); i++) {
-            if ((*players)[i]->getHand()->size() == 0)
+            if ((*players)[i]->isOut()) {
                 continue;
-
-            view->turnInfo(i);
-            view->pickCard();
-
-            int choice = input->getInt();
-            int to_left = i == players->size() - 1 ? 0 : i + 1;
-            Card const* pick = (*players)[to_left]->getHand()->takeCard(choice);
-
-            int idx = (*players)[i]->getHand()->matchCard(pick->getValue());
-            if (idx != -1) {
-               Card const* card = (*players)[i]->getHand()->takeCard(idx);
-               view->result(pick, true, card);
-               delete card;
-               delete pick;
-            } else {
-               view->result(pick, false);
-               (*players)[i]->getHand()->addCard(pick);
             }
+
+            // take the players turn with the remaining players
+            stillInGame = getPlayers(true);
+            if (stillInGame.size() <= 1) {
+                view->endRound(getPlayers(), i);
+                return i;
+            }
+
+            view->gameStatus(stillInGame);
+            (*players)[i]->takeTurn(deck, stillInGame);
         }
     }
-    view->endRound(getLoser());
 }
 
 
-bool OldMaidRound::roundOver() const {
-    int count = 0;
-    for (auto p : *players) {
-        if (p->getHand()->size() > 0)
-            count++;
-    }
-    return count <= 1;
-}
+// Private helpers ////////////////////////////////////////////////////
 
+std::vector<Player*> OldMaidRound::getPlayers(bool onlyPlaying) {
+    std::vector<Player*> ps;
 
-int OldMaidRound::getLoser() const {
     for (int i = 0; i < players->size(); i++) {
-        if ((*players)[i]->getHand()->size() > 0)
-            return i;
+        if (onlyPlaying && (*players)[i]->isOut()) {
+                continue;
+        }
+
+        ps.push_back((*players)[i]->getPlayer());
     }
+
+    return ps;
 }
+

@@ -14,3 +14,4 @@ results.coverage
 *.autosave
 html
 *.log
+*.xml

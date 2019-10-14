@@ -1,11 +1,11 @@
 # Current
 
-* Input validation and a way to quit
-* Sorter for hand of cards
-* Remove Pairs from hand at game start and possibly adjust the way that checking for matches is done?
-* Computer players
-* A press enter to continue after your turn
-* different input for computer players and maybe a continue after each turn to make it easy to keep track of what happened easier
+* Get full test coverage on everything except view classes
+* Play Test Game
+* Review and revise doxygen comments
+* Make sure everything is clean and tidy in the code
+* Ensure project is set up as directed
+* Tidy up tests using test classes where possible to simplify test logic
 
 #Bugs
 
@@ -13,11 +13,8 @@
 
 # Backlog
 
-* Main menu to pick number of players
-* Game to play more than one round with same players and keep track of winners
-* Program Commands
-* Show Score
-* Show some help/rules
-* Give a name for your player and auto choose some names for computer players
-* More intuitive view and input
+* Revise and finish design document
+* Fill in readme with any important info
+* Press enter to continue
+* Computer players with different controller and view
 * Open to extension for adding new games
