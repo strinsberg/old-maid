@@ -50,10 +50,10 @@ TEST(DeckTest, shuffle) {
     // know what will be in any position if we are randomizing it. So we
     // try a few things we know should be in those positions if the suffle
     // did not work.
-    EXPECT_TRUE(ah->getValue() != 1 && ah->getSuit() != Suit::HEART
-        || as->getValue() != 1 && as->getSuit() != Suit::SPADE
-        || ad->getValue() != 1 && ad->getSuit() != Suit::DIAMOND
-        || ac->getValue() != 1 && ac->getSuit() != Suit::CLUB);
+    EXPECT_TRUE((ah->getValue() != 1 && ah->getSuit() != Suit::HEART)
+        || (as->getValue() != 1 && as->getSuit() != Suit::SPADE)
+        || (ad->getValue() != 1 && ad->getSuit() != Suit::DIAMOND)
+        || (ac->getValue() != 1 && ac->getSuit() != Suit::CLUB));
 }
 
 

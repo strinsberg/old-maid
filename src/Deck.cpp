@@ -29,7 +29,8 @@ Card const* Deck::takeTop() {
 
 
 void Deck::shuffle() {
-    std::random_shuffle(cards->begin(), cards->end());
+    std::random_device r;
+    std::shuffle(cards->begin(), cards->end(), r);
 }
 
 

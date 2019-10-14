@@ -53,8 +53,8 @@ int OldMaidRound::play() {
             view->gameStatus(stillInGame);
             (*players)[i]->takeTurn(deck, stillInGame);
         }
-    }
-}
+    }  //LCOV_EXCL_LINE
+}  //LCOV_EXCL_LINE
 
 
 // Private helpers ////////////////////////////////////////////////////
