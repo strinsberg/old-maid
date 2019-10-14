@@ -44,16 +44,21 @@ TEST(DeckTest, shuffle) {
     Card const* as = d.getCards()->getCard(13);
     Card const* ad = d.getCards()->getCard(26);
     Card const* ac = d.getCards()->getCard(39);
+    Card const* _2h = d.getCards()->getCard(1);
+    Card const* _2s = d.getCards()->getCard(14);
+    Card const* _2d = d.getCards()->getCard(27);
+    Card const* _2c = d.getCards()->getCard(40);
 
-    // This may fail every once in a blue moon, but it checks to make sure that
-    // if one of the aces is not in it's original position the deck is
-    // considered shuffled. It is very unlikely after a shuffle that all 4
-    // aces will still be where they started. Could easily add a few more cards
-    // to make this more strict.
+    // This may fail every once in a blue moon, It is hard to check for
+    // a random shuffle, but at least one of these cards should have moved
     EXPECT_TRUE((ah->getValue() != 1 && ah->getSuit() != Suit::HEART)
         || (as->getValue() != 1 && as->getSuit() != Suit::SPADE)
         || (ad->getValue() != 1 && ad->getSuit() != Suit::DIAMOND)
-        || (ac->getValue() != 1 && ac->getSuit() != Suit::CLUB));
+        || (ac->getValue() != 1 && ac->getSuit() != Suit::CLUB)
+        || (_2h->getValue() != 1 && _2h->getSuit() != Suit::HEART)
+        || (_2s->getValue() != 1 && _2s->getSuit() != Suit::SPADE)
+        || (_2d->getValue() != 1 && _2d->getSuit() != Suit::DIAMOND)
+        || (_2c->getValue() != 1 && _2c->getSuit() != Suit::CLUB));
 }
 
 
