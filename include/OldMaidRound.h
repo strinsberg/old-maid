@@ -11,6 +11,10 @@
 
 /**
  * Plays a round of Old Maid.
+ * Takes a set of player controllers and can setup and play the round with
+ * them. Delegates the taking of turns to the PlayerControllers for simplicity
+ * and possible polymorphic behaviour with other player types, like AI.
+ *
  * @author Steven Deutekom
  * @date sept 30, 2019
  */
@@ -18,6 +22,10 @@ class OldMaidRound {
  public:
     /**
      * Creates a new round of OldMaid with the given players, deck and view.
+     *
+     * @param players A list of player controllers for the current players.
+     * @param deck The deck being used in the round.
+     * @param view The view for the round.
      */
     OldMaidRound(std::vector<PlayerController*>* players, Deck* deck,
         View* view);
@@ -37,9 +45,9 @@ class OldMaidRound {
     int play();
 
  private:
-    std::vector<PlayerController*>* players;
-    Deck* deck;
-    View* view;
+    std::vector<PlayerController*>* players;  // Does not own these
+    Deck* deck;  // Does not own this
+    View* view;  // Does not own this
 
     /**
      * Returns the player data objects from players.

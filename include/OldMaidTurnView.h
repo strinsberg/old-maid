@@ -10,12 +10,19 @@
 
 /**
  * A view to display information during a players turn.
+ *
  * @author Steven Deutekom
- * @date sept 29, 2019
+ * @date sept 29 2019, oct 14 2019
  */
 class OldMaidTurnView {
  public:
+    /**
+     * Creates a new view for the given player.
+     *
+     * @param player The player whose turn information will be displayed.
+     */
     explicit OldMaidTurnView(Player* player);
+
     virtual ~OldMaidTurnView() {}
 
     /**
@@ -50,7 +57,9 @@ class OldMaidTurnView {
     virtual void wait();
 
  protected:
-    Player* player;
+    Player* player;  // Does not own this.
+
+    OldMaidTurnView(const OldMaidTurnView&) {}
 };
 
 #endif

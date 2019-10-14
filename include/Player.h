@@ -8,9 +8,11 @@
 
 
 /**
- * A player in a card game with 1 hand of cards.
+ * A player model in a card game with 1 hand of cards.
+ * Keeps track of players name, cards, and score.
+ *
  * @author Steven Deutekom
- * @date sept 15, 2019
+ * @date sept 15 2019, oct 14 2019
  */
 class Player {
  public:
@@ -21,7 +23,7 @@ class Player {
      */
     explicit Player(const std::string& name);
 
-    ~Player();
+    virtual ~Player();
 
     /**
      * Returns the players name.
@@ -32,6 +34,7 @@ class Player {
 
     /**
      * Returns a pointer to the player's hand.
+     * Does not transfer ownership of the hand.
      *
      * @param the players hand.
      */
@@ -39,6 +42,7 @@ class Player {
 
     /**
      * Sets the players hand to a given hand.
+     * Transfers ownership of the hand.
      *
      * @param the new hand.
      */
@@ -71,7 +75,7 @@ class Player {
 
  protected:
     std::string name;
-    CardCollection* hand;
+    CardCollection* hand;  // Owns this
     int score;
 
  private:

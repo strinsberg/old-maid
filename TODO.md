@@ -1,7 +1,5 @@
 # Current
 
-* Get full test coverage on everything except view classes
-* Play Test Game
 * Review and revise doxygen comments
 * Make sure everything is clean and tidy in the code
 * Ensure project is set up as directed
@@ -15,6 +13,5 @@
 
 * Revise and finish design document
 * Fill in readme with any important info
-* Press enter to continue
 * Computer players with different controller and view
 * Open to extension for adding new games

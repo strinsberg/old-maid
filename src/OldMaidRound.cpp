@@ -31,7 +31,6 @@ void OldMaidRound::setup() {
     }
 }
 
-#include <iostream>
 
 int OldMaidRound::play() {
     std::vector<Player*> stillInGame = getPlayers(true);

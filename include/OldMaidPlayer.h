@@ -12,7 +12,8 @@
 
 
 /**
- * Controller class for a player during a round of Old Maid..
+ * Controller class for a player during a round of Old Maid.
+ *
  * @author Steven Deutekom
  * @date sept 30, 2019
  */
@@ -35,14 +36,16 @@ class OldMaidPlayer : public PlayerController {
     virtual bool isOut();
 
  protected:
-    Player* player;
-    OldMaidTurnView* view;
-    Input* input;
+    Player* player;  // Does not own this
+    OldMaidTurnView* view;  // Does not own this
+    Input* input;  // Does not own this
 
     void removePairs(CardCollection* hand);
     Player* getLeftPlayer(const std::vector<Player*>& players);
     Card const* getCard(Player* toTheLeft);
     void determineResult(Card const* taken);
+
+    OldMaidPlayer(const OldMaidPlayer&) {}
 };
 
 #endif

@@ -9,6 +9,7 @@
 
 /**
  * Gets input from the user.
+ *
  * @author Steven Deutekom
  * @date sept 17, 2019
  */

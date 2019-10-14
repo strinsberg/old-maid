@@ -32,6 +32,7 @@ class Deck {
 
     /**
      * Removes and returns the top card of the deck.
+     * Transfers ownership of the card.
      *
      * @return the top card.
      */
@@ -56,13 +57,14 @@ class Deck {
 
     /**
      * Return the cards in the deck.
+     * Does not transfer ownership.
      *
      * @return the cards.
      */
     virtual CardCollection* getCards();
 
  private:
-    CardCollection* cards;
+    CardCollection* cards;  // Owns this
 
     Deck(const Deck&) {}
 };

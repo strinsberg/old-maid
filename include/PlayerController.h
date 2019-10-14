@@ -9,6 +9,13 @@
 
 /**
  * Responsible for player behaviour, input, and output during a card game.
+ * Is composed of a Player object. The reason for this class is to allow for
+ * controlling players in different ways, such as for AI. It is also useful to
+ * put the controller logic in a separate place for a players turn when
+ * testing. It is an Abstract class for Mocking and so it may be possible to
+ * use it with other games that have similar turn flow. But this may be
+ * optimistic to expect.
+ *
  * @author Steven Deutekom
  * @date sept 30, 2019
  */
@@ -37,12 +44,14 @@ class PlayerController {
      * Update the players hand.
      *
      * Should differ depending on what the game needs. Could be to remove pairs
-     * or something more complicated depending on the game.
+     * or something more complicated depending on the game. In Old Maid it is
+     * used to remove the pairs from the players hand.
      */
     virtual void updateHand() = 0;
 
     /**
      * Returns the player being controlled.
+     * Does not transfer ownership of the Player.
      *
      * @return the player.
      */
@@ -54,6 +63,9 @@ class PlayerController {
      * @return true if the player is out, otherwise false.
      */
     virtual bool isOut() = 0;
+
+ private:
+     PlayerController(const PlayerController&) {}
 };
 
 #endif

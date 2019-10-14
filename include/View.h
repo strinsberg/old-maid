@@ -8,6 +8,10 @@
 
 /**
  * Interface for a simple game view.
+ * Designed to give some general information for a games rounds. Does not
+ * necessarily take care of any Turn information. That is done in
+ * OldMaidTurnView.
+ *
  * @author Steven Deutekom
  * @date sept 29, 2019
  */
