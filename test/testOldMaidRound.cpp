@@ -1,20 +1,123 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include <vector>
+#include <stdexcept>
 #include "OldMaidRound.h"
 #include "MockView.h"
 #include "MockPlayerController.h"
 #include "MockPlayer.h"
 #include "MockDeck.h"
 #include "MockCardCollection.h"
+#include "MockInput.h"
 #include "Card.h"
 #include "Suit.h"
 
 
 using testing::Return;
 using testing::InSequence;
+using testing::Throw;
 using testing::_;
 
+
+// Make player tests //////////////////////////////////////////////////
+
+TEST(OldMaidRoundTests, makePlayers) {
+    MockView view;
+    std::vector<PlayerController*> players;
+    MockDeck deck;
+    MockInput *input = new MockInput();
+
+    OldMaidRound round(&players, &deck, &view);
+    round.setInput(input);
+
+    EXPECT_CALL(view, askNumAI())
+        .Times(1);
+
+    EXPECT_CALL(*input, getInt())
+        .Times(1)
+        .WillOnce(Return(3));
+
+    EXPECT_TRUE(round.makePlayers("Steve"));
+    EXPECT_EQ(4, players.size());
+
+    for (auto p : players)
+        delete p;
+}
+
+
+TEST(OldMaidRoundTests, makePlayers_too_few) {
+    MockView view;
+    std::vector<PlayerController*> players;
+    MockDeck deck;
+    MockInput *input = new MockInput();
+
+    OldMaidRound round(&players, &deck, &view);
+    round.setInput(input);
+
+    EXPECT_CALL(view, askNumAI())
+        .Times(1);
+
+    EXPECT_CALL(*input, getInt())
+        .Times(1)
+        .WillOnce(Return(1));
+
+    EXPECT_FALSE(round.makePlayers("Steve"));
+    EXPECT_EQ(1, players.size());
+
+    for (auto p : players)
+        delete p;
+}
+
+
+TEST(OldMaidRoundTests, makePlayers_too_many) {
+    MockView view;
+    std::vector<PlayerController*> players;
+    MockDeck deck;
+    MockInput *input = new MockInput();
+
+    EXPECT_CALL(view, askNumAI())
+        .Times(1);
+
+    OldMaidRound round(&players, &deck, &view);
+    round.setInput(input);
+
+    EXPECT_CALL(*input, getInt())
+        .Times(1)
+        .WillOnce(Return(6));
+
+    EXPECT_FALSE(round.makePlayers("Steve"));
+    EXPECT_EQ(1, players.size());
+
+    for (auto p : players)
+        delete p;
+}
+
+
+TEST(OldMaidRoundTests, makePlayers_string_input) {
+    MockView view;
+    std::vector<PlayerController*> players;
+    MockDeck deck;
+    MockInput *input = new MockInput();
+
+    EXPECT_CALL(view, askNumAI())
+        .Times(1);
+
+    OldMaidRound round(&players, &deck, &view);
+    round.setInput(input);
+
+    EXPECT_CALL(*input, getInt())
+        .Times(1)
+        .WillOnce(Throw(std::invalid_argument("bad")));
+
+    EXPECT_FALSE(round.makePlayers("Steve"));
+    EXPECT_EQ(1, players.size());
+
+    for (auto p : players)
+        delete p;
+}
+
+
+// Setup and play tests ///////////////////////////////////////////////
 
 TEST(OldMaidRoundTests, setup) {
     MockView view;

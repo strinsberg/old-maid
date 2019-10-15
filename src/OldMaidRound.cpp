@@ -1,16 +1,52 @@
 #include <vector>
+#include <stdexcept>
+#include <string>
 #include "OldMaidRound.h"
 #include "PlayerController.h"
+#include "OldMaidPlayer.h"
 #include "Deck.h"
 #include "View.h"
 #include "Input.h"
 
 
 OldMaidRound::OldMaidRound(std::vector<PlayerController*>* ps, Deck* d,
-    View* v) : players(ps), deck(d), view(v) {}
+    View* v) : players(ps), deck(d), view(v), input(new Input()) {}
 
 
-OldMaidRound::~OldMaidRound() {}
+OldMaidRound::~OldMaidRound() {
+    delete input;
+}
+
+
+// When testing this class do not run this function if you want to fill
+// players with MockOldMaidPlayers.
+bool OldMaidRound::makePlayers(std::string name) {
+    Player* p = new Player(name);
+    players->push_back(new OldMaidPlayer(p, new OldMaidTurnView(p), input));
+
+    // Ask for opponent numbers
+    view->askNumAI();
+    int numOpp;
+
+    // make sure a number or valid value is given
+    try {
+        numOpp = input->getInt();
+    } catch (std::invalid_argument& e) {
+        numOpp = 0;
+    }
+
+    if (numOpp < 2 || numOpp > 5) {
+        return false;
+    }
+
+    // Create opponents. Originally for AI, but they were never implemented.
+    for (int i = 0; i < numOpp; i++) {
+        Player* opp = new Player(aiNames[i]);
+        players->push_back(
+            new OldMaidPlayer(opp, new OldMaidTurnView(opp), input));
+    }
+    return true;
+}
 
 
 void OldMaidRound::setup() {
@@ -55,6 +91,11 @@ int OldMaidRound::play() {
         }
     }  //LCOV_EXCL_LINE
 }  //LCOV_EXCL_LINE
+
+void OldMaidRound::setInput(Input* in) {
+    delete input;
+    input = in;
+}
 
 
 // Private helpers ////////////////////////////////////////////////////
