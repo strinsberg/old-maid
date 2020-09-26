@@ -1,8 +1,6 @@
-# 3720 Card Game
+# CPSC 3720 Card Game Assignment (fall 2019)
 
-[![build status](http://gitlab.cs.uleth.ca/deus3720/OldMaid/badges/master/build.svg)](http://gitlab.cs.uleth.ca/deus3720/OldMaid/commits/master)
-
-A command line Old maid card game utilizing MVC architecture.
+A command line card game, Old Maid, that attempts to use MVC concepts.
 
 # Organization
 * Documentation can be generated with ```$ make docs``` and will be stored in ```docs/code/html```
